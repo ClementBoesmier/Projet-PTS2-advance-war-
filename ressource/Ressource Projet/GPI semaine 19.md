@@ -31,19 +31,15 @@ Question GPI :
 4. Comment prenons nous nos décisions et quelles décisions sont à prendre cette semaine?
    
    - de façon collective ! on discute et l'on débat sur les différents sujets a aborder
-     
-     
-     
-     décisions sont à prendre cette semaine :
-   - périmètre du projet
-   - concept
-   - règles du jeu
-   - diagramme
-   - définition des différent niveau d'ambition du jeu
 
+     décisions sont à prendre cette semaine :
+
+- périmètre du projet
+- concept
+- règles du jeu
+- diagramme
+- définition des différent niveau d'ambition du jeu
 5. Comment vérifions nous dans le temps que nos actions amènent les bons résultats attendus ?
    
    - réunion dans le temps
    - mise a jour du git kraken glo
-
-
