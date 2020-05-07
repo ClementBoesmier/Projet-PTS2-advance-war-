@@ -16,10 +16,6 @@ V1
 
             Lance rocket : Il gagne contre les char.
 
-            
-
-
-
     Terrain :
 
         Plaine : Accecible a toute les unité
@@ -32,7 +28,7 @@ V1
 
         Ville : rapporte des point d'unité
 
-        Base : permet de faire apparaitre des unité a l'aide des point d'unité
+        Base : permet de faire apparaitre des unité a l'aide des point d'unité, Quand elle         est occuper par l'énemie elle peut pas faire apparaitre d'unité.
 
 
 
@@ -40,11 +36,25 @@ V2
 
     Unité :
 
-        Terrestre
+        Terrestre :
 
-        Aerienne (gestion du carburant)
+            Char :  Posséde une gestion du carburant, il bat l'infantrie.
 
-    Terrain :
+            Infantry : Il gagne contre les lance rocket.
+
+            Lance rocket : Il gagne contre les char.
+
+        Terrain :
+
+            Plaine : Accecible a toute les unité
+
+            Ocean : Accecible a aucune unité
+
+        Batiment :
+
+            Ville : rapporte des point d'unité
+
+            Base : permet de faire apparaitre des unité a l'aide des point d'unité
 
 
 
