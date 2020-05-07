@@ -35,3 +35,5 @@ dans la version 1 *(alpha)* le jeu doit être dans un état basique de jouabilit
   - ville *(rapporte des points)*
   
   - base *(QG du joueur doit être attaquer pour gagner)*
+
+- pour gagner le joueur doit avoir une unité sur la base ennemie pendant 2 tour
