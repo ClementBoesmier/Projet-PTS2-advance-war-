@@ -1,10 +1,6 @@
 # Définition des niveaux d'ambition du jeu
 
-
-
 dans la version 1 *(alpha)* le jeu doit être dans un état basique de jouabilité c'est a dire que les concepts de base doivent être présent sur le jeu mais ils ne seront que très peu développé.
-
-
 
 ## liste des concept de base :
 
@@ -14,11 +10,11 @@ dans la version 1 *(alpha)* le jeu doit être dans un état basique de jouabilit
 
 - les unité terrestre simple prenant la forme d'un pierre feuille ciseau 
   
-    - *(unité a bat unité b)*
+  - *(unité a bat unité b)*
   
-    - *(unité b bat unité c)*
+  - *(unité b bat unité c)*
   
-    - *(unité c bat unité a)*
+  - *(unité c bat unité a)*
 
 - il n'y a pas de gestion des vie pour les unité *(one shoot si dominant, si même type )*
 
@@ -39,5 +35,3 @@ dans la version 1 *(alpha)* le jeu doit être dans un état basique de jouabilit
   - ville *(rapporte des points)*
   
   - base *(QG du joueur doit être attaquer pour gagner)*
-
-
