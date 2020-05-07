@@ -2,6 +2,10 @@
 
 
 
+PV : point de vie
+
+PU : point unité(permet de faire apparaitre des unité)
+
 
 
 V1
@@ -10,11 +14,11 @@ V1
 
         Terrestre :
 
-            Char : aucune différence avec les autre, il bat l'infantrie.
+            Char : aucune différence avec les autre, il gagne contre l'infantrie. (5PU)
 
-            Infantry : Il gagne contre les lance rocket.
+            Infantry : Il gagne contre les lance rocket. (5PU)
 
-            Lance rocket : Il gagne contre les char.
+            Lance rocket : Il gagne contre les char. (5PU)
 
     Terrain :
 
@@ -26,7 +30,7 @@ V1
 
     Batiment :
 
-        Ville : rapporte des point d'unité
+        Ville : rapporte des point d'unité (PU)
 
         Base : permet de faire apparaitre des unité a l'aide des point d'unité, Quand elle         est occuper par l'énemie elle peut pas faire apparaitre d'unité.
 
@@ -38,17 +42,25 @@ V2
 
         Terrestre :
 
-            Char :  Posséde une gestion du carburant, il bat l'infantrie.
+            Char :  Posséde une gestion du carburant, il fait plus de dégat a l'infantrie,                            posséde plus de pv que les autre unité terrestre(10PV), et il coute plus chére en             PU (le triple mais il faudra faire des ajustement).
 
-            Infantry : Il gagne contre les lance rocket.
+            Infantry : Il gagne obligatoirement contre les lance rocket et inflige peut de dégat             au char(seulement 3) coute 10 PU.
 
-            Lance rocket : Il gagne contre les char.
+            Lance rocket : Il gagne contre les char et les hélicoptére coute 15PU et fait moins             de dégat au infantry.
 
-        Terrain :
+        Aerienne :
 
-            Plaine : Accecible a toute les unité
+            
 
-            Ocean : Accecible a aucune unité
+        
+
+        
+
+    Terrain :
+
+        Plaine : Accecible a toute les unité
+
+        Ocean : Accecible a aucune unité
 
         Batiment :
 
