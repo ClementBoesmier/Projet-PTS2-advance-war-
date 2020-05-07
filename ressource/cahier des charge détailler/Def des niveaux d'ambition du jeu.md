@@ -37,3 +37,63 @@ dans la version 1 *(alpha)* le jeu doit être dans un état basique de jouabilit
   - base *(QG du joueur doit être attaquer pour gagner)*
 
 - pour gagner le joueur doit avoir une unité sur la base ennemie pendant 2 tour
+
+
+
+
+
+Dans version 2 *(beta)* le jeu doit être une version semi aboutie du jeu c'est a dire que les concepts du jeu de base *(alpha)* doivent être développer.
+
+ 
+
+## liste des concept ajouter :
+
+- amélioration des menus
+
+- un minimum de 2 cartes ajouter par nous
+
+- les types d'unité du jeu orignal doivent être présent
+  
+  - terrestre
+  
+  - maritime
+  
+  - aérienne
+
+- les caractéristiques des unité son complété
+  
+  - vie
+  
+  - prix
+  
+  - leur force
+  
+  - leur faiblesse
+  
+  - nombre de déplacement
+  
+  - les terrains praticable
+
+- les terrains son aussi diversifier
+
+- les bâtiment sous aussi compléter
+
+- système économique amélioré
+
+
+
+la version 3 *(final)* doit être la version la plus aboutie du jeu elle comporte d'élément optionnel
+
+
+
+## liste des concept ajouter :
+
+- éditeur de carte
+
+- équilibrage des unité
+
+- mode solo (contre une IA)
+
+- 
+
+## 
