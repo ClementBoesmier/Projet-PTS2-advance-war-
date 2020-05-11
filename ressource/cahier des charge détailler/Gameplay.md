@@ -6,7 +6,8 @@ Pour jouer, le joueur utilise la touche entrée et le flèches directionnelles.
  - Déplacement :
 Pour déplacer une unité, le joueur doit sélectionner la case sur laquelle se trouve l’unité, pour cela il utilisera les flèches directionnelles pour déplacer le curseur jusqu’à cette case. Une fois l’unité sélectionnée, un menu s’affiche a  coté de l’unité pour lui proposer soit d’attaquer soit de se déplacer, il doit choisir de se déplacer, il pourra ensuite se déplacer dans un rayon correspondant a ses points de mouvement. On appuiera ensuite sur Entrée en ayant le curseur sur la case ou l’on veux faire bouger l’unité pour effectuer le déplacement
 
-Ci-contre, le déplacement dans le jeu de référence, la zone de surbrillance correspondant à la zone où l’unité peut se déplacer ce tour là
+Ci-dessous, le déplacement dans le jeu de référence, la zone de surbrillance correspondant à la zone où l’unité peut se déplacer ce tour là
+
 ![imagegameplay](https://github.com/joladouille/Projet-PTS2-advance-war-/blob/master/ressource/cahier%20des%20charge%20d%C3%A9tailler/imagegameplay.png?raw=true)
 
 
