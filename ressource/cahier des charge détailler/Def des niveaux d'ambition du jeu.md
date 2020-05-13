@@ -38,13 +38,7 @@ dans la version 1 *(alpha)* le jeu doit être dans un état basique de jouabilit
 
 - pour gagner le joueur doit avoir une unité sur la base ennemie pendant 2 tour
 
-
-
-
-
 Dans version 2 *(beta)* le jeu doit être une version semi aboutie du jeu c'est a dire que les concepts du jeu de base *(alpha)* doivent être développer.
-
- 
 
 ## liste des concept ajouter :
 
@@ -80,11 +74,7 @@ Dans version 2 *(beta)* le jeu doit être une version semi aboutie du jeu c'est 
 
 - système économique amélioré
 
-
-
 la version 3 *(final)* doit être la version la plus aboutie du jeu elle comporte d'élément optionnel
-
-
 
 ## liste des concept ajouter :
 
@@ -96,4 +86,4 @@ la version 3 *(final)* doit être la version la plus aboutie du jeu elle comport
 
 - 
 
-## 
+# 
