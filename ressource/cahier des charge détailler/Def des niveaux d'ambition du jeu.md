@@ -74,6 +74,8 @@ Dans version 2 *(beta)* le jeu doit être une version semi aboutie du jeu c'est 
 
 - système économique amélioré
 
+- ajout de son dans le jeu
+
 la version 3 *(final)* doit être la version la plus aboutie du jeu elle comporte d'élément optionnel
 
 ## liste des concept ajouter :
@@ -84,6 +86,6 @@ la version 3 *(final)* doit être la version la plus aboutie du jeu elle comport
 
 - mode solo (contre une IA)
 
-- 
+- gestion sauvegarde partie
 
 # 
