@@ -4,19 +4,23 @@ import java.util.*;
 /**
  * 
  */
-public class Case {
+public class Town extends Building {
 
     /**
      * Default constructor
      */
-    public Case() {
+    public Town() {
     }
 
+    /**
+     * 
+     */
+    private int PAYOUT;
 
     /**
      * @return
      */
-    public Units getUnit() {
+    public void onEndTurn() {
         // TODO implement here
         return null;
     }

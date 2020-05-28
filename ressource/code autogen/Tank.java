@@ -4,12 +4,12 @@ import java.util.*;
 /**
  * 
  */
-public class Infantry {
+public class Tank extends Units {
 
     /**
      * Default constructor
      */
-    public Infantry() {
+    public Tank() {
     }
 
 }

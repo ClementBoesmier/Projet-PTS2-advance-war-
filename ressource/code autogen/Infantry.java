@@ -4,12 +4,12 @@ import java.util.*;
 /**
  * 
  */
-public class RocketLauncher {
+public class Infantry extends Units {
 
     /**
      * Default constructor
      */
-    public RocketLauncher() {
+    public Infantry() {
     }
 
 }

@@ -4,32 +4,32 @@ import java.util.*;
 /**
  * 
  */
-public class Maps {
+public class Game {
 
     /**
      * Default constructor
      */
-    public Maps() {
+    public Game() {
     }
 
     /**
      * 
      */
-    private final int WIDTH;
-
-    /**
-     * 
-     */
-    private final int HIEGHT;
-
+    private int nbTurn;
 
 
     /**
-     * @param x 
-     * @param y 
      * @return
      */
-    public Case getCase(int x, int y) {
+    public int getTurn() {
+        // TODO implement here
+        return 0;
+    }
+
+    /**
+     * @return
+     */
+    public void endTurn() {
         // TODO implement here
         return null;
     }
