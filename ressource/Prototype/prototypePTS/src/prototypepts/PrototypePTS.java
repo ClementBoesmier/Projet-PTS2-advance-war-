@@ -28,7 +28,9 @@ public class PrototypePTS extends Application {
     
     @Override
     public void start(Stage primaryStage) {
-        //ex3
+        /*
+        //MENU PRINCIPALE 
+        
         BorderPane root = new BorderPane();
         Scene scene = new Scene(root, 450, 450);
         GridPane grid = new GridPane();
@@ -92,12 +94,63 @@ public class PrototypePTS extends Application {
         grid.add(titre, 1, 0);
         
         Button btn = new Button();
-        btn.setText("START GAME");
-        grid.add(btn, 1, 17);
+        btn.setText("START");
+        GridPane.setHalignment(btn, HPos.CENTER);
+        grid.add(btn, 0, 17);
+        Button but = new Button();
+        but.setText("règle de jeu");
+        GridPane.setHalignment(but, HPos.CENTER);
+        grid.add(but, 1, 17);
+        Button button = new Button();
+        button.setText("score");
+        GridPane.setHalignment(button, HPos.CENTER);
+        grid.add(button, 1, 18);
+        Button bot = new Button();
+        bot.setText("quitter");
+        GridPane.setHalignment(bot, HPos.CENTER);
+        grid.add(bot, 0, 18);
         
         root.setCenter(grid);
         primaryStage.setScene(scene);
         primaryStage.show();
+        */
+        
+        
+        
+        
+        /*
+        //MENU IN-GAME
+        BorderPane root = new BorderPane();
+        Scene scene = new Scene(root, 450, 450);
+        GridPane grid = new GridPane();
+        grid.setPadding(new Insets(70)); // position vertical 
+        grid.setHgap(80); // position horizontal de la zone de texte
+        grid.setVgap(8);
+        //ColumnConstraints column1 = new ColumnConstraints(100);
+        //ColumnConstraints column2 = new ColumnConstraints(50, 150, 300);
+        //column2.setHgrow(Priority.ALWAYS);
+        //grid.getColumnConstraints().addAll(column1, column2);
+        
+         
+        
+        Label titre = new Label("PAUSE");
+        GridPane.setHalignment(titre, HPos.CENTER);
+        grid.add(titre, 1, 0);
+        
+        Button btn = new Button();
+        btn.setText("REPRENDRE PARTIE");
+        GridPane.setHalignment(btn, HPos.CENTER);
+        grid.add(btn, 1, 13);
+        Button but = new Button();
+        but.setText("QUITTER PARTIE");
+        GridPane.setHalignment(but, HPos.CENTER);
+        grid.add(but, 1, 18);
+        
+        
+        root.setCenter(grid);
+        primaryStage.setScene(scene);
+        primaryStage.show();
+        */
     }
 
     /**
