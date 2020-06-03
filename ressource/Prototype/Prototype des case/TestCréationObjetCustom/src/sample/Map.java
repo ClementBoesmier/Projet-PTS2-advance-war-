@@ -4,40 +4,48 @@ import javafx.geometry.Insets;
 import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
 
-public class Map extends GridPane {
-    private String map;
+public class Map {
+    private String Stringmap;
+    private Case[][] map;
+    private GridPane affMap;
 
-    public Map(String map)
+    public Map(String Stringmap, int size)
+    {
+        this.Stringmap = Stringmap;
+        map = new Case[size][size];
+        affMap = new GridPane();
+    }
+
+    public void generer()
     {
         int index=0;
-        this.map = map;
         Image apres = new Image("file:C:\\Users\\yugog\\Pictures\\waifu\\cadre.png");
-        Image herbre = new Image("file:C:\\Users\\yugog\\Pictures\\waifu\\herbre.jpg");
-        Image ocean = new Image("file:C:\\Users\\yugog\\Pictures\\waifu\\oceanr.jpg");
-        Image batiment = new Image("file:C:\\Users\\yugog\\Pictures\\waifu\\base.png");
-        Image imgVille = new Image("file:C:\\Users\\yugog\\Pictures\\waifu\\ville.png");
+        Image herbre = new Image("file:E:\\Developpement\\git\\Projet-PTS2-advance-war-\\ressource\\GraphismeV1\\Plains.png");
+        Image ocean = new Image("file:E:\\Developpement\\git\\Projet-PTS2-advance-war-\\ressource\\GraphismeV1\\sea.png");
+        Image batiment = new Image("file:E:\\Developpement\\git\\Projet-PTS2-advance-war-\\ressource\\GraphismeV1\\UsineNeutre.png");
+        Image imgVille = new Image("file:E:\\Developpement\\git\\Projet-PTS2-advance-war-\\ressource\\GraphismeV1\\VilleNeutreV1.png");
         Base base = new Base(batiment);
         Base ville = new Base(imgVille);
-        super.setPadding(new Insets(0,0,0,0));
-        super.setManaged(true);
+        affMap.setPadding(new Insets(0,0,0,0));
+        affMap.setManaged(true);
         int pointeur = 0;
         for (int i = 0; i < 10; i ++)
         {
             for (int u = 0; u < 10;u++)
             {
-                switch (map.charAt(index))
+                switch (Stringmap.charAt(index))
                 {
                     case '0':
-                        super.add(new Case(index,ocean, apres),u,i);
+                        affMap.add(new Case(index,ocean, apres),u,i);
                         break;
                     case '1':
-                        super.add(new Case(index,herbre, apres),u,i);
+                        affMap.add(new Case(index,herbre, apres),u,i);
                         break;
                     case '2':
-                        super.add(new Case(index,herbre, apres,base),u,i);
+                        affMap.add(new Case(index,herbre, apres,base),u,i);
                         break;
                     case '3':
-                        super.add(new Case(index,herbre, apres,ville),u,i);
+                        affMap.add(new Case(index,herbre, apres,ville),u,i);
                         break;
                 }
                 index++;
@@ -45,5 +53,12 @@ public class Map extends GridPane {
         }
     }
 
+    public void getCase(int x, int y)
+    {
 
+    }
+
+    public GridPane getAffMap() {
+        return affMap;
+    }
 }

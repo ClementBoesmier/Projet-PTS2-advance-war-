@@ -28,6 +28,8 @@ public class Controller implements Initializable {
                 "0111113110" +
                 "0111111120" +
                 "0000000000";
-        affPan.getChildren().add(new Map(map));
+        Map carte = new Map(map,10);
+        carte.generer();
+        affPan.getChildren().add(carte.getAffMap());
     }
 }

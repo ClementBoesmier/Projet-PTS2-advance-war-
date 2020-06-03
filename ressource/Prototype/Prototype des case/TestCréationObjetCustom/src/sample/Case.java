@@ -7,7 +7,6 @@ import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.paint.Color;
 
 public class Case extends Canvas {
 
@@ -19,7 +18,11 @@ public class Case extends Canvas {
 
     public Case(int nombreCase, Image image, Image apres)
     {
-        super(50,50);
+        super(32,32);
+        super.setScaleX(2);
+        super.setScaleY(2);
+        super.setHeight(64);
+        super.setWidth(64);
 
         ContextMenu menu = new ContextMenu();
 
@@ -29,11 +32,6 @@ public class Case extends Canvas {
 
         super.setOnContextMenuRequested(event -> menu.show(Case.super.getParent(), event.getScreenX(), event.getScreenY()));
         menu.setAutoHide(true);
-
-        this.setScaleX(2);
-        this.setScaleY(2);
-        this.setWidth(100);
-        this.setHeight(100);
 
 
         this.avant = image; this.apres = apres;
@@ -71,7 +69,11 @@ public class Case extends Canvas {
 
     public Case(int nombreCase, Image image, Image apres, Batiment batiment)
     {
-        super(50,50);
+        super(32,32);
+        super.setScaleX(2);
+        super.setScaleY(2);
+        super.setHeight(64);
+        super.setWidth(64);
 
         ContextMenu menu = new ContextMenu();
 
@@ -82,10 +84,6 @@ public class Case extends Canvas {
         super.setOnContextMenuRequested(event -> menu.show(Case.super.getParent(), event.getScreenX(), event.getScreenY()));
         menu.setAutoHide(true);
 
-        this.setScaleX(2);
-        this.setScaleY(2);
-        this.setWidth(100);
-        this.setHeight(100);
 
 
         this.avant = image; this.apres = apres;
