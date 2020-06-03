@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?><project name="Planning prévisionnel de conception" company="" webLink="http://" view-date="2020-05-31" view-index="0" gantt-divider-location="535" resource-divider-location="300" version="2.8.11" locale="fr_FR">
+    <description/>
+    <view zooming-state="default:0" id="gantt-chart">
+        <field id="tpd3" name="Nom" width="245" order="0"/>
+        <field id="tpd4" name="Date de début" width="143" order="1"/>
+        <field id="tpd5" name="Date de fin" width="143" order="2"/>
+    </view>
+    <view id="resource-table">
+        <field id="0" name="Nom" width="210" order="0"/>
+        <field id="1" name="Rôle par défaut" width="86" order="1"/>
+    </view>
+    <!-- -->
+    <calendars>
+        <day-types>
+            <day-type id="0"/>
+            <day-type id="1"/>
+            <default-week id="1" name="default" sun="1" mon="0" tue="0" wed="0" thu="0" fri="0" sat="1"/>
+            <only-show-weekends value="true"/>
+            <overriden-day-types/>
+            <days/>
+        </day-types>
+    </calendars>
+    <tasks empty-milestones="true">
+        <taskproperties>
+            <taskproperty id="tpd0" name="type" type="default" valuetype="icon"/>
+            <taskproperty id="tpd1" name="priority" type="default" valuetype="icon"/>
+            <taskproperty id="tpd2" name="info" type="default" valuetype="icon"/>
+            <taskproperty id="tpd3" name="name" type="default" valuetype="text"/>
+            <taskproperty id="tpd4" name="begindate" type="default" valuetype="date"/>
+            <taskproperty id="tpd5" name="enddate" type="default" valuetype="date"/>
+            <taskproperty id="tpd6" name="duration" type="default" valuetype="int"/>
+            <taskproperty id="tpd7" name="completion" type="default" valuetype="int"/>
+            <taskproperty id="tpd8" name="coordinator" type="default" valuetype="text"/>
+            <taskproperty id="tpd9" name="predecessorsr" type="default" valuetype="text"/>
+        </taskproperties>
+        <task id="0" name="Conception V1" color="#000000" meeting="false" start="2020-06-02" duration="5" complete="0" thirdDate="2020-06-02" thirdDate-constraint="0" expand="true">
+            <task id="2" name="Répartition des tâches" color="#8cb6ce" meeting="false" start="2020-06-02" duration="1" complete="0" thirdDate="2020-06-02" thirdDate-constraint="0" expand="true"/>
+            <task id="12" name="Création des classes" color="#8cb6ce" meeting="false" start="2020-06-02" duration="4" complete="0" thirdDate="2020-06-02" thirdDate-constraint="0" expand="true"/>
+            <task id="20" name="Création des designs graphiques" color="#8cb6ce" meeting="false" start="2020-06-02" duration="3" complete="0" thirdDate="2020-06-02" thirdDate-constraint="0" expand="true"/>
+            <task id="4" name="Création et implémentation DB" color="#8cb6ce" meeting="false" start="2020-06-02" duration="3" complete="0" thirdDate="2020-06-02" thirdDate-constraint="0" expand="true"/>
+            <task id="3" name="Mise en place du PlayGround" color="#8cb6ce" meeting="false" start="2020-06-02" duration="4" complete="0" thirdDate="2020-06-02" thirdDate-constraint="0" expand="true"/>
+            <task id="13" name="Association Java/JavaFX" color="#8cb6ce" meeting="false" start="2020-06-06" duration="1" complete="0" thirdDate="2020-06-02" thirdDate-constraint="0" expand="true"/>
+        </task>
+        <task id="11" name="Conception V2" color="#8cb6ce" meeting="false" start="2020-06-08" duration="5" complete="0" thirdDate="2020-06-02" thirdDate-constraint="0" expand="true">
+            <task id="24" name="répartition des tâches" color="#8cb6ce" meeting="false" start="2020-06-08" duration="1" complete="0" thirdDate="2020-06-02" thirdDate-constraint="0" expand="true"/>
+            <task id="33" name="Modification des anciennes classes" color="#8cb6ce" meeting="false" start="2020-06-09" duration="1" complete="0" thirdDate="2020-06-02" thirdDate-constraint="0" expand="true"/>
+            <task id="34" name="Création des nouvelles classes" color="#8cb6ce" meeting="false" start="2020-06-10" duration="2" complete="0" thirdDate="2020-06-02" thirdDate-constraint="0" expand="true"/>
+            <task id="38" name="Création des nouveaux designs" color="#8cb6ce" meeting="false" start="2020-06-09" duration="2" complete="0" thirdDate="2020-06-02" thirdDate-constraint="0" expand="true"/>
+            <task id="39" name="ajout nouveau designs" color="#8cb6ce" meeting="false" start="2020-06-11" duration="1" complete="0" thirdDate="2020-06-02" thirdDate-constraint="0" expand="true"/>
+            <task id="32" name="MAJ de la DB ajout résumé partie" color="#8cb6ce" meeting="false" start="2020-06-09" duration="3" complete="0" thirdDate="2020-06-02" thirdDate-constraint="0" expand="true"/>
+            <task id="40" name="Rassemblement" color="#8cb6ce" meeting="false" start="2020-06-12" duration="1" complete="0" thirdDate="2020-06-02" thirdDate-constraint="0" expand="true"/>
+        </task>
+        <task id="51" name="Conception V3" color="#8cb6ce" meeting="false" start="2020-06-15" duration="4" complete="0" thirdDate="2020-06-02" thirdDate-constraint="0" expand="true">
+            <task id="53" name="répartition des tâches" color="#8cb6ce" meeting="false" start="2020-06-15" duration="1" complete="0" thirdDate="2020-06-02" thirdDate-constraint="0" expand="true"/>
+            <task id="55" name="Modification des anciennes classes" color="#8cb6ce" meeting="false" start="2020-06-16" duration="1" complete="0" thirdDate="2020-06-02" thirdDate-constraint="0" expand="true"/>
+            <task id="57" name="Création des nouvelles classes" color="#8cb6ce" meeting="false" start="2020-06-16" duration="2" complete="0" thirdDate="2020-06-02" thirdDate-constraint="0" expand="true"/>
+            <task id="59" name="Création des nouveaux designs" color="#8cb6ce" meeting="false" start="2020-06-16" duration="2" complete="0" thirdDate="2020-06-02" thirdDate-constraint="0" expand="true"/>
+            <task id="61" name="ajout nouveau designs" color="#8cb6ce" meeting="false" start="2020-06-17" duration="1" complete="0" thirdDate="2020-06-02" thirdDate-constraint="0" expand="true"/>
+            <task id="65" name="Rassemblement" color="#8cb6ce" meeting="false" start="2020-06-18" duration="1" complete="0" thirdDate="2020-06-02" thirdDate-constraint="0" expand="true"/>
+        </task>
+    </tasks>
+    <resources/>
+    <allocations/>
+    <vacations/>
+    <previous/>
+    <roles roleset-name="Default"/>
+</project>
