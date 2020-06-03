@@ -23,12 +23,17 @@ public class Case extends Canvas {
 
         ContextMenu menu = new ContextMenu();
 
-        MenuItem connard = new MenuItem("connard");
-        connard.setOnAction(event -> System.out.println("connard"));
-        menu.getItems().add(new MenuItem("connard"));
+        MenuItem connard = new MenuItem("test");
+        connard.setOnAction(event -> System.out.println("test"));
+        menu.getItems().add(new MenuItem("test"));
 
         super.setOnContextMenuRequested(event -> menu.show(Case.super.getParent(), event.getScreenX(), event.getScreenY()));
         menu.setAutoHide(true);
+
+        this.setScaleX(2);
+        this.setScaleY(2);
+        this.setWidth(100);
+        this.setHeight(100);
 
 
         this.avant = image; this.apres = apres;
@@ -57,8 +62,8 @@ public class Case extends Canvas {
         this.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                Image affi = new Image("http://51.77.215.147/image/kawaii/tsuyu2.jpg");
-                aff.drawImage(affi,0,0);
+                //Image affi = new Image("http://51.77.215.147/image/kawaii/tsuyu2.jpg");
+                //aff.drawImage(affi,0,0);
                 System.out.println("Il a cliquer sur : "+nombreCase);
             }
         });
@@ -70,12 +75,17 @@ public class Case extends Canvas {
 
         ContextMenu menu = new ContextMenu();
 
-        MenuItem connard = new MenuItem("connard");
-        connard.setOnAction(event -> System.out.println("connard"));
-        menu.getItems().add(new MenuItem("connard"));
+        MenuItem connard = new MenuItem("test");
+        connard.setOnAction(event -> System.out.println("test"));
+        menu.getItems().add(new MenuItem("test"));
 
         super.setOnContextMenuRequested(event -> menu.show(Case.super.getParent(), event.getScreenX(), event.getScreenY()));
         menu.setAutoHide(true);
+
+        this.setScaleX(2);
+        this.setScaleY(2);
+        this.setWidth(100);
+        this.setHeight(100);
 
 
         this.avant = image; this.apres = apres;
@@ -106,10 +116,13 @@ public class Case extends Canvas {
         this.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                Image affi = new Image("http://51.77.215.147/image/kawaii/tsuyu2.jpg");
-                aff.drawImage(affi,0,0);
+                //Image affi = new Image("http://51.77.215.147/image/kawaii/tsuyu2.jpg");
+                //aff.drawImage(affi,0,0);
                 System.out.println("Il a cliquer sur : "+nombreCase);
             }
         });
     }
+
+
+
 }

@@ -2,6 +2,15 @@ package sample;
 
 import javafx.scene.image.Image;
 
-public interface Batiment {
-    public Image getImage();
+public abstract class Batiment {
+    private Image aAff;
+
+    public Batiment(Image aAff)
+    {
+        this.aAff = aAff;
+    }
+
+    public Image getImage() {
+        return aAff;
+    }
 }
