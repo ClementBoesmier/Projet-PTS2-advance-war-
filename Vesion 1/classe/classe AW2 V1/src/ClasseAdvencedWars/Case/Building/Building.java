@@ -1,5 +1,7 @@
 package ClasseAdvencedWars.Case.Building;
 
+import ClasseAdvencedWars.Team;
+
 
 
 /**
@@ -17,10 +19,7 @@ public abstract class Building {
     /**
      * @return
      */
-    public Team getOwner() {
-        // TODO implement here
-        return null;
-    }
+    public abstract Team getOwner();
 
     /**
      * @return

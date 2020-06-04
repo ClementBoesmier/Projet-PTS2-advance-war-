@@ -14,7 +14,13 @@ public class Base extends Building {
      * Default constructor
      */
     public Base(Team owner) {
+        super();
         this.OWNER = owner;
+    }
+
+    @Override
+    public Team getOwner() {
+        return this.OWNER;
     }
 
 }

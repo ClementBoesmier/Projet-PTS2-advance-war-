@@ -1,18 +1,14 @@
 package ClasseAdvencedWars.units;
 
+import ClasseAdvencedWars.Location;
+import ClasseAdvencedWars.Team;
+
 
 
 /**
  * 
  */
-public abstract class Units extends Tank {
-
-    /**
-     * Default constructor
-     */
-    public Units() {
-    }
-
+public abstract class Units{
     /**
      * 
      */
@@ -34,13 +30,21 @@ public abstract class Units extends Tank {
     private final int COST;
 
     private final Team OWNER;
-
+    
+    
     /**
-     * @param x 
-     * @param y 
-     * @return
+     * Default constructor
      */
-    public void move(int x, int y) {
+    public Units(Team owner, int vision, int maxTravel, int cost) {
+        this.OWNER = owner;
+        this.COST = cost;
+        this.MAXTRAVEL = maxTravel;
+        this.VISION = vision;
+    }
+    /**
+     * 
+     */
+    public void move(Location location) {
         // TODO implement here
     }
 

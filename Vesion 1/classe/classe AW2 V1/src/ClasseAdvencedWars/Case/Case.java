@@ -8,30 +8,36 @@ import ClasseAdvencedWars.units.Units;
  */
 public abstract class Case {
 
+    private Units unit;
+    
+    private final Building building;
+    
     /**
      * Default constructor
      */
-    public Case() {
+    public Case(Building building) {
+        this.building = building;
     }
-
-
-
-
+    public Case(){
+        this.building = null;
+    }
 
     /**
      * @return
      */
     public Units getUnit() {
-        // TODO implement here
-        return null;
+        return unit;
     }
 
+    public void setUnit(Units unit) {
+        this.unit = unit;
+    }
+    
     /**
      * @return
      */
     public Building getBuilding() {
-        return null;
-        // TODO implement here
+        return building;
     }
 
 }

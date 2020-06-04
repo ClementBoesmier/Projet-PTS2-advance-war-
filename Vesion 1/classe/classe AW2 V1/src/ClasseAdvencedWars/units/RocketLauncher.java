@@ -8,9 +8,14 @@ import ClasseAdvencedWars.Team;
  */
 public class RocketLauncher extends Units {
 
-    public RocketLauncher(Team owner) {
-        super(owner);
+    public Infantry(Team owner) {
+        int vision = 0;
+        int maxTravel = 0;
+        int cost = 0;
+        super(owner, vision, maxTravel, cost);
     }
+
+
 
     
 

@@ -1,5 +1,7 @@
 package ClasseAdvencedWars.Case.Building;
 
+import ClasseAdvencedWars.Team;
+
 
 /**
  * 
@@ -7,15 +9,24 @@ package ClasseAdvencedWars.Case.Building;
 public class Town extends Building {
 
     /**
-     * Default constructor
+     * 
      */
-    public Town() {
-    }
-
+    private final int PAYOUT;
+    
     /**
      * 
      */
-    private int PAYOUT;
+    private Team owner;
+    
+    /**
+     * Default constructor
+     */
+    public Town(int payout) {
+        super();
+        this.PAYOUT = payout;
+        this.owner = null;
+    }
+
 
     /**
      */
@@ -24,4 +35,13 @@ public class Town extends Building {
         // TODO implement here
     }
 
+    public void setOwner(Team owner) {
+        this.owner = owner;
+    }
+
+    @Override
+    public Team getOwner() {
+        return this.owner;
+    }
+    
 }
