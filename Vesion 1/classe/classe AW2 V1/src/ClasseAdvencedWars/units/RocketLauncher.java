@@ -7,15 +7,15 @@ import ClasseAdvencedWars.Team;
  * 
  */
 public class RocketLauncher extends Units {
-
-    public Infantry(Team owner) {
-        int vision = 0;
-        int maxTravel = 0;
-        int cost = 0;
-        super(owner, vision, maxTravel, cost);
+    
+    public RocketLauncher(Team owner) {
+        super(owner, 0, 0, 0);
     }
 
-
+    @Override
+    public String toString() {
+        return "RocketLauncher";
+    }
 
     
 

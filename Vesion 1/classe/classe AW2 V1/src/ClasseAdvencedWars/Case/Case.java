@@ -39,5 +39,34 @@ public abstract class Case {
     public Building getBuilding() {
         return building;
     }
-
+    
+    public void fight(Units attack){
+        if(attack.toString() == this.unit.toString()){
+            this.unit = null;
+        }
+        else if(attack.toString() == "Tank"){
+            if(this.unit.toString() == "Infantry"){
+                this.unit = attack;
+            }
+            else{
+                //TODO : il meurt
+            }
+        }
+        else if(attack.toString() == "RocketLauncher"){
+            if(this.unit.toString() == "Tank"){
+                this.unit = attack;
+            }
+            else{
+                //TODO : il meurt
+            }
+        }
+        else if(attack.toString() == "Infantry"){
+            if(this.unit.toString() == "RocketLauncher"){
+                this.unit = attack;
+            }
+            else{
+                //TODO : il meurt
+            }
+        }
+    }
 }
