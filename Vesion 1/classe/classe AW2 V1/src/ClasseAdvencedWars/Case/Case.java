@@ -44,9 +44,8 @@ public abstract class Case {
     }
     
     public void fight(Units attack){
-        Class<? extends Units> aClass = this.unit.getClass();
         
-        if(attack instanceof aClass){
+        if(attack.getClass().equals(this.unit.getClass())){
             this.unit = null;
         }
         else if(attack instanceof Tank){
