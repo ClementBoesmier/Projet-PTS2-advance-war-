@@ -1,6 +1,9 @@
 package ClasseAdvencedWars.Case;
 
 import ClasseAdvencedWars.Case.Building.Building;
+import ClasseAdvencedWars.units.Infantry;
+import ClasseAdvencedWars.units.RocketLauncher;
+import ClasseAdvencedWars.units.Tank;
 import ClasseAdvencedWars.units.Units;
 
 /**
@@ -41,27 +44,29 @@ public abstract class Case {
     }
     
     public void fight(Units attack){
-        if(attack.toString() == this.unit.toString()){
+        Class<? extends Units> aClass = this.unit.getClass();
+        
+        if(attack instanceof aClass){
             this.unit = null;
         }
-        else if(attack.toString() == "Tank"){
-            if(this.unit.toString() == "Infantry"){
+        else if(attack instanceof Tank){
+            if(this.unit instanceof Infantry){
                 this.unit = attack;
             }
             else{
                 //TODO : il meurt
             }
         }
-        else if(attack.toString() == "RocketLauncher"){
-            if(this.unit.toString() == "Tank"){
+        else if(attack instanceof RocketLauncher){
+            if(this.unit instanceof Tank){
                 this.unit = attack;
             }
             else{
                 //TODO : il meurt
             }
         }
-        else if(attack.toString() == "Infantry"){
-            if(this.unit.toString() == "RocketLauncher"){
+        else if(attack instanceof Infantry){
+            if(this.unit instanceof RocketLauncher){
                 this.unit = attack;
             }
             else{
