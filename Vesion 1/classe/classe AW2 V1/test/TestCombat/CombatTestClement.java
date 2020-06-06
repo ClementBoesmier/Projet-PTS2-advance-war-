@@ -24,20 +24,20 @@ import org.junit.Test;
  * @author clement
  */
 public class CombatTestClement {
-    Tank tank1;
-    Tank tank2;
+    private Tank tank1;
+    private Tank tank2;
    
-    RocketLauncher rLauncher1;
-    RocketLauncher rLauncher2;
+    private RocketLauncher rLauncher1;
+    private RocketLauncher rLauncher2;
     
-    Infantry infantry1;
-    Infantry infantry2;
+    private Infantry infantry1;
+    private Infantry infantry2;
     
     
-    Plain battleField;
+    private Plain battleField;
     
-    Team teamB;
-    Team teamR;
+    private Team teamB;
+    private Team teamR;
     
     public CombatTestClement() {
     }
@@ -146,9 +146,9 @@ public class CombatTestClement {
         assert(battleField.getUnit() == tank1);
     }
     
-    @Test
+    @Test (expected=FriendException.class)
     public void FriendExceptionTest() throws FriendException{
         battleField.setUnit(tank1);
-        battleField.setUnit(rLauncher2);
+        battleField.setUnit(rLauncher1);
     }
 }

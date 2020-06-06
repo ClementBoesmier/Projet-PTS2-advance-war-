@@ -31,8 +31,12 @@ public class Maps {
         this.WIDTH = width;
         this.HEIGHT = height;
     }
-
-
+    //CONSTRUCTEUR DE TEST TEMPORAIRE
+    public Maps(int width, int height, Case temp[][]){
+        this.HEIGHT = height;
+        this.WIDTH = width;
+        this.map = temp;
+    }
 
     /**
      * @param x 
@@ -40,8 +44,7 @@ public class Maps {
      * @return
      */
     public Case getCase(int x, int y) {
-        // TODO implement here
-        return null;
+        return map[x][y];
     }
 
     /**
