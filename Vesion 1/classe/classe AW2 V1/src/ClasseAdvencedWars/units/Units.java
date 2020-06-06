@@ -52,8 +52,7 @@ public abstract class Units{
      * @return
      */
     public Team getOwner() {
-        // TODO implement here
-        return null;
+        return this.OWNER;
     }
 
 }
