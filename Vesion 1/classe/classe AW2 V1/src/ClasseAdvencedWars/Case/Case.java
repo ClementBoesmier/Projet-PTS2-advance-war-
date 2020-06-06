@@ -39,7 +39,7 @@ public abstract class Case {
        }else if(this.unit.getOwner()== unit.getOwner()){
            throw new FriendException("error : ally unit allredy in the case");
        }else{
-           this.fight(unit);
+           this.unit = this.fight(unit);
        }
     }
     
@@ -50,34 +50,35 @@ public abstract class Case {
         return this.building;
     }
     
-    private void fight(Units attack){
-        
+    private Units fight(Units attack){
+        Units sortie = null;
         if(attack.getClass().equals(this.unit.getClass())){
-            this.unit = null;
+            sortie = null;
         }
         else if(attack instanceof Tank){
             if(this.unit instanceof Infantry){
-                this.unit = attack;
+                sortie = attack;
             }
             else{
-                attack = null;
+                sortie = this.unit;
             }
         }
         else if(attack instanceof RocketLauncher){
             if(this.unit instanceof Tank){
-                this.unit = attack;
+                sortie = attack;
             }
             else{
-                //TODO : il meurt
+                sortie = this.unit;
             }
         }
         else if(attack instanceof Infantry){
             if(this.unit instanceof RocketLauncher){
-                this.unit = attack;
+                sortie = attack;
             }
             else{
-                //TODO : il meurt
+                sortie = this.unit;
             }
         }
+        return sortie;
     }
 }
