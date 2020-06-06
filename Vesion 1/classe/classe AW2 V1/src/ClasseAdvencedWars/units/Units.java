@@ -9,25 +9,13 @@ import ClasseAdvencedWars.Team;
  * 
  */
 public abstract class Units{
-    /**
-     * 
-     */
-    private final int VISION;
 
-    /**
-     * 
-     */
-    private final int MAXTRAVEL;
-
+    
     /**
      * 
      */
     private int movePoint;
 
-    /**
-     * 
-     */
-    private final int COST;
 
     private final Team OWNER;
     
@@ -35,11 +23,8 @@ public abstract class Units{
     /**
      * Default constructor
      */
-    public Units(Team owner, int vision, int maxTravel, int cost) {
+    public Units(Team owner) {
         this.OWNER = owner;
-        this.COST = cost;
-        this.MAXTRAVEL = maxTravel;
-        this.VISION = vision;
     }
     /**
      * 
