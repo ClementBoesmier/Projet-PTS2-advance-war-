@@ -2,6 +2,7 @@ package ClasseAdvencedWars;
 
 
 import ClasseAdvencedWars.Case.Case;
+import ClasseAdvencedWars.units.Units;
 import java.util.*;
 
 /**
@@ -61,5 +62,16 @@ public class Maps {
         }
         return sortie;
     }
-
+    
+    public Location GetLocalUnit(Units unit){
+        Location sortie = null;
+        for(int i = 0; i < this.WIDTH; i++){
+            for(int j = 0; j < this.HEIGHT; j++){
+                if(map[i][j].getUnit() == unit){
+                    sortie = new Location(i,j);
+                }
+            }
+        }
+        return sortie;
+    }
 }
