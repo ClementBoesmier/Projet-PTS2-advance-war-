@@ -13,6 +13,8 @@ import ClasseAdvencedWars.Case.Plain;
 import ClasseAdvencedWars.Location;
 import ClasseAdvencedWars.Maps;
 import ClasseAdvencedWars.Team;
+import ClasseAdvencedWars.units.Infantry;
+import Exception.FriendException;
 import java.util.HashMap;
 import java.util.Map;
 import org.junit.After;
@@ -36,6 +38,8 @@ public class TestMapClement {
     Team team1;
     Base base1;
     
+    Infantry inf1;
+    
     private Case[][] test;
     
     int width;
@@ -51,6 +55,8 @@ public class TestMapClement {
         
         team1 = new Team("michel");
         base1 = new Base(team1);
+        
+        inf1 = new Infantry(team1);
         
         plain1 = new Plain(base1);
         plain2 = new Plain(town1);
@@ -73,6 +79,8 @@ public class TestMapClement {
         
         town1 = null;
         base1 = null;
+        
+        inf1 = null;
         
         test = null;
         
@@ -128,6 +136,7 @@ public class TestMapClement {
     
     
     private void buildingViewer(HashMap<Location, Case> hBuild){
+        System.out.println("Type et posisiton Batiment :");
         hBuild.entrySet().forEach((e) -> {
             System.out.println("X : " + e.getKey().getX() + 
                     " Y : " + e.getKey().getY() + 
@@ -136,11 +145,20 @@ public class TestMapClement {
     }
     
     @Test
-    public void TestSortie(){
+    public void TestSortieGetBuilding(){
         mapBuilder();
         map = new Maps(width,height, test);
         HashMap<Location, Case> cBuilding = new HashMap<>();
         cBuilding = map.getBuilding();
         buildingViewer(cBuilding);
+    }
+    @Test
+    public void TestPositionUnits() throws FriendException{
+        Location local;
+        mapBuilder();
+        map = new Maps(width,height, test);
+        map.getCase(2, 1).setUnit(inf1);
+        local = map.GetLocalUnit(inf1);
+        System.out.println("Posisiton inf A :\nX : "+local.getX()+" Y : "+local.getY()+"\n");
     }
 }
