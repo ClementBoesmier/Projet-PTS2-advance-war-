@@ -30,7 +30,7 @@ public class TestMapClement {
     public void Startup(){
         plain1 = new Plain();
         plain2 = new Plain();
-        Case[][] test = new Case[2][2];
+        test = new Case[2][2];
     }
     
     @After
@@ -42,9 +42,10 @@ public class TestMapClement {
     
     @Test
     public void Maps2X1TestPlain(){
-        //test[1][1] = plain1;
-        System.out.println(plain1);
-        test[1][2] = plain2;
+        test[0][0] = plain1;
+        test[0][1] = plain2;
         map = new Maps(1,2,test);
+        System.out.println(map.getCase(0, 0));
+        System.out.println(map.getCase(0, 1));
     }
 }
