@@ -51,8 +51,15 @@ public class Maps {
      * @return
      */
     public HashMap<Location, Case> getBuilding() {
-        // TODO implement here
-        return null;
+        HashMap<Location, Case> sortie = new HashMap<>();
+        for(int i = 0; i < this.WIDTH; i++){
+            for(int j = 0; j < this.HEIGHT; j++){
+                if(map[i][j].getBuilding() != null){
+                    sortie.put(new Location(i,j), map[i][j]);
+                }
+            }
+        }
+        return sortie;
     }
 
 }
