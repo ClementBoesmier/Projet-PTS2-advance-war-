@@ -5,17 +5,13 @@
  */
 package TestCombat;
 
-import ClasseAdvencedWars.Case.Building.Building;
 import ClasseAdvencedWars.Case.Plain;
 import ClasseAdvencedWars.Team;
 import ClasseAdvencedWars.units.Infantry;
 import ClasseAdvencedWars.units.RocketLauncher;
 import ClasseAdvencedWars.units.Tank;
-import ClasseAdvencedWars.units.Units;
 import Exception.FriendException;
 import org.junit.After;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
 import org.junit.Before;
 import org.junit.Test;
 
