@@ -1,6 +1,7 @@
 package ClasseAdvencedWars.units;
 
 import ClasseAdvencedWars.Location;
+import ClasseAdvencedWars.Maps;
 import ClasseAdvencedWars.Team;
 
 
@@ -29,8 +30,8 @@ public abstract class Units{
     /**
      * 
      */
-    public void move(Location location) {
-        // TODO implement here
+    public void moveStep(Maps map){
+        Location localPos = map.GetLocalUnit(this);
     }
 
     /**
@@ -39,5 +40,5 @@ public abstract class Units{
     public Team getOwner() {
         return this.OWNER;
     }
-
+    
 }
