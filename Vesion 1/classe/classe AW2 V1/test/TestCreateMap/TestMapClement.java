@@ -51,7 +51,7 @@ public class TestMapClement {
     @Before
     public void Startup(){
         
-        town1 = new Town(5);
+        town1 = new Town();
         
         team1 = new Team("michel");
         base1 = new Base(team1);
