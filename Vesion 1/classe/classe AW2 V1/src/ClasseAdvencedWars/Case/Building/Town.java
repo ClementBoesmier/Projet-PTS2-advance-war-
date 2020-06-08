@@ -27,13 +27,6 @@ public class Town extends Building {
     }
 
 
-    /**
-     */
-    @Override
-    public void onEndTurn() {
-        // TODO implement here
-    }
-
     public void setOwner(Team owner) {
         this.owner = owner;
     }
