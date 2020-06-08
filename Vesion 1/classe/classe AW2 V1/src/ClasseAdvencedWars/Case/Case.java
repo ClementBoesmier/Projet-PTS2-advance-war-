@@ -34,13 +34,15 @@ public abstract class Case {
     }
 
     public void setUnit(Units unit) throws FriendException {
-       if(this.unit == null){
-           this.unit = unit;
-       }else if(this.unit.getOwner()== unit.getOwner()){
-           throw new FriendException("error : ally unit allredy in the case");
-       }else{
-           this.unit = this.fight(unit);
-       }
+        if(unit == null){
+            this.unit = null;
+        }else if(this.unit == null){
+            this.unit = unit;
+        }else if(this.unit.getOwner()== unit.getOwner()){
+            throw new FriendException("error : ally unit allredy in the case");
+        }else{
+            this.unit = this.fight(unit);
+        }
     }
     
     /**

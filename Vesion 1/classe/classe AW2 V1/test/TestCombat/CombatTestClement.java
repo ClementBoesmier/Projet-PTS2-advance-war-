@@ -147,4 +147,10 @@ public class CombatTestClement {
         battleField.setUnit(tank1);
         battleField.setUnit(rLauncher1);
     }
+    @Test
+    public void nullableTest() throws FriendException{
+         battleField.setUnit(tank1);
+         battleField.setUnit(null);
+         assert(battleField.getUnit()==null);
+    }
 }
