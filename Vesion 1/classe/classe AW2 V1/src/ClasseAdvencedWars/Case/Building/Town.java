@@ -11,7 +11,7 @@ public class Town extends Building {
     /**
      * 
      */
-    private final int PAYOUT;
+    private static final int PAYOUT = 7;
     
     /**
      * 
@@ -21,9 +21,8 @@ public class Town extends Building {
     /**
      * Default constructor
      */
-    public Town(int payout) {
+    public Town() {
         super();
-        this.PAYOUT = payout;
         this.owner = null;
     }
 
@@ -42,6 +41,11 @@ public class Town extends Building {
     @Override
     public Team getOwner() {
         return this.owner;
+    }
+
+    @Override
+    public int getPayout() {
+        return this.PAYOUT;
     }
     
 }

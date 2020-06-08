@@ -8,11 +8,14 @@ import ClasseAdvencedWars.Team;
  * 
  */
 public abstract class Building {
+    
+    private boolean captured;
 
     /**
      * Default constructor
      */
     public Building() {
+        captured = false;
     }
 
 
@@ -20,12 +23,18 @@ public abstract class Building {
      * @return
      */
     public abstract Team getOwner();
+    
+    
+    public abstract int getPayout();
 
     /**
      * @return
      */
     public void onEndTurn() {
-        // TODO implement here
+        if(!captured){
+            captured = true;
+            this.getOwner().ChangeIncome(this.getPayout());
+        }
     }
 
 }

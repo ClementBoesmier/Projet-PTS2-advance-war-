@@ -42,5 +42,10 @@ public class Team {
     public void ChangeIncome(int i){
         this.income += i;
     }
-
+    
+    
+    //TEST PROVISIOIRE
+    public int getIncome(){
+        return this.income;
+    }
 }
