@@ -96,17 +96,30 @@ public class MoveTestClement {
         mapViewer();
     }
     
-    //@Test (expected=ClasseAdvencedWars.units.MoveException.class)
+    @Test (expected=ClasseAdvencedWars.units.MoveException.class)
     public void TestMoveOcean() throws ClasseAdvencedWars.units.MoveException, FriendException{
         mapViewer();
         inf1.moveStep(0, 1, map);
         mapViewer();
     }
     
-    //@Test (expected=ClasseAdvencedWars.units.MoveException.class)
+    @Test (expected=ClasseAdvencedWars.units.MoveException.class)
     public void TestMoveHorsMap() throws ClasseAdvencedWars.units.MoveException, FriendException{
         mapViewer();
-        inf1.moveStep(-1, 0, map);
+        inf1.moveStep(1, 0, map);
+        inf1.moveStep(0, 1, map);
+        mapViewer();
+    }
+    @Test (expected=ClasseAdvencedWars.units.MoveException.class)
+    public void TestMoveDiagonal() throws ClasseAdvencedWars.units.MoveException, FriendException{
+        mapViewer();
+        inf1.moveStep(1, 1, map);
+        mapViewer();
+    }
+    @Test (expected=ClasseAdvencedWars.units.MoveException.class)
+    public void TestMoveJump() throws ClasseAdvencedWars.units.MoveException, FriendException{
+        mapViewer();
+        inf1.moveStep(2, 0, map);
         mapViewer();
     }
 }
