@@ -117,8 +117,10 @@ public class Maps {
         Location sortie = null;
         for(int i = 0; i < this.WIDTH; i++){
             for(int j = 0; j < this.HEIGHT; j++){
-                if(map[i][j].getUnit() == unit){
-                    sortie = new Location(i,j);
+                if(this.map[i][j] != null){
+                    if(this.map[i][j].getUnit() == unit){
+                        sortie = new Location(i,j);
+                    }
                 }
             }
         }
