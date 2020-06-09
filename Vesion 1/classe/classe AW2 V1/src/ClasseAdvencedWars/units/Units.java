@@ -39,15 +39,17 @@ public abstract class Units{
      */
     public void moveStep(int x, int y, Maps map) throws MoveException, FriendException{
         Location localPos = map.GetLocalUnit(this);
+        int localX = localPos.getX();
+        int localY = localPos.getY();
         if((x != 0 && y != 0) && (x < -1 || x > 1) && (y < -1 || y > 1)){
             throw new MoveException("Illegale Step move");
-        }else if(map.getCase(localPos.getX()+x, localPos.getY()+y) == null){
+        }else if(map.getCase(localX+x, localY+y) == null){
             throw new MoveException("hors map");
-        }else if(map.getCase(localPos.getX()+x, localPos.getY()+y).getWalkable(this)){
+        }else if(!map.getCase(localX+x, localY+y).getWalkable(this)){
             throw new MoveException("aera not walkable");
         }else{
-            map.getCase(localPos.getX()+x, localPos.getY()+y).setUnit(this);
-            map.getCase(localPos.getX(), localPos.getY()).setUnit(null);
+            map.getCase(localX+x, localY+y).setUnit(this);
+            map.getCase(localX, localY).setUnit(null);
         }
     }
 
