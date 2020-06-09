@@ -48,7 +48,7 @@ public class MoveTestClement {
         carte[0][0] = new Plain();
         carte[1][0] = new Plain();
         carte[0][1] = new Ocean();
-        carte[1][1] = new Plain();
+        //carte[1][1] = new Plain();
         
         carte[0][0].setUnit(inf1);
         
