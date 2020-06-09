@@ -38,6 +38,56 @@ public class Maps {
         this.WIDTH = width;
         this.map = temp;
     }
+    /** Constructeur quasi fini
+    public Maps(String mapName){
+        String blabla;
+        String izi ;
+        try (Connection con = this.connect();
+            Statement stmt = con.createStatement();    
+            Statement stmt1 = con.createStatement();
+            Statement stmt2 = con.createStatement();
+            ResultSet res = stmt.executeQuery("SELECT MAX(PositionX) FROM " + mapName);
+            ResultSet res1 = stmt1.executeQuery("SELECT MAX(PositionY) FROM " + mapName);
+            ResultSet res2 = stmt2.executeQuery("SELECT Name FROM Player");
+            PreparedStatement pstmt = con.prepareStatement("SELECT Type, Building FROM PlayGround WHERE PositionX=? And PositionY=?")){
+            
+            this.HEIGHT = res.getInt("MAX(PositionX)");
+            this.WIDTH = res1.getInt("MAX(PositionY)") ;
+            
+            
+            for(int i=0; i<this.HEIGHT+1;i++){
+                pstmt.setInt(1, i);
+                for(int j = 0; j<this.WIDTH+1;j++){
+                    pstmt.setInt(2,j);
+                    blabla = pstmt.executeQuery().getString("Type");
+                    izi = pstmt.executeQuery().getString("Building");
+                    System.out.println(blabla);
+                    System.out.println(izi);
+                    while(res.next()){
+                    if(blabla=="Plain"){
+                        if(izi=="NULL"){
+                            this.map[i][j]= new Plain();
+                        }
+                        if(izi=="Base"){
+                            this.map[i][j]= new Plain(new Base(new Team(res2.getString("Player"))));
+                        }
+                        if(izi=="Town"){
+                            this.map[i][j]= new Plain(new Town());
+                        }
+                     
+                    }
+                    if(blabla=="Ocean"){
+                        this.map[i][j] = new Ocean();
+                    }
+                }}
+            }
+            
+        }   
+        catch(SQLException e ){
+            System.out.println(e.getMessage());
+        }
+    }
+    */
 
     /**
      * @param x 
@@ -74,4 +124,21 @@ public class Maps {
         }
         return sortie;
     }
+    /**
+    private static Connection connect() {
+        Connection conn = null;
+        try {
+            // db parameters
+            String url = "jdbc:sqlite:C:/sqlite/db/AdvanceWarsDB.db";
+            // create a connection to the database
+            conn = DriverManager.getConnection(url);
+            
+            System.out.println("Connection to SQLite has been established.");
+            
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        } 
+        return conn;
+    }
+    */
 }
