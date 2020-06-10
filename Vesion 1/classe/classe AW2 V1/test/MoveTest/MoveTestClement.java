@@ -89,37 +89,46 @@ public class MoveTestClement {
     
     
     @Test
-    public void TestMove() throws ClasseAdvencedWars.units.MoveException, FriendException{
-        System.out.println(map.getCase(0, 0).getUnit());
+    public void TestMove() throws MoveException, FriendException{
         mapViewer();
         inf1.moveStep(1, 0, map);
         mapViewer();
     }
     
-    @Test (expected=ClasseAdvencedWars.units.MoveException.class)
-    public void TestMoveOcean() throws ClasseAdvencedWars.units.MoveException, FriendException{
+    @Test (expected=MoveException.class)
+    public void TestMoveOcean() throws MoveException, FriendException{
         mapViewer();
         inf1.moveStep(0, 1, map);
         mapViewer();
     }
     
-    @Test (expected=ClasseAdvencedWars.units.MoveException.class)
-    public void TestMoveHorsMap() throws ClasseAdvencedWars.units.MoveException, FriendException{
+    @Test (expected=MoveException.class)
+    public void TestMoveHorsMap() throws FriendException, MoveException{
         mapViewer();
         inf1.moveStep(1, 0, map);
         inf1.moveStep(0, 1, map);
         mapViewer();
     }
-    @Test (expected=ClasseAdvencedWars.units.MoveException.class)
-    public void TestMoveDiagonal() throws ClasseAdvencedWars.units.MoveException, FriendException{
+    @Test (expected=MoveException.class)
+    public void TestMoveDiagonal() throws MoveException, FriendException{
         mapViewer();
         inf1.moveStep(1, 1, map);
         mapViewer();
     }
-    @Test (expected=ClasseAdvencedWars.units.MoveException.class)
-    public void TestMoveJump() throws ClasseAdvencedWars.units.MoveException, FriendException{
+    @Test (expected=MoveException.class)
+    public void TestMoveJump() throws MoveException, FriendException{
         mapViewer();
         inf1.moveStep(2, 0, map);
+        mapViewer();
+    }
+    @Test (expected=MoveException.class)
+    public void TestMoveMax() throws MoveException, FriendException{
+        mapViewer();
+        inf1.moveStep(1, 0, map);
+        inf1.moveStep(-1, 0, map);
+        inf1.moveStep(1, 0, map);
+        inf1.moveStep(-1, 0, map);
+        inf1.moveStep(1, 0, map);
         mapViewer();
     }
 }
