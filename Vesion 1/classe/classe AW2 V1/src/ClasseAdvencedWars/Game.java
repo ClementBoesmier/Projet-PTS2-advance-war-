@@ -13,7 +13,7 @@ public class Game {
     /**
      * 
      */
-    private int nbTurn = 1;
+    private int nbTurn = 0;
 
     /**
      * 
@@ -39,13 +39,15 @@ public class Game {
         this.tBlue = teamB;
         this.tRed = teamR;
         this.tTurn = tBlue;
+        this.endTurn();
+        this.endTurn();
     }
 
-    public Game(String team1, String team2){
-        this.MAPS = new Maps();
-        this.tBlue = new Team(team1);
-        this.tRed = new Team(team2);
-    }
+//    public Game(String team1, String team2){
+//        this.MAPS = new Maps();
+//        this.tBlue = new Team(team1);
+//        this.tRed = new Team(team2);
+//    }
 
     /**
      * @return
@@ -63,6 +65,7 @@ public class Game {
                 e.getValue().getUnit().onEndTurn();
             }
         }
+        this.tTurn.onEndTurn();
         if(this.tTurn.equals(this.tRed)){
             this.nbTurn ++;
             this.tTurn = this.tBlue;
@@ -84,6 +87,14 @@ public class Game {
 
     public Team gettTurn() {
         return tTurn;
+    }
+
+    public Team gettBlue() {
+        return tBlue;
+    }
+
+    public Team gettRed() {
+        return tRed;
     }
     
 }
