@@ -25,10 +25,15 @@ public class Infantry extends Units {
     
     public Infantry(Team owner) {
         super(owner);
+        super.movePoint = Infantry.MAXTRAVEL;
     }
 
 
     public static int getCost() {
         return COST;
+    }
+    @Override
+    public void onEndTurn(){
+        super.movePoint = Infantry.MAXTRAVEL;
     }
 }
