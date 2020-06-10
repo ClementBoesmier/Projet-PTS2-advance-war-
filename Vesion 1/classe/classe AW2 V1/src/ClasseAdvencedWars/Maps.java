@@ -113,6 +113,19 @@ public class Maps {
         return sortie;
     }
     
+    public HashMap<Location, Case> getUnits(){
+                HashMap<Location, Case> sortie = new HashMap<>();
+        for(int i = 0; i < this.WIDTH; i++){
+            for(int j = 0; j < this.HEIGHT; j++){
+                if(map[i][j].getUnit() != null){
+                    sortie.put(new Location(i,j), map[i][j]);
+                }
+            }
+        }
+        return sortie;
+    }
+
+    
     public Location GetLocalUnit(Units unit){
         Location sortie = null;
         for(int i = 0; i < this.WIDTH; i++){
