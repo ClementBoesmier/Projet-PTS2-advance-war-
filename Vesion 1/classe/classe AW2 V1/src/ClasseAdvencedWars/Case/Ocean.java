@@ -1,6 +1,7 @@
 package ClasseAdvencedWars.Case;
 
 
+import ClasseAdvencedWars.units.Units;
 import java.util.*;
 
 /**
@@ -13,6 +14,12 @@ public class Ocean extends Case {
      */
     public Ocean() {
         super();
+    }
+
+    @Override
+    public boolean getWalkable(Units aThis) {
+        boolean sortie = false;
+        return sortie;
     }
 
 }

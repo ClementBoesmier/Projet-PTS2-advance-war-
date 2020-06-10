@@ -43,6 +43,10 @@ public class Team {
         this.income += i;
     }
     
+    public void onEndTurn(){
+        this.money+=this.income;
+    }
+    
     
     //TEST PROVISIOIRE
     public int getIncome(){
