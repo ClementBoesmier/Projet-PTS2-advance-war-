@@ -10,6 +10,7 @@ import ClasseAdvencedWars.Case.Building.Town;
 import ClasseAdvencedWars.Case.Case;
 import ClasseAdvencedWars.Case.Ocean;
 import ClasseAdvencedWars.Case.Plain;
+import ClasseAdvencedWars.Game;
 import ClasseAdvencedWars.Maps;
 import ClasseAdvencedWars.Team;
 import ClasseAdvencedWars.units.Infantry;
@@ -27,6 +28,8 @@ public class TestEndTurnClement {
     
     private Team team1;
     
+    private Team team2;
+    
     private Base base1;
     
     private Town town1;
@@ -37,8 +40,11 @@ public class TestEndTurnClement {
     
     private Maps map;
     
+    private Game gParty;
+    
     public TestEndTurnClement(){}
     
+
     @Before
     public void Setup(){
         this.team1 = new Team("michel");
@@ -61,6 +67,9 @@ public class TestEndTurnClement {
         this.carte[2][2] = new Ocean();
         
         this.map = new Maps(3, 3, carte);
+        
+        this.team2 = new Team("patrick");
+        this.gParty = new Game(map, team1, team2);
     }
     @After
     public void TearDown(){
@@ -118,7 +127,7 @@ public class TestEndTurnClement {
         assert(this.team1.getMoney()== tempMoney+20);
     }
     
-    @Test
+    //@Test
     public void TestEndTurnUnit() throws FriendException, MoveException{
         this.mapViewer();
         this.map.getCase(0, 0).setUnit(inf1);
@@ -143,7 +152,44 @@ public class TestEndTurnClement {
         this.mapViewer();
     }
     @Test
-    public void TestEndTurnGame(){
-        
+    public void TestEndTurnGame() throws MoveException, FriendException{
+        this.mapViewer();
+        this.gParty.getMAPS().getCase(0, 0).setUnit(inf1);
+        this.map.getCase(0, 0).getUnit().moveStep(1, 0, map);
+        this.mapViewer();
+        this.map.getCase(1, 0).getUnit().moveStep(1, 0, map);
+        this.mapViewer();
+        this.map.getCase(2, 0).getUnit().moveStep(0, 1, map);
+        this.mapViewer();
+        System.out.println("\n" + this.gParty.gettTurn().getMoney());
+        System.out.println(this.gParty.gettTurn().getIncome());
+        System.out.println(this.gParty.getTurnNb());
+        System.out.println(this.gParty.gettTurn());
+        this.gParty.endTurn();
+        System.out.println("\n" + this.gParty.gettTurn().getMoney());
+        System.out.println(this.gParty.gettTurn().getIncome());
+        System.out.println(this.gParty.getTurnNb());
+        System.out.println(this.gParty.gettTurn());
+        this.gParty.endTurn();
+        System.out.println("\n" + this.gParty.gettTurn().getMoney());
+        System.out.println(this.gParty.gettTurn().getIncome());
+        System.out.println(this.gParty.getTurnNb());
+        System.out.println(this.gParty.gettTurn());
+        this.gParty.endTurn();
+        System.out.println("\n" + this.gParty.gettTurn().getMoney());
+        System.out.println(this.gParty.gettTurn().getIncome());
+        System.out.println(this.gParty.getTurnNb());
+        System.out.println(this.gParty.gettTurn());
+        this.gParty.endTurn();
+        System.out.println("\n" + this.gParty.gettTurn().getMoney());
+        System.out.println(this.gParty.gettTurn().getIncome());
+        System.out.println(this.gParty.getTurnNb());
+        System.out.println(this.gParty.gettTurn());
+        this.map.getCase(2, 1).getUnit().moveStep(0, -1, map);
+        this.mapViewer();
+        this.map.getCase(2, 0).getUnit().moveStep(-1, 0, map);
+        this.mapViewer();
+        this.map.getCase(1, 0).getUnit().moveStep(-1, 0, map);
+        this.mapViewer();
     }
 }
