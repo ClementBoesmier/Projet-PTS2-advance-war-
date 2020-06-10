@@ -83,4 +83,6 @@ public abstract class Case {
         }
         return sortie;
     }
+
+    public abstract boolean getWalkable(Units aThis);
 }

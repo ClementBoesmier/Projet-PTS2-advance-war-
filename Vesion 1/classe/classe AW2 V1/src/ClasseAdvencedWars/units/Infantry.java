@@ -31,5 +31,4 @@ public class Infantry extends Units {
     public static int getCost() {
         return COST;
     }
-
 }
