@@ -81,7 +81,8 @@ public class MoveTestBastien
     
     
     @Test
-    public void TestMoveUnit() throws ClasseAdvencedWars.units.MoveException, FriendException{
+    public void TestMoveUnit() throws ClasseAdvencedWars.units.MoveException, FriendException
+    {
         tank.moveStep(1, 0, Lamap);
         tank.moveStep(0, 1, Lamap);
         Location local = Lamap.GetLocalUnit(tank);
@@ -90,7 +91,8 @@ public class MoveTestBastien
     }
     
     @Test
-    public void TestLongMoveUnit() throws ClasseAdvencedWars.units.MoveException, FriendException{
+    public void TestLongMoveUnit() throws ClasseAdvencedWars.units.MoveException, FriendException
+    {
         tank.moveStep(1, 0, Lamap);
         tank.moveStep(0, 1, Lamap);
         tank.moveStep(0, 1, Lamap);
@@ -105,20 +107,23 @@ public class MoveTestBastien
     }
     
     @Test (expected=ClasseAdvencedWars.units.MoveException.class)
-    public void TestMoveUnitTooLong() throws ClasseAdvencedWars.units.MoveException, FriendException{
+    public void TestMoveUnitTooLong() throws ClasseAdvencedWars.units.MoveException, FriendException
+    {
         
         tank.moveStep(0, 3, Lamap);   
     }
     
     @Test (expected=ClasseAdvencedWars.units.MoveException.class)
-    public void TestMoveUnitHorsMap() throws ClasseAdvencedWars.units.MoveException, FriendException{
+    public void TestMoveUnitHorsMap() throws ClasseAdvencedWars.units.MoveException, FriendException
+    {
         
         tank.moveStep(0, 1, Lamap);
         tank.moveStep(-1, 0, Lamap);
         
     }
     @Test (expected=ClasseAdvencedWars.units.MoveException.class)
-    public void TestMoveUnitNull() throws ClasseAdvencedWars.units.MoveException, FriendException{
+    public void TestMoveUnitNull() throws ClasseAdvencedWars.units.MoveException, FriendException
+    {
         tank.moveStep(1, 0, Lamap);
         tank.moveStep(1, 0, Lamap);
         tank.moveStep(0, 0, Lamap);
