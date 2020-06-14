@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs2019.FXMLDocumentController">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="158.0" layoutX="14.0" layoutY="14.0" stroke="BLACK" strokeType="INSIDE" width="582.0" />
+      <Text id="tText" fill="#2f682e" layoutX="112.0" layoutY="148.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="390.13671875" />
+      <ListView id="lvList" layoutX="14.0" layoutY="172.0" prefHeight="158.0" prefWidth="582.0" />
+      <TextField id="tfPhrase" layoutX="27.0" layoutY="330.0" prefHeight="25.0" prefWidth="556.0" promptText="Saisir une phrase" />
+      <Button id="bAdd" layoutX="139.0" layoutY="361.0" mnemonicParsing="false" text="Ajouter" />
+      <Button id="bDelete" layoutX="419.0" layoutY="361.0" mnemonicParsing="false" text="Supprimer" />
+   </children>
+</AnchorPane>
