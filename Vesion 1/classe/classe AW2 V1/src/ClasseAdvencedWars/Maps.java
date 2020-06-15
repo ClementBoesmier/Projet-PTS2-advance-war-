@@ -43,6 +43,7 @@ public class Maps {
         this.WIDTH = width;
         this.HEIGHT = height;
     }
+    
     //CONSTRUCTEUR DE TEST TEMPORAIRE
     public Maps(int width, int height, Case temp[][]){
         this.HEIGHT = height;
@@ -56,10 +57,10 @@ public class Maps {
             Statement stmt = con.createStatement();    
             Statement stmt1 = con.createStatement();
             Statement stmt2 = con.createStatement();
-            ResultSet res = stmt.executeQuery("SELECT MAX(PositionX) FROM PlayGround WHERE " + mapName);
-            ResultSet res1 = stmt1.executeQuery("SELECT MAX(PositionY) FROM PlayGround WHERE " + mapName);
+            ResultSet res = stmt.executeQuery("SELECT MAX(PositionX) FROM PlayGround WHERE mapID = '" + mapName + "'");
+            ResultSet res1 = stmt1.executeQuery("SELECT MAX(PositionY) FROM PlayGround WHERE mapID = '" + mapName + "'");
             ResultSet res2 = stmt2.executeQuery("SELECT Name FROM Player");
-            PreparedStatement pstmt = con.prepareStatement("SELECT Type, Building FROM PlayGround WHERE PositionX=? And PositionY=? AND " + mapName)){
+            PreparedStatement pstmt = con.prepareStatement("SELECT Type, Building FROM PlayGround WHERE PositionX=? And PositionY=? AND mapID = '" + mapName + "'")){
             
             this.HEIGHT = res.getInt("MAX(PositionX)");
             this.WIDTH = res1.getInt("MAX(PositionY)");
@@ -170,7 +171,7 @@ public class Maps {
         Connection conn = null;
         try {
             // db parameters
-            String url = "jdbc:sqlite:C:/sqlite/db/AdvanceWarsDB.db";
+            String url = "jdbc:sqlite:/media/clement/USBa-cClement/cour 2019-2020/PTS2/Vesion 1/sqlite/db/AdvanceWarsDB.db";
             // create a connection to the database
             conn = DriverManager.getConnection(url);
             

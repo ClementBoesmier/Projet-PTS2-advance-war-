@@ -43,11 +43,11 @@ public class Game {
         this.endTurn();
     }
 
-//    public Game(String team1, String team2){
-//        this.MAPS = new Maps();
-//        this.tBlue = new Team(team1);
-//        this.tRed = new Team(team2);
-//    }
+    public Game(String team1, String team2){
+        this.MAPS = new Maps("test");
+        this.tBlue = new Team(team1);
+        this.tRed = new Team(team2);
+    }
 
     /**
      * @return
