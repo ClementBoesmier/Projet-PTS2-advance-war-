@@ -1,8 +1,18 @@
 package ClasseAdvencedWars;
 
 
+import ClasseAdvencedWars.Case.Building.Base;
+import ClasseAdvencedWars.Case.Building.Town;
 import ClasseAdvencedWars.Case.Case;
+import ClasseAdvencedWars.Case.Ocean;
+import ClasseAdvencedWars.Case.Plain;
 import ClasseAdvencedWars.units.Units;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.*;
 
 /**
@@ -17,12 +27,12 @@ public class Maps {
     /**
      * 
      */
-    private final int WIDTH;
+    private  int WIDTH;
 
     /**
      * 
      */
-    private final int HEIGHT;
+    private int HEIGHT;
 
     
     /**
@@ -38,48 +48,48 @@ public class Maps {
         this.WIDTH = width;
         this.map = temp;
     }
-    /** Constructeur quasi fini
-    public Maps(String mapName){
-        String blabla;
-        String izi ;
+    
+    //Constructeur fini ( passage par mapID ) à faire
+    public Maps(String mapName){  
         try (Connection con = this.connect();
             Statement stmt = con.createStatement();    
             Statement stmt1 = con.createStatement();
             Statement stmt2 = con.createStatement();
-            ResultSet res = stmt.executeQuery("SELECT MAX(PositionX) FROM " + mapName);
-            ResultSet res1 = stmt1.executeQuery("SELECT MAX(PositionY) FROM " + mapName);
+            ResultSet res = stmt.executeQuery("SELECT MAX(PositionX) FROM PlayGround WHERE " + mapName);
+            ResultSet res1 = stmt1.executeQuery("SELECT MAX(PositionY) FROM PlayGround WHERE " + mapName);
             ResultSet res2 = stmt2.executeQuery("SELECT Name FROM Player");
-            PreparedStatement pstmt = con.prepareStatement("SELECT Type, Building FROM PlayGround WHERE PositionX=? And PositionY=?")){
+            PreparedStatement pstmt = con.prepareStatement("SELECT Type, Building FROM PlayGround WHERE PositionX=? And PositionY=? AND " + mapName)){
             
             this.HEIGHT = res.getInt("MAX(PositionX)");
-            this.WIDTH = res1.getInt("MAX(PositionY)") ;
-            
+            this.WIDTH = res1.getInt("MAX(PositionY)");
+            map = new Case[this.HEIGHT+1][this.WIDTH+1];
             
             for(int i=0; i<this.HEIGHT+1;i++){
                 pstmt.setInt(1, i);
                 for(int j = 0; j<this.WIDTH+1;j++){
                     pstmt.setInt(2,j);
-                    blabla = pstmt.executeQuery().getString("Type");
-                    izi = pstmt.executeQuery().getString("Building");
-                    System.out.println(blabla);
-                    System.out.println(izi);
-                    while(res.next()){
-                    if(blabla=="Plain"){
-                        if(izi=="NULL"){
+                    if(pstmt.executeQuery().getString("Type").equals(new String("Plain"))){
+                        System.out.println(pstmt.executeQuery().getString("Type"));
+                        System.out.println(pstmt.executeQuery().getString("Building"));
+                        if(pstmt.executeQuery().getString("Building")==null){
                             this.map[i][j]= new Plain();
                         }
-                        if(izi=="Base"){
-                            this.map[i][j]= new Plain(new Base(new Team(res2.getString("Player"))));
-                        }
-                        if(izi=="Town"){
+                        else if(pstmt.executeQuery().getString("Building").equals(new String("Base"))){
+                            System.out.println("Base");
+                            map[i][j]= new Plain(new Base(new Team(res2.getString("Name"))));
+                           }
+                        
+                        else if(pstmt.executeQuery().getString("Building").equals(new String("Town"))){
+                            System.out.println("Town");
                             this.map[i][j]= new Plain(new Town());
                         }
-                     
+                        
                     }
-                    if(blabla=="Ocean"){
-                        this.map[i][j] = new Ocean();
+                    if(pstmt.executeQuery().getString("Type").equals(new String("Ocean"))){
+                        map[i][j] = new Ocean();
                     }
-                }}
+                    
+                }
             }
             
         }   
@@ -87,7 +97,6 @@ public class Maps {
             System.out.println(e.getMessage());
         }
     }
-    */
 
     /**
      * @param x 
@@ -113,6 +122,19 @@ public class Maps {
         return sortie;
     }
     
+    public HashMap<Location, Case> getUnits(){
+                HashMap<Location, Case> sortie = new HashMap<>();
+        for(int i = 0; i < this.WIDTH; i++){
+            for(int j = 0; j < this.HEIGHT; j++){
+                if(map[i][j].getUnit() != null){
+                    sortie.put(new Location(i,j), map[i][j]);
+                }
+            }
+        }
+        return sortie;
+    }
+
+    
     public Location GetLocalUnit(Units unit){
         Location sortie = null;
         for(int i = 0; i < this.WIDTH; i++){
@@ -126,7 +148,7 @@ public class Maps {
         }
         return sortie;
     }
-    /**
+    
     private static Connection connect() {
         Connection conn = null;
         try {
@@ -142,5 +164,5 @@ public class Maps {
         } 
         return conn;
     }
-    */
+    
 }

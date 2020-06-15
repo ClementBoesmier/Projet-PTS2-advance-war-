@@ -24,13 +24,16 @@ public class Tank extends Units {
     private static final int COST = 5;
     public Tank(Team owner) {
         super(owner);
+        super.movePoint = Tank.MAXTRAVEL;
     }
 
     public static int getCost() {
         return COST;
     }
     
-
-    
+    @Override
+    public void onEndTurn(){
+        super.movePoint = Tank.MAXTRAVEL;
+    }
 
 }

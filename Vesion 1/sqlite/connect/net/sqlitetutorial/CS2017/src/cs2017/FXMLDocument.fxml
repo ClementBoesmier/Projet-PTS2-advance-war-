@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="AnchorPane" prefHeight="300.0" prefWidth="800.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="cs2017.FXMLDocumentController">
+    <children>
+        <Label fx:id="lName" layoutX="24.0" layoutY="54.0" text="Nom :" />
+        <Label fx:id="lCategory" layoutX="23.0" layoutY="87.0" text="Catégorie :" />
+        <RadioButton fx:id="rbHomme" layoutX="23.0" layoutY="119.0" mnemonicParsing="false" text="Homme">
+            <toggleGroup>
+                <ToggleGroup fx:id="tgGender" />
+            </toggleGroup>
+        </RadioButton>
+        <RadioButton fx:id="rbFemme" layoutX="23.0" layoutY="142.0" mnemonicParsing="false" text="Femme" toggleGroup="$tgGender" />
+        <Label layoutX="293.0" layoutY="14.0" text="Saisie des résultats">
+            <font>
+                <Font name="Arial" size="19.0" />
+            </font>
+        </Label>
+        <Label fx:id="lResult" layoutX="16.0" layoutY="176.0" text="Résultat :" />
+        <ComboBox fx:id="cCategory" layoutX="91.0" layoutY="83.0" prefHeight="0.0" prefWidth="137.0" />
+        <TextField fx:id="tfName" layoutX="91.0" layoutY="51.0" prefHeight="26.0" prefWidth="138.0" />
+        <Spinner fx:id="sHours" editable="true" initialValue="0" layoutX="72.0" layoutY="172.0" max="23" min="0" prefHeight="26.0" prefWidth="83.0" />
+        <Spinner fx:id="sMin" editable="true" initialValue="0" layoutX="165.0" layoutY="171.0" max="59" min="0" prefHeight="26.0" prefWidth="83.0" />
+        <Spinner fx:id="sSec" editable="true" initialValue="0" layoutX="263.0" layoutY="171.0" max="59" min="0" prefHeight="26.0" prefWidth="83.0" />
+        <Label fx:id="lHours" layoutX="156.0" layoutY="171.0" text="h" />
+        <Label fx:id="lMin" layoutX="249.0" layoutY="171.0" text="m" />
+        <Label fx:id="lSec" layoutX="347.0" layoutY="171.0" text="s" />
+        <Separator layoutX="370.0" layoutY="47.0" orientation="VERTICAL" prefHeight="249.0" prefWidth="10.0" />
+        <Button fx:id="btnAdd" layoutX="134.0" layoutY="228.0" mnemonicParsing="false" onAction="#btnAddAction" text="Ajouter" />
+        <Button fx:id="btnSkiersTyped" layoutX="492.0" layoutY="96.0" mnemonicParsing="false" text="Afficher les skieurs saisis" onAction="#btnAllAddedAction"  />
+        <Button fx:id="btnFirstSkier" layoutX="507.0" layoutY="147.0" mnemonicParsing="false" text="Afficher le premier" onAction="#btnFirstAction"  />
+        <Button fx:id="btnSkiersUnder3Hours" layoutX="449.0" layoutY="198.0" mnemonicParsing="false" text="Afficher les skieurs en moins de 3 heures" onAction="#btnUnder3Action" />
+    </children>
+</AnchorPane>
