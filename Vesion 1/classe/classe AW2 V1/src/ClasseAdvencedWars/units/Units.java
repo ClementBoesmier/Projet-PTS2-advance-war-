@@ -47,7 +47,7 @@ public abstract class Units{
         }else if((x != 0 && y != 0) || (x < -1 || x > 1) || (y < -1 || y > 1)){
             throw new MoveException("Illegale Step move");
         }else{
-        localPos = map.GetLocalUnit(this);
+        localPos = map.GetLocal(this);
         localX = localPos.getX();
         localY = localPos.getY();
         }
