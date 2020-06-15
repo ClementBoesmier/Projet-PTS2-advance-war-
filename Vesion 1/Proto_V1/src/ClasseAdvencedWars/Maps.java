@@ -7,6 +7,8 @@ import ClasseAdvencedWars.Case.Building.Town;
 import ClasseAdvencedWars.Case.Case;
 import ClasseAdvencedWars.Case.Ocean;
 import ClasseAdvencedWars.Case.Plain;
+import ClasseAdvencedWars.Exception.FriendException;
+import ClasseAdvencedWars.units.Infantry;
 import ClasseAdvencedWars.units.Units;
 import javafx.event.EventHandler;
 import javafx.scene.Cursor;
@@ -68,10 +70,10 @@ public class Maps {
             Statement stmt = con.createStatement();    
             Statement stmt1 = con.createStatement();
             Statement stmt2 = con.createStatement();
-             ResultSet res = stmt.executeQuery("SELECT MAX(PositionX) FROM PlayGround WHERE " + mapName);
-             ResultSet res1 = stmt1.executeQuery("SELECT MAX(PositionY) FROM PlayGround WHERE " + mapName);
+             ResultSet res = stmt.executeQuery("SELECT MAX(PositionX) FROM PlayGround WHERE mapID = '" + mapName + "'");
+             ResultSet res1 = stmt1.executeQuery("SELECT MAX(PositionY) FROM PlayGround WHERE mapID = '" + mapName + "'");
              ResultSet res2 = stmt2.executeQuery("SELECT Name FROM Player");
-             PreparedStatement pstmt = con.prepareStatement("SELECT Type, Building FROM PlayGround WHERE PositionX=? And PositionY=? AND " + mapName)){
+             PreparedStatement pstmt = con.prepareStatement("SELECT Type, Building FROM PlayGround WHERE PositionX=? And PositionY=? AND mapID = '" + mapName + "'")){
 
             this.HEIGHT = res.getInt("MAX(PositionX)");
             this.WIDTH = res1.getInt("MAX(PositionY)");
@@ -105,14 +107,26 @@ public class Maps {
                 }
             }
             //AFF
-            for(int x = 0; x < map.length-1; x ++)
+            for(int x = 0; x < map.length-1; x++)
             {
                 for (int y = 0; y < map.length-1; y++) {
                     tableauxAff.add(map[x][y],y,x);
+                    map[x][y].setMap(this);
+                    map[x][y].setLocation(new Location(x,y));
+
+                    if(x == 2 && y == 2)
+                    {
+                        map[x][y].setUnit(new Infantry(Game.tBlue, map[x][y]));
+                    }
                 }
             }
+            setEvent();
+            if(tableauxAff == null)
+            {
+                System.out.println("test");
+            }
         }   
-        catch(SQLException e ){
+        catch(SQLException | FriendException e ){
             System.out.println(e.getMessage());
         }
     }

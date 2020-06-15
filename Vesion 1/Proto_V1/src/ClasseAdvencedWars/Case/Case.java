@@ -1,6 +1,8 @@
 package ClasseAdvencedWars.Case;
 
 import ClasseAdvencedWars.Case.Building.Building;
+import ClasseAdvencedWars.Location;
+import ClasseAdvencedWars.Maps;
 import ClasseAdvencedWars.units.Infantry;
 import ClasseAdvencedWars.units.RocketLauncher;
 import ClasseAdvencedWars.units.Tank;
@@ -31,6 +33,8 @@ public abstract class Case extends Canvas {
     private ContextMenu menu;
 
     private Units unit = null;
+    private Maps map;
+    private Location location;
     
     private final Building building;
     
@@ -39,9 +43,22 @@ public abstract class Case extends Canvas {
      */
     public Case(Building building) {
         this.building = building;
+        init();
     }
     public Case(){
         this.building = null;
+        init();
+    }
+
+    public Case(Building building, Image terrain) {
+        this.building = building;
+        this.terrain = terrain;
+        init();
+    }
+    public Case(Image terrain){
+        this.building = null;
+        this.terrain = terrain;
+        init();
     }
 
     /**
@@ -64,6 +81,8 @@ public abstract class Case extends Canvas {
         }else{
             this.unit = this.fight(unit);
         }
+        refreshAff();
+        tooltypeRefresh();
     }
     
     /**
@@ -116,6 +135,22 @@ public abstract class Case extends Canvas {
 
     public abstract boolean getWalkable(Units aThis);
 
+    public void setMap(Maps map) {
+        this.map = map;
+    }
+
+    public Maps getMap() {
+        return map;
+    }
+
+    public Location getLocation() {
+        return location;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
+    }
+
     //Gestion affichage :
 
     public void init()
@@ -150,16 +185,16 @@ public abstract class Case extends Canvas {
                 if(unit != null)
                 {
                     //Menu Uniter = building.getMenu();
-                    MenuItem uniter = new MenuItem("uniter");
+                    MenuItem uniter = unit.getAction();
                     menu.getItems().add(uniter);
                 }
                 menu.setAutoHide(true);
                 menu.show(Case.super.getParent(), event.getScreenX(), event.getScreenY());
             }
         });
-        refreshAff();
         setScale();
         tooltypeAff();
+        refreshAff();
     }
 
     private void tooltypeAff()
@@ -244,6 +279,7 @@ public abstract class Case extends Canvas {
         {
             affichage.drawImage(unit.getImage(),0,0);
         }
+        tooltypeAff();
     }
 
 
