@@ -107,6 +107,25 @@ public class Case extends Canvas {
         {
             text+="ocean"+'\n';
         }
+        tooltypeRefresh(text);
+    }
+
+    private void tooltypeRefresh()
+    {
+        String text = "";
+        if(uniter != null)
+        {
+            text+="uniter"+'\n';
+        }
+        if(building != null)
+        {
+            text+="batiment"+'\n';
+        }
+        Tooltip.install(this, new Tooltip(text));
+    }
+
+    private void tooltypeRefresh(String text)
+    {
         if(uniter != null)
         {
             text+="uniter"+'\n';
