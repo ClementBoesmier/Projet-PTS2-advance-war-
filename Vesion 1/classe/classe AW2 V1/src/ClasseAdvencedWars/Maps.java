@@ -50,15 +50,15 @@ public class Maps {
     }
     
     //Constructeur fini ( passage par mapID ) à faire
-    public Maps(){  
+    public Maps(String mapName){  
         try (Connection con = this.connect();
             Statement stmt = con.createStatement();    
             Statement stmt1 = con.createStatement();
             Statement stmt2 = con.createStatement();
-            ResultSet res = stmt.executeQuery("SELECT MAX(PositionX) FROM PlayGround");
-            ResultSet res1 = stmt1.executeQuery("SELECT MAX(PositionY) FROM PlayGround");
+            ResultSet res = stmt.executeQuery("SELECT MAX(PositionX) FROM PlayGround WHERE " + mapName);
+            ResultSet res1 = stmt1.executeQuery("SELECT MAX(PositionY) FROM PlayGround WHERE " + mapName);
             ResultSet res2 = stmt2.executeQuery("SELECT Name FROM Player");
-            PreparedStatement pstmt = con.prepareStatement("SELECT Type, Building FROM PlayGround WHERE PositionX=? And PositionY=?")){
+            PreparedStatement pstmt = con.prepareStatement("SELECT Type, Building FROM PlayGround WHERE PositionX=? And PositionY=? AND " + mapName)){
             
             this.HEIGHT = res.getInt("MAX(PositionX)");
             this.WIDTH = res1.getInt("MAX(PositionY)");
