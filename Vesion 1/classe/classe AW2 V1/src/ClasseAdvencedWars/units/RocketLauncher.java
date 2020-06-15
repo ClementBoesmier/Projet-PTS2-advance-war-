@@ -23,9 +23,15 @@ public class RocketLauncher extends Units {
     private static final int COST = 5;
     public RocketLauncher(Team owner) {
         super(owner);
+        super.movePoint = RocketLauncher.MAXTRAVEL;
     }
     
     public static int getCost() {
         return COST;
+    }
+    
+    @Override
+    public void onEndTurn(){
+        super.movePoint = RocketLauncher.MAXTRAVEL;
     }
 }

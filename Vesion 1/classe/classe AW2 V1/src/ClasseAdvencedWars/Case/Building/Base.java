@@ -1,6 +1,11 @@
 package ClasseAdvencedWars.Case.Building;
 
+import ClasseAdvencedWars.Case.Case;
+import ClasseAdvencedWars.Maps;
 import ClasseAdvencedWars.Team;
+import ClasseAdvencedWars.units.Units;
+import Exception.FriendException;
+import Exception.SpawnException;
 
 
 /**
@@ -28,5 +33,13 @@ public class Base extends Building {
     public int getPayout() {
         return this.PAYOUT;
     }
-
+    
+    public void spawn(Maps map, Units unit) throws FriendException, SpawnException{
+        Case terrain = map.getCase(map.GetLocal(this).getX(), map.GetLocal(this).getY());
+        if(terrain.getUnit() != null){
+            throw new SpawnException("case occuped");
+        }else{
+            terrain.setUnit(unit);
+        }
+    }
 }

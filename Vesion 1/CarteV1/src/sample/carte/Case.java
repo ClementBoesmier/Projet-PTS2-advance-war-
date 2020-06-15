@@ -5,11 +5,14 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 
 import javafx.scene.canvas.Canvas;
 import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.input.MouseEvent;
+
+import javax.swing.*;
 
 public class Case extends Canvas {
     private Units uniter;
@@ -19,6 +22,7 @@ public class Case extends Canvas {
     private static final Image contours = new Image("file:E:\\Developpement\\git\\Projet-PTS2-advance-war-\\ressource\\GraphismeV1\\contourV1.png");
     private static double largeur=32, hauteur=32;
     private int zoom;
+    private ContextMenu menu;
 
     public Case(Image terrain, Batiment building, Units uniter) {
         super(largeur, hauteur);
@@ -53,6 +57,7 @@ public class Case extends Canvas {
     {
         zoom = 2;
         affichage = this.getGraphicsContext2D();
+        menu = new ContextMenu();
 
         this.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
@@ -89,7 +94,49 @@ public class Case extends Canvas {
         });
         refreshAff();
         setScale();
+        tooltypeAff();
     }
+
+    private void tooltypeAff()
+    {
+        String text = "";
+        if(terrain == BibliotequeImage.plaine)
+        {
+            text+="plaine"+'\n';
+        }else
+        {
+            text+="ocean"+'\n';
+        }
+        tooltypeRefresh(text);
+    }
+
+    private void tooltypeRefresh()
+    {
+        String text = "";
+        if(uniter != null)
+        {
+            text+="uniter"+'\n';
+        }
+        if(building != null)
+        {
+            text+="batiment"+'\n';
+        }
+        Tooltip.install(this, new Tooltip(text));
+    }
+
+    private void tooltypeRefresh(String text)
+    {
+        if(uniter != null)
+        {
+            text+="uniter"+'\n';
+        }
+        if(building != null)
+        {
+            text+="batiment"+'\n';
+        }
+        Tooltip.install(this, new Tooltip(text));
+    }
+
 
     public void zoom()
     {

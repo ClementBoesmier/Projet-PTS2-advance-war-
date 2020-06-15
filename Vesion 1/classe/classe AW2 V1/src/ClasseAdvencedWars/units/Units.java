@@ -4,7 +4,7 @@ import ClasseAdvencedWars.Location;
 import ClasseAdvencedWars.Maps;
 import ClasseAdvencedWars.Team;
 import Exception.FriendException;
-
+import Exception.MoveException;
 
 
 /**
@@ -16,7 +16,7 @@ public abstract class Units{
     /**
      * 
      */
-    private int movePoint;
+    protected int movePoint;
 
 
     private final Team OWNER;
@@ -28,23 +28,26 @@ public abstract class Units{
      */
     public Units(Team owner) {
         this.OWNER = owner;
+        
     }
     /**
      * 
      * @param x
      * @param y
      * @param map
-     * @throws ClasseAdvencedWars.units.MoveException
+     * @throws Exception.MoveException
      * @throws Exception.FriendException
      */
     public void moveStep(int x, int y, Maps map) throws MoveException, FriendException{
         int localY = 0;
         int localX = 0;
-        Location localPos = null;
-        if((x != 0 && y != 0) || (x < -1 || x > 1) || (y < -1 || y > 1)){
+        Location localPos;
+        if(this.movePoint <= 0){
+            throw new MoveException("no more MP");
+        }else if((x != 0 && y != 0) || (x < -1 || x > 1) || (y < -1 || y > 1)){
             throw new MoveException("Illegale Step move");
         }else{
-        localPos = map.GetLocalUnit(this);
+        localPos = map.GetLocal(this);
         localX = localPos.getX();
         localY = localPos.getY();
         }
@@ -55,6 +58,7 @@ public abstract class Units{
         }else{
             map.getCase(localX+x, localY+y).setUnit(this);
             map.getCase(localX, localY).setUnit(null);
+            this.movePoint-=1;
         }
     }
 
@@ -65,4 +69,8 @@ public abstract class Units{
         return this.OWNER;
     }
     
+    /**
+     *
+     */
+    public abstract void onEndTurn();
 }
