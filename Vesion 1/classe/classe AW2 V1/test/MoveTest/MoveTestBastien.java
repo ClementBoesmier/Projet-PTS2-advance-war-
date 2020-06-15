@@ -78,9 +78,7 @@ public class MoveTestBastien
         Lacarte = null;
         Lamap = null;
     }
-    
-       
-    
+     
     
     @Test
     public void TestMoveUnit() throws MoveException, FriendException
@@ -103,8 +101,20 @@ public class MoveTestBastien
         assertEquals(local.getY(),2);    
     }
     
+    @Test
+    public void TestLongMoveUnitWithOtherMethode() throws MoveException, FriendException
+    {
+        Lamap.getCase(0, 0).getUnit().moveStep(1, 0, Lamap);
+        Lamap.getCase(1, 0).getUnit().moveStep(0, 1, Lamap);
+        Lamap.getCase(1, 1).getUnit().moveStep(0, 1, Lamap);
+        Location local = Lamap.GetLocal(tank);
+        assertEquals(local.getX(),1);
+        assertEquals(local.getY(),2);    
+    }
+    
     @Test (expected=MoveException.class)
-    public void TestMoveUnitOcean() throws MoveException, FriendException{
+    public void TestMoveUnitOcean() throws MoveException, FriendException
+    {
         tank.moveStep(0, 1, Lamap); 
     }
     
@@ -118,13 +128,15 @@ public class MoveTestBastien
     public void TestMoveUnitHorsMap() throws MoveException, FriendException
     {
         tank.moveStep(0, 1, Lamap);
-        tank.moveStep(-1, 0, Lamap);
-        
+        tank.moveStep(-1, 0, Lamap);    
     }
+    
     @Test (expected=MoveException.class)
     public void TestMoveUnitNull() throws MoveException, FriendException
     {
         tank.moveStep(0, 0, Lamap);
     }
+    
+    
     
 }

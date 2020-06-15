@@ -63,6 +63,8 @@ public class EndTurnTestBastien
         assertEquals(team1.getMoney(),10);
     }
     
+    
+    
     @Test
     public void TestEndTurnWithSeveralBuildings()
     {   
