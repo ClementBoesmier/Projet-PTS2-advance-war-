@@ -73,4 +73,6 @@ public abstract class Units{
      *
      */
     public abstract void onEndTurn();
+    
+    public abstract int getCost();
 }

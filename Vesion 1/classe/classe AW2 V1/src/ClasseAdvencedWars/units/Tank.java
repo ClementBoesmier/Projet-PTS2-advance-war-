@@ -27,7 +27,7 @@ public class Tank extends Units {
         super.movePoint = Tank.MAXTRAVEL;
     }
 
-    public static int getCost() {
+    public int getCost() {
         return COST;
     }
     

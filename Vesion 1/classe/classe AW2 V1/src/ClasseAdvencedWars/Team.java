@@ -34,7 +34,11 @@ public class Team {
     public int getMoney() {
         return money;
     }
-
+    
+    public void pay(int price){
+        this.money -= price;
+    }
+    
     public String getName() {
         return name;
     }
