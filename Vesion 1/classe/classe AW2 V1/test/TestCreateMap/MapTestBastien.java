@@ -135,7 +135,7 @@ public class MapTestBastien
     }
     
     @Test
-    public void TestCreateMapOnlyPlain()
+    public void TestCreateMapWithAll()
     {
         boolean testMap =false;
         test[0][0] = plainA;
@@ -157,7 +157,82 @@ public class MapTestBastien
             }
         }
         assertTrue(testMap);
-
     }
-       
+    
+    private void mapBuilder()
+    {
+        test[0][0] = plainA;
+        test[1][0] = plainB;
+        test[2][0] = plainC;
+        test[0][2] = new Plain();
+        test[1][0] = new Plain();
+        test[2][0] = new Plain();
+        for(int i = 0; i < 3; i++){
+            test[i][1] = new Ocean();
+        }
+    }
+    
+    /*private void mapViewer()
+    {
+        System.out.println("La carte :\n");
+        for(int i = 0; i < height; i++){
+            for(int j = 0; j < width; j++){
+                if(map.getCase(j, i) instanceof Plain){
+                    if(map.getCase(j, i).getBuilding() instanceof Town){
+                        System.out.print("T");
+                    }else if(map.getCase(j, i).getBuilding() instanceof Base){
+                        System.out.print("B");
+                    }else{
+                        System.out.print("P");
+                    }
+                }else if(map.getCase(j, i) instanceof Ocean){
+                    System.out.print("O");
+                }else{
+                    System.out.print("X");
+                }
+            }
+        System.out.println();
+        }
+    }*/
+    
+    /*@Test
+    public void MapTestOceanPlainTownBase()
+    {
+        mapBuilder();
+        map = new Maps(width,height,test);
+        mapViewer();
+    }*/
+    
+    
+    private void buildingViewer(HashMap<Location, Case> hBuild)
+    {
+        System.out.println("Type et posisiton Batiment :");
+        hBuild.entrySet().forEach((e) -> {
+            System.out.println("X : " + e.getKey().getX() + 
+                    " Y : " + e.getKey().getY() + 
+                    " "+e.getValue().getBuilding());
+        });
+    }
+    
+    
+    @Test
+    public void TestSortieGetBuilding()
+    {
+        mapBuilder();
+        map = new Maps(width,height, test);
+        HashMap<Location, Case> cBuilding = new HashMap<>();
+        cBuilding = map.getBuilding();
+        buildingViewer(cBuilding);
+    }
+    /*
+    @Test
+    public void TestPositionUnits() throws FriendException
+    {
+        Location local;
+        mapBuilder();
+        map = new Maps(width,height, test);
+        map.getCase(2, 1).setUnit(inf1);
+        local = map.GetLocalUnit(inf1);
+        System.out.println("Posisiton inf A :\nX : "+local.getX()+" Y : "+local.getY()+"\n");
+    } */     
 }

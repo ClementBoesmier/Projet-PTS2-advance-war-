@@ -98,7 +98,7 @@ public class MoveTestBastien
         tank.moveStep(0, 1, Lamap);
         Location local = Lamap.GetLocalUnit(tank);
         assertEquals(local.getX(),1);
-        assertEquals(local.getY(),2);       
+        assertEquals(local.getY(),2);    
     }
     
     @Test (expected=ClasseAdvencedWars.units.MoveException.class)
@@ -108,15 +108,13 @@ public class MoveTestBastien
     
     @Test (expected=ClasseAdvencedWars.units.MoveException.class)
     public void TestMoveUnitTooLong() throws ClasseAdvencedWars.units.MoveException, FriendException
-    {
-        
+    {   
         tank.moveStep(0, 3, Lamap);   
     }
     
     @Test (expected=ClasseAdvencedWars.units.MoveException.class)
     public void TestMoveUnitHorsMap() throws ClasseAdvencedWars.units.MoveException, FriendException
     {
-        
         tank.moveStep(0, 1, Lamap);
         tank.moveStep(-1, 0, Lamap);
         
@@ -124,8 +122,6 @@ public class MoveTestBastien
     @Test (expected=ClasseAdvencedWars.units.MoveException.class)
     public void TestMoveUnitNull() throws ClasseAdvencedWars.units.MoveException, FriendException
     {
-        tank.moveStep(1, 0, Lamap);
-        tank.moveStep(1, 0, Lamap);
         tank.moveStep(0, 0, Lamap);
     }
     

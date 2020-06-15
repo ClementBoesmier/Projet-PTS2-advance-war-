@@ -41,7 +41,7 @@ public abstract class Units{
         int localY = 0;
         int localX = 0;
         Location localPos = null;
-        if((x != 0 && y != 0) || (x < -1 || x > 1) || (y < -1 || y > 1)){
+        if((x == 0 && y == 0) || (x != 0 && y != 0) || (x < -1 || x > 1) || (y < -1 || y > 1)){
             throw new MoveException("Illegale Step move");
         }else{
         localPos = map.GetLocalUnit(this);
