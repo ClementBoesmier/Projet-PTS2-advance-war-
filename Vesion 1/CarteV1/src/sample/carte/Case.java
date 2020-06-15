@@ -55,6 +55,10 @@ public class Case extends Canvas {
 
     public void init()
     {
+        if(this.uniter != null)
+        {
+            this.uniter.setaCase(this);
+        }
         zoom = 2;
         affichage = this.getGraphicsContext2D();
         menu = new ContextMenu();
@@ -179,5 +183,11 @@ public class Case extends Canvas {
         {
             affichage.drawImage(uniter.getImage(),0,0);
         }
+    }
+
+    public void setUniter(Units uniter)
+    {
+        this.uniter = uniter;
+        this.uniter.setaCase(this);
     }
 }

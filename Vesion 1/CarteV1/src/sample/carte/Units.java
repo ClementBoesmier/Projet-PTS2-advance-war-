@@ -7,6 +7,7 @@ public class Units {
     private Image redFac,blueFac;
     private boolean faction;
     private Menu menu;
+    private Case aCase;
 
     public Units(Image redFac, Image blueFac, boolean faction) {
         this.redFac = redFac;
@@ -23,5 +24,10 @@ public class Units {
         {
             return blueFac;
         }
+    }
+
+    public void setaCase(Case aCase)
+    {
+        this.aCase = aCase;
     }
 }
