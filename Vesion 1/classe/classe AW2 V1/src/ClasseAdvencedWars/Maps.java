@@ -1,7 +1,9 @@
+  
 package ClasseAdvencedWars;
 
 
 import ClasseAdvencedWars.Case.Building.Base;
+import ClasseAdvencedWars.Case.Building.Building;
 import ClasseAdvencedWars.Case.Building.Town;
 import ClasseAdvencedWars.Case.Case;
 import ClasseAdvencedWars.Case.Ocean;
@@ -135,7 +137,7 @@ public class Maps {
     }
 
     
-    public Location GetLocalUnit(Units unit){
+    public Location GetLocal(Units unit){
         Location sortie = null;
         for(int i = 0; i < this.WIDTH; i++){
             for(int j = 0; j < this.HEIGHT; j++){
@@ -148,6 +150,22 @@ public class Maps {
         }
         return sortie;
     }
+    
+    public Location GetLocal(Building build){
+        Location sortie = null;
+        for(int i = 0; i < this.WIDTH; i++){
+            for(int j = 0; j < this.HEIGHT; j++){
+                if(this.map[i][j] != null){
+                    if(this.map[i][j].getBuilding() == build){
+                        sortie = new Location(i,j);
+                    }
+                }
+            }
+        }
+        return sortie;
+    }
+    
+    
     
     private static Connection connect() {
         Connection conn = null;

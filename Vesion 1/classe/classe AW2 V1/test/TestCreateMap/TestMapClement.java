@@ -158,7 +158,7 @@ public class TestMapClement {
         mapBuilder();
         map = new Maps(width,height, test);
         map.getCase(2, 1).setUnit(inf1);
-        local = map.GetLocalUnit(inf1);
+        local = map.GetLocal(inf1);
         System.out.println("Posisiton inf A :\nX : "+local.getX()+" Y : "+local.getY()+"\n");
     }
 }

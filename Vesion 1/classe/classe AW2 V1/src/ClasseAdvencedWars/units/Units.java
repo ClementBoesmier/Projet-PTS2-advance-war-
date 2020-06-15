@@ -41,16 +41,13 @@ public abstract class Units{
     public void moveStep(int x, int y, Maps map) throws MoveException, FriendException{
         int localY = 0;
         int localX = 0;
-        Location localPos = null;
-        if((x != 0 && y != 0) || (x < -1 || x > 1) || (y < -1 || y > 1)){
         Location localPos;
         if(this.movePoint <= 0){
             throw new MoveException("no more MP");
         }else if((x != 0 && y != 0) || (x < -1 || x > 1) || (y < -1 || y > 1)){
-
             throw new MoveException("Illegale Step move");
         }else{
-        localPos = map.GetLocalUnit(this);
+        localPos = map.GetLocal(this);
         localX = localPos.getX();
         localY = localPos.getY();
         }
