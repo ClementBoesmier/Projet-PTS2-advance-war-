@@ -1,7 +1,8 @@
 package ClasseAdvencedWars.units;
 
+import ClasseAdvencedWars.Case.Case;
 import ClasseAdvencedWars.Team;
-
+import sample.BibliotequeImage;
 
 
 /**
@@ -22,8 +23,8 @@ public class Tank extends Units {
      * 
      */
     private static final int COST = 5;
-    public Tank(Team owner) {
-        super(owner);
+    public Tank(Team owner, Case aCase) {
+        super(owner, aCase, BibliotequeImage.redBazooka, BibliotequeImage.blueBazooka);
         super.movePoint = Tank.MAXTRAVEL;
     }
 

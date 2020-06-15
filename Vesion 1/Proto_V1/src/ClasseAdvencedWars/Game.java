@@ -11,6 +11,7 @@ import java.util.Map;
  * 
  */
 public class Game {
+
     /**
      * 
      */
@@ -24,12 +25,12 @@ public class Game {
     /**
      * 
      */
-    private final Team tBlue;
+    public static Team tBlue = new Team("test",TeamID.BLUE);
     
     /**
      * 
      */
-    private final Team tRed;
+    public static Team tRed = new Team("test2",TeamID.RED);;
     
     
     private Team tTurn;
@@ -61,9 +62,9 @@ public class Game {
                 e.getValue().getBuilding().onEndTurn();
             }
             e.getValue().getBuilding().capture();
-            if((e.getValue().getBuilding() instanceof Base)&&(e.getValue().getBuilding().isCaptured()==true)){
+            /*if((e.getValue().getBuilding() instanceof Base)&&(e.getValue().getBuilding().isCaptured()==true)){
                 return true;
-            }
+            }*/
         }
         for(Map.Entry<Location, Case> e : hMUnits.entrySet()){
             if(e.getValue().getUnit().getOwner() == this.tTurn){

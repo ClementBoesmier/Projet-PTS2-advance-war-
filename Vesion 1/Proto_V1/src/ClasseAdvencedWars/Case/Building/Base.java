@@ -32,6 +32,11 @@ public class Base extends Building {
         this.OWNER = owner;
     }
 
+    public Base(Team owner) {
+        super(BibliotequeImage.usine, BibliotequeImage.usine, owner);
+        this.OWNER = owner;
+    }
+
     @Override
     public Team getOwner() {
         return this.OWNER;

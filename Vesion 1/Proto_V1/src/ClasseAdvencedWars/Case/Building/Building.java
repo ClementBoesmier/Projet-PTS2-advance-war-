@@ -53,6 +53,18 @@ public abstract class Building {
         this.OWNER = OWNER;
     }
 
+    public Building(Image redFac, Image blueFac, Team OWNER) {
+        this.redFac = redFac;
+        this.blueFac = blueFac;
+        this.OWNER = OWNER;
+    }
+
+    public Building(Image redFac, Image blueFac, Image neutral) {
+        this.redFac = redFac;
+        this.blueFac = blueFac;
+        this.neutral = neutral;
+    }
+
     /**
      * @return
      */
@@ -91,4 +103,8 @@ public abstract class Building {
 
     public abstract boolean isOnCapture();
     public abstract void capture();
+
+    public void setMyCase(Case myCase) {
+        this.myCase = myCase;
+    }
 }

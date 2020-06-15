@@ -32,6 +32,11 @@ public class Town extends Building {
         this.owner = null;
     }
 
+    public Town() {
+        super(BibliotequeImage.ville,BibliotequeImage.ville, BibliotequeImage.ville);
+        this.owner = null;
+    }
+
 
     public void setOwner(Team owner) {
         this.owner = owner;

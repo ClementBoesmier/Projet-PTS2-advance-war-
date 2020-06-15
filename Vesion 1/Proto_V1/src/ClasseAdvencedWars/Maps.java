@@ -8,6 +8,14 @@ import ClasseAdvencedWars.Case.Case;
 import ClasseAdvencedWars.Case.Ocean;
 import ClasseAdvencedWars.Case.Plain;
 import ClasseAdvencedWars.units.Units;
+import javafx.event.EventHandler;
+import javafx.scene.Cursor;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.input.ScrollEvent;
+import javafx.scene.layout.GridPane;
+import sample.BibliotequeImage;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -20,6 +28,9 @@ import java.util.*;
  * 
  */
 public class Maps {
+
+    private GridPane tableauxAff;
+
     /**
      * 
      */
@@ -51,16 +62,17 @@ public class Maps {
     }
     
     //Constructeur fini ( passage par mapID ) à faire
-    public Maps(String mapName){  
+    public Maps(String mapName){
+        tableauxAff = new GridPane();
         try (Connection con = this.connect();
             Statement stmt = con.createStatement();    
             Statement stmt1 = con.createStatement();
             Statement stmt2 = con.createStatement();
-            ResultSet res = stmt.executeQuery("SELECT MAX(PositionX) FROM PlayGround WHERE " + mapName);
-            ResultSet res1 = stmt1.executeQuery("SELECT MAX(PositionY) FROM PlayGround WHERE " + mapName);
-            ResultSet res2 = stmt2.executeQuery("SELECT Name FROM Player");
-            PreparedStatement pstmt = con.prepareStatement("SELECT Type, Building FROM PlayGround WHERE PositionX=? And PositionY=? AND " + mapName)){
-            
+             ResultSet res = stmt.executeQuery("SELECT MAX(PositionX) FROM PlayGround WHERE " + mapName);
+             ResultSet res1 = stmt1.executeQuery("SELECT MAX(PositionY) FROM PlayGround WHERE " + mapName);
+             ResultSet res2 = stmt2.executeQuery("SELECT Name FROM Player");
+             PreparedStatement pstmt = con.prepareStatement("SELECT Type, Building FROM PlayGround WHERE PositionX=? And PositionY=? AND " + mapName)){
+
             this.HEIGHT = res.getInt("MAX(PositionX)");
             this.WIDTH = res1.getInt("MAX(PositionY)");
             map = new Case[this.HEIGHT+1][this.WIDTH+1];
@@ -77,7 +89,7 @@ public class Maps {
                         }
                         else if(pstmt.executeQuery().getString("Building").equals(new String("Base"))){
                             System.out.println("Base");
-                            map[i][j]= new Plain(new Base(new Team(res2.getString("Name"), TeamID.BLUE)));
+                            map[i][j]= new Plain(new Base(Game.tBlue));
                            }
                         
                         else if(pstmt.executeQuery().getString("Building").equals(new String("Town"))){
@@ -92,7 +104,13 @@ public class Maps {
                     
                 }
             }
-            
+            //AFF
+            for(int x = 0; x < map.length-1; x ++)
+            {
+                for (int y = 0; y < map.length-1; y++) {
+                    tableauxAff.add(map[x][y],y,x);
+                }
+            }
         }   
         catch(SQLException e ){
             System.out.println(e.getMessage());
@@ -170,7 +188,7 @@ public class Maps {
         Connection conn = null;
         try {
             // db parameters
-            String url = "jdbc:sqlite:C:/sqlite/db/AdvanceWarsDB.db";
+            String url = "jdbc:sqlite:E:/Developpement/git/Projet-PTS2-advance-war-/Vesion 1/sqlite/db/AdvanceWarsDB.db";
             // create a connection to the database
             conn = DriverManager.getConnection(url);
             
@@ -181,5 +199,77 @@ public class Maps {
         } 
         return conn;
     }
+
+    //Aff
+
+    private void setEvent()
+    {
+        Delta dragDelta = new Delta();
+        tableauxAff.setOnMousePressed(new EventHandler<MouseEvent>() {
+            @Override public void handle(MouseEvent mouseEvent) {
+                // record a delta distance for the drag and drop operation.
+                if(mouseEvent.getButton() == MouseButton.PRIMARY)
+                {
+                    dragDelta.x = tableauxAff.getLayoutX() - mouseEvent.getSceneX();
+                    dragDelta.y = tableauxAff.getLayoutY() - mouseEvent.getSceneY();
+                    tableauxAff.setCursor(Cursor.MOVE);
+                }
+            }
+        });
+        tableauxAff.setOnMouseReleased(new EventHandler<MouseEvent>() {
+            @Override public void handle(MouseEvent mouseEvent) {
+                tableauxAff.setCursor(Cursor.HAND);
+            }
+        });
+        tableauxAff.setOnMouseDragged(new EventHandler<MouseEvent>() {
+            @Override public void handle(MouseEvent mouseEvent) {
+                if(mouseEvent.getButton() == MouseButton.PRIMARY)
+                {
+                    tableauxAff.setLayoutX(mouseEvent.getSceneX() + dragDelta.x);
+                    tableauxAff.setLayoutY(mouseEvent.getSceneY() + dragDelta.y);
+                }
+
+            }
+        });
+        tableauxAff.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override public void handle(MouseEvent mouseEvent) {
+                tableauxAff.setCursor(Cursor.HAND);
+            }
+        });
+
+        tableauxAff.setOnScroll(new EventHandler<ScrollEvent>() {
+            @Override
+            public void handle(ScrollEvent event) {
+                if(event.getDeltaY() > 0)
+                {
+                    for(int x = 0; x < map.length-1; x ++)
+                    {
+                        for (int y = 0; y < map.length-1; y++) {
+                            map[x][y].zoom();
+                            //tableauxAff.setLayoutX(tableauxAff.getLayoutX()/2);
+                            //tableauxAff.setLayoutX(tableauxAff.getLayoutY()/2);
+                        }
+                    }
+                }else
+                {
+                    for(int x = 0; x < map.length-1; x ++)
+                    {
+                        for (int y = 0; y < map.length-1; y++) {
+                            map[x][y].dezoom();
+                            //tableauxAff.setLayoutX(tableauxAff.getLayoutX()*2);
+                            //tableauxAff.setLayoutX(tableauxAff.getLayoutY()*2);
+                        }
+                    }
+                }
+
+            }
+        });
+    }
+
+    public GridPane getTableauxAff() {
+        return tableauxAff;
+    }
     
 }
+
+class Delta { double x, y; }
