@@ -15,9 +15,9 @@ public abstract class Building {
     private Image redFac,blueFac, neutral;
     private Case myCase;
 
-    private boolean captured;
+    protected boolean captured;
     private Team OWNER;
-
+    
     /**
      * Default constructor
      */
@@ -64,13 +64,7 @@ public abstract class Building {
     /**
      * @return
      */
-    public void onEndTurn() {
-        if(!captured){
-            captured = true;
-            this.getOwner().ChangeIncome(this.getPayout());
-        }
-    }
-
+    public abstract void onEndTurn();
     //affichage
     public Image getImage()
     {
@@ -89,4 +83,12 @@ public abstract class Building {
         }
     }
 
+    public Case getMyCase() {
+        return myCase;
+    }
+    
+    public abstract void setOnCapture(boolean onCapture);
+
+    public abstract boolean isOnCapture();
+    public abstract void capture();
 }

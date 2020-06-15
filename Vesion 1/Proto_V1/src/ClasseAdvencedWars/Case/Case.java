@@ -56,6 +56,9 @@ public abstract class Case extends Canvas {
             this.unit = null;
         }else if(this.unit == null){
             this.unit = unit;
+            if(this.getBuilding()!=null && this.getBuilding().getOwner()!=unit.getOwner()){
+                this.getBuilding().setOnCapture(true);
+            }
         }else if(this.unit.getOwner()== unit.getOwner()){
             throw new FriendException("error : ally unit allredy in the case");
         }else{
@@ -78,6 +81,9 @@ public abstract class Case extends Canvas {
         else if(attack instanceof Tank){
             if(this.unit instanceof Infantry){
                 sortie = attack;
+                if(this.getBuilding()!=null && this.getBuilding().getOwner()!=attack.getOwner()){
+                this.getBuilding().setOnCapture(true);
+            }
             }
             else{
                 sortie = this.unit;
@@ -86,6 +92,9 @@ public abstract class Case extends Canvas {
         else if(attack instanceof RocketLauncher){
             if(this.unit instanceof Tank){
                 sortie = attack;
+                if(this.getBuilding()!=null && this.getBuilding().getOwner()!=attack.getOwner()){
+                this.getBuilding().setOnCapture(true);
+            }
             }
             else{
                 sortie = this.unit;
@@ -94,6 +103,9 @@ public abstract class Case extends Canvas {
         else if(attack instanceof Infantry){
             if(this.unit instanceof RocketLauncher){
                 sortie = attack;
+                if(this.getBuilding()!=null && this.getBuilding().getOwner()!=attack.getOwner()){
+                this.getBuilding().setOnCapture(true);
+            }
             }
             else{
                 sortie = this.unit;

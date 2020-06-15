@@ -77,7 +77,7 @@ public class Maps {
                         }
                         else if(pstmt.executeQuery().getString("Building").equals(new String("Base"))){
                             System.out.println("Base");
-                            map[i][j]= new Plain(new Base(new Team(res2.getString("Name"))));
+                            map[i][j]= new Plain(new Base(new Team(res2.getString("Name"), TeamID.BLUE)));
                            }
                         
                         else if(pstmt.executeQuery().getString("Building").equals(new String("Town"))){
