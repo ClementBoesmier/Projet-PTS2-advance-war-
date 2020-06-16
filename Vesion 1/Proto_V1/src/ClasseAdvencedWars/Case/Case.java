@@ -178,7 +178,7 @@ public abstract class Case extends Canvas {
                 if(building != null)
                 {
                     //Menu batimentMen = building.getMenu();
-                    MenuItem batiment = new MenuItem("batiment");
+                    MenuItem batiment = building.getAction();
                     menu.getItems().add(batiment);
                 }
                 if(unit != null)

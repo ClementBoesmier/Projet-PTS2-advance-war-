@@ -18,13 +18,11 @@ public abstract class Units{
     //affichage
     private Image redFac,blueFac;
     private Case aCase;
-    private Menu menu;
     
     /**
      * 
      */
     protected int movePoint;
-
 
     private final Team OWNER;
     
@@ -181,5 +179,9 @@ public abstract class Units{
                 moveStep(0,1,aCase.getMap());
                 break;
         }
+    }
+
+    public int getCost() {
+        return 0;
     }
 }

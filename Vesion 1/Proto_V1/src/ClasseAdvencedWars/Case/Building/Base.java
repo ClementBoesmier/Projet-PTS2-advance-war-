@@ -1,12 +1,15 @@
 package ClasseAdvencedWars.Case.Building;
 
 import ClasseAdvencedWars.Case.Case;
-import ClasseAdvencedWars.Maps;
 import ClasseAdvencedWars.Team;
+import ClasseAdvencedWars.units.Infantry;
+import ClasseAdvencedWars.units.RocketLauncher;
+import ClasseAdvencedWars.units.Tank;
 import ClasseAdvencedWars.units.Units;
 import ClasseAdvencedWars.Exception.FriendException;
 import ClasseAdvencedWars.Exception.SpawnException;
 import javafx.scene.control.Menu;
+import javafx.scene.control.MenuItem;
 import sample.BibliotequeImage;
 
 
@@ -19,7 +22,7 @@ public class Base extends Building {
     
     private final Team OWNER;
     
-    private boolean onCapture=false;
+    private boolean onCapture=false, firstTurn = true;
     
     private int nbTurnOnCapture=0;
     
@@ -48,25 +51,27 @@ public class Base extends Building {
         return this.PAYOUT;
     }
     
-    public void spawn(Maps map, Units unit) throws FriendException, SpawnException{
-        Case terrain = map.getCase(map.GetLocal(this).getX(), map.GetLocal(this).getY());
-        if(terrain.getUnit() != null){
+    public void spawn(Units unit) throws FriendException, SpawnException{
+        if(myCase.getUnit() != null){
             throw new SpawnException("case occuped");
-        }else{
-            terrain.setUnit(unit);
+        }else if(this.OWNER.getMoney()< unit.getCost()){
+            throw new SpawnException("units is too expencive");
+        }else {
+            this.OWNER.pay(unit.getCost());
+            myCase.setUnit(unit);
         }
     }
     @Override
     public void onEndTurn(){
-                if(!captured){
-            captured = true;
+        if(firstTurn == true)
+        {
             this.getOwner().ChangeIncome(this.getPayout());
-            
+            firstTurn = false;
         }
-                
+
     }
     
-    public void capture(){
+    public boolean capture(){
         if(onCapture==true){
                     switch(this.nbTurnOnCapture){
                         case 0 : this.nbTurnOnCapture++;break;
@@ -75,6 +80,7 @@ public class Base extends Building {
                         case 3 : this.captured=true;break;
                     }
             }
+        return false;
     }
 
     @Override
@@ -98,6 +104,25 @@ public class Base extends Building {
     @Override
     public Menu getAction() {
         Menu menu = new Menu("Batiment");
-        return super.getAction();
+        Menu spawn = new Menu("Acheter Unité");
+        MenuItem spawnInfantry = new MenuItem("Acheter Infantry (" + Infantry.COST+"PO)");
+        MenuItem spawnTank = new MenuItem("Acheter Tank (" + Tank.COST+"PO)");
+        MenuItem spawnRocketLauncher = new MenuItem("Acheter Lance Rockette (" + RocketLauncher.COST+"PO)");
+        spawnInfantry.setOnAction(event -> {
+            try {
+                spawn(new Infantry(this.OWNER, this.myCase));
+            } catch (FriendException e) {
+                e.printStackTrace();
+            } catch (SpawnException e) {
+                e.printStackTrace();
+            }
+        });
+
+        spawn.getItems().add(spawnInfantry);
+        spawn.getItems().add(spawnTank);
+        spawn.getItems().add(spawnRocketLauncher);
+        menu.getItems().add(spawn);
+        System.out.println("Base GetAction");
+        return menu;
     }
 }

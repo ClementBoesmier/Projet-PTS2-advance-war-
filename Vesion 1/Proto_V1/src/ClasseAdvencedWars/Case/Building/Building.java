@@ -84,19 +84,15 @@ public abstract class Building {
     {
         if(getOwner() != null)
         {
-            System.out.println("appelle image batiment");
             if(getOwner().getTeamID() == TeamID.BLUE)
             {
-                System.out.println("Retour bleux");
                 return blueFac;
             }else
             {
-                System.out.println("Retour Rouge");
                 return redFac;
             }
         }else
         {
-            System.out.println("Retour neutral");
             return neutral;
         }
     }
@@ -108,7 +104,7 @@ public abstract class Building {
     public abstract void setOnCapture(boolean onCapture);
 
     public abstract boolean isOnCapture();
-    public abstract void capture();
+    public abstract boolean capture();
 
     public void setMyCase(Case myCase) {
         this.myCase = myCase;
@@ -116,6 +112,6 @@ public abstract class Building {
 
     public Menu getAction()
     {
-        return null;
+        return new Menu("Batiment");
     }
 }

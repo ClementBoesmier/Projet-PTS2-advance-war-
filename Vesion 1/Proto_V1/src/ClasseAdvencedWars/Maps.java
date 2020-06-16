@@ -11,6 +11,7 @@ import ClasseAdvencedWars.Exception.FriendException;
 import ClasseAdvencedWars.units.Infantry;
 import ClasseAdvencedWars.units.Units;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.scene.Cursor;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
@@ -175,8 +176,8 @@ public class Maps {
     
     public Location GetLocal(Units unit){
         Location sortie = null;
-        for(int i = 0; i < this.WIDTH; i++){
-            for(int j = 0; j < this.HEIGHT; j++){
+        for(int i = 0; i < this.WIDTH+1; i++){
+            for(int j = 0; j < this.HEIGHT+1; j++){
                 if(this.map[i][j] != null){
                     if(this.map[i][j].getUnit() == unit){
                         sortie = new Location(i,j);
@@ -223,6 +224,10 @@ public class Maps {
 
     private void setEvent()
     {
+        tableauxAff.setHgap(0);
+        tableauxAff.setVgap(0);
+        tableauxAff.setPadding(new Insets(0,0,0,0));
+
         Delta dragDelta = new Delta();
         tableauxAff.setOnMousePressed(new EventHandler<MouseEvent>() {
             @Override public void handle(MouseEvent mouseEvent) {

@@ -5,6 +5,8 @@
  */
 package ClasseAdvencedWars.Exception;
 
+import javafx.scene.control.Alert;
+
 /**
  *
  * @author clement
@@ -16,6 +18,10 @@ public class FriendException extends Exception {
 
     public FriendException(String string) {
         super(string);
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("Uniter");
+        alert.setContentText("Il y a déja une unité sur cette case");
+        alert.show();
     }
     
 }

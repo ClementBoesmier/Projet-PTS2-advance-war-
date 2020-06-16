@@ -15,7 +15,7 @@ public class Town extends Building {
      */
     private static final int PAYOUT = 7;
     
-    private boolean onCapture;
+    private boolean onCapture, captureAlreadyCall = false;
     
     private int nbTurnOnCapture=0;
     
@@ -55,46 +55,61 @@ public class Town extends Building {
 
     @Override
     public void onEndTurn(){
-        System.out.println("OnEndTurn");
-        if(this.owner != null)
+        if(this.owner == null)
         {
-            if(this.myCase.getUnit().getOwner() != this.getOwner())
+            if(capture() && this.myCase.getUnit() != null)
             {
-                if(this.owner != null)
-                {
-                    this.owner.ChangeIncome(-this.getPayout());
-                }else
-                {
-                    owner = myCase.getUnit().getOwner();
-                    this.owner.ChangeIncome(this.getPayout());
-                    myCase.refreshAff();
-                }
+                this.setOwner(this.myCase.getUnit().getOwner());
+                this.owner.ChangeIncome(this.getPayout());
             }
         }else
         {
-            if(this.myCase.getUnit() != null)
+            if(myCase.getUnit() != null)
             {
-                owner = myCase.getUnit().getOwner();
-                this.owner.ChangeIncome(this.getPayout());
-                myCase.refreshAff();
+                if(owner != myCase.getUnit().getOwner())
+                {
+                    if(capture())
+                    {
+                        this.owner.ChangeIncome(-this.getPayout());
+                        this.owner = myCase.getUnit().getOwner();
+                        nbTurnOnCapture = 0;
+                    }
+                }
             }
         }
-    }
-
-    public void capture(){
-        if(onCapture==true){
-                    switch(this.nbTurnOnCapture){
-                        case 0 : this.nbTurnOnCapture++;break;
-                        case 1 : this.owner=this.getMyCase().getUnit().getOwner();break;
-                    }
-            }
+        myCase.refreshAff();
+        captureAlreadyCall = false;
     }
 
     @Override
     public boolean isOnCapture() {
         return onCapture;
     }
-    
+
+    @Override
+    public boolean capture() {
+        if(nbTurnOnCapture == 2)
+        {
+            return true;
+        }else
+        {
+            if(myCase.getUnit() != null || captureAlreadyCall == true)
+            {
+                nbTurnOnCapture++;
+            }else
+            {
+                nbTurnOnCapture = 0;
+            }
+        }
+        if (nbTurnOnCapture > 2)
+        {
+            nbTurnOnCapture = 0;
+        }
+
+        captureAlreadyCall = true;
+        return false;
+    }
+
     @Override
     public void setOnCapture(boolean onCapture) {
         this.onCapture = onCapture;
