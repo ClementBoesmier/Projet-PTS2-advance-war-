@@ -13,24 +13,36 @@ import javafx.scene.paint.Color;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.fxml.FXML;
 
 public class JeuxAffControlleur implements Initializable {
 
 
+    @FXML
     public Label blueIncome;
+    @FXML
     public Label bluePO;
+    @FXML
     public Label redIncome;
+    @FXML
     public Label redPO;
+    @FXML
     public Label teamPlayNow;
+    @FXML
     public Button butRouge;
+    @FXML
     public Button butBleux;
+    @FXML
     public Label nbToursAff;
+   
     private Game game;
+
+    @FXML
     public AnchorPane pane;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        //Création de la carte
+       //Création de la carte
         Maps map = new Maps("France");
         GridPane affMap = map.getTableauxAff();
         game = new Game(map);
@@ -54,6 +66,7 @@ public class JeuxAffControlleur implements Initializable {
         turnAffGest();
     }
 
+    @FXML
     public void endTurn(ActionEvent actionEvent) {
         game.endTurn();
         turnAffGest();

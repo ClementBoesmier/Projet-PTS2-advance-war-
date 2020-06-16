@@ -5,14 +5,15 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.scene.layout.Pane;
 
 public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("jeuxaff.fxml"));
+        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("jeuxaff.fxml"));
         primaryStage.setTitle("Hello World");
-        primaryStage.setScene(new Scene(root, 300, 275));
+        //primaryStage.setScene(new Scene(mainPane, 300, 275));
         primaryStage.show();
     }
 
