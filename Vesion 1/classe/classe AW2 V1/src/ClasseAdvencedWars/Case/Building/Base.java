@@ -15,7 +15,16 @@ public class Base extends Building {
     
     private final static int PAYOUT = 10;
     
+    
     private final Team OWNER;
+    
+    private boolean onCapture=false;
+    
+    private int nbTurnOnCapture=0;
+    
+    private boolean destroyed=false;
+    
+    
     /**
      * Default constructor
      */
@@ -44,5 +53,17 @@ public class Base extends Building {
             this.OWNER.pay(unit.getCost());
             terrain.setUnit(unit);
         }
+    }
+
+    @Override
+    public void capture(){
+        if(onCapture==true){
+                    switch(this.nbTurnOnCapture){
+                        case 0 : this.nbTurnOnCapture++;break;
+                        case 1 : this.nbTurnOnCapture++;break;
+                        case 2 : this.nbTurnOnCapture++;break;
+                        case 3 : this.destroyed=true;break;
+                    }
+            }
     }
 }

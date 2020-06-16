@@ -65,6 +65,11 @@ public class TestBDMapsClement {
     @Test
     public void test(){
         mapViewer();
+        System.out.println(gParty.gettBlue());
+        System.out.println(gParty.getMAPS().getCase(5, 1).getBuilding().getOwner());
+        System.out.println(gParty.gettRed());
+        System.out.println(gParty.getMAPS().getCase(5, 9).getBuilding().getOwner());
+
     }
     
 }

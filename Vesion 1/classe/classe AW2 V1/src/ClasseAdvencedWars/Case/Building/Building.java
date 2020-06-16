@@ -26,6 +26,8 @@ public abstract class Building {
     
     
     public abstract int getPayout();
+    
+    public abstract void capture();
 
     /**
      * @return
@@ -34,6 +36,7 @@ public abstract class Building {
         if(!captured){
             captured = true;
             this.getOwner().ChangeIncome(this.getPayout());
+            this.capture();
         }
     }
 

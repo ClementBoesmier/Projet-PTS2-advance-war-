@@ -52,7 +52,8 @@ public class Maps {
     }
     
     //Constructeur fini ( passage par mapID ) à faire
-    public Maps(String mapName){  
+    public Maps(String mapName, Game gParty){
+        boolean firstBase=false;
         try (Connection con = this.connect();
             Statement stmt = con.createStatement();    
             Statement stmt1 = con.createStatement();
@@ -74,21 +75,24 @@ public class Maps {
                         System.out.println(pstmt.executeQuery().getString("Type"));
                         System.out.println(pstmt.executeQuery().getString("Building"));
                         if(pstmt.executeQuery().getString("Building")==null){
-                            this.map[i][j]= new Plain();
+                            this.map[j][i]= new Plain();
                         }
                         else if(pstmt.executeQuery().getString("Building").equals(new String("Base"))){
                             System.out.println("Base");
-                            map[i][j]= new Plain(new Base(new Team(res2.getString("Name"))));
-                           }
-                        
-                        else if(pstmt.executeQuery().getString("Building").equals(new String("Town"))){
+                            if(firstBase==false){
+                                firstBase=true;
+                                this.map[j][i]= new Plain(new Base(gParty.gettBlue()));
+                            }else{
+                                this.map[j][i]= new Plain(new Base(gParty.gettRed()));
+                            }
+                        }else if(pstmt.executeQuery().getString("Building").equals(new String("Town"))){
                             System.out.println("Town");
-                            this.map[i][j]= new Plain(new Town());
+                            this.map[j][i]= new Plain(new Town());
                         }
                         
                     }
                     if(pstmt.executeQuery().getString("Type").equals(new String("Ocean"))){
-                        map[i][j] = new Ocean();
+                        map[j][i] = new Ocean();
                     }
                     
                 }
