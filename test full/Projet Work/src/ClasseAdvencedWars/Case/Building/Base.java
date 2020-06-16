@@ -61,6 +61,7 @@ public class Base extends Building {
             myCase.setUnit(unit);
         }
     }
+    
     @Override
     public void onEndTurn(){
         if(firstTurn == true)
