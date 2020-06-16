@@ -1,13 +1,13 @@
 package ClasseAdvencedWars.units;
 
+import ClasseAdvencedWars.*;
 import ClasseAdvencedWars.Case.Case;
-import ClasseAdvencedWars.Location;
-import ClasseAdvencedWars.Maps;
-import ClasseAdvencedWars.Team;
 import ClasseAdvencedWars.Exception.FriendException;
 import ClasseAdvencedWars.Exception.MoveException;
-import ClasseAdvencedWars.TeamID;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.control.Menu;
+import javafx.scene.control.MenuItem;
 import javafx.scene.image.Image;
 
 
@@ -18,13 +18,11 @@ public abstract class Units{
     //affichage
     private Image redFac,blueFac;
     private Case aCase;
-    private Menu menu;
     
     /**
      * 
      */
     protected int movePoint;
-
 
     private final Team OWNER;
     
@@ -63,7 +61,7 @@ public abstract class Units{
         if(map.getCase(localX+x, localY+y) == null){
             throw new MoveException("hors map");
         }else if(!map.getCase(localX+x, localY+y).getWalkable(this)){
-            throw new MoveException("aera not walkable");
+            throw new MoveException("area not walkable");
         }else{
             map.getCase(localX+x, localY+y).setUnit(this);
             map.getCase(localX, localY).setUnit(null);
@@ -93,5 +91,97 @@ public abstract class Units{
             {
                 return redFac;
             }
+    }
+
+
+    public Menu getAction()
+    {
+        if(getOwner() != Game.tTurn)
+        {
+            return new Menu("Pas ton tour !!!!");
+        }else if(movePoint == 0)
+        {
+            return new Menu("Plus de Déplacement");
+        }
+        Menu menu = new Menu("Uniter ("+movePoint+"MP)");
+        MenuItem moveUP = new MenuItem("Haut");
+        moveUP.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                try {
+                    moveSelector("up");
+                } catch (MoveException e) {
+                    e.printStackTrace();
+                } catch (FriendException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        MenuItem moveBACK = new MenuItem("Bas");
+        moveBACK.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                try {
+                    moveSelector("back");
+                } catch (MoveException e) {
+                    e.printStackTrace();
+                } catch (FriendException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        MenuItem moveLEFT = new MenuItem("Gauche");
+        moveLEFT.setOnAction(new EventHandler<ActionEvent>() {
+        @Override
+        public void handle(ActionEvent event) {
+            try {
+                moveSelector("left");
+            } catch (MoveException e) {
+                e.printStackTrace();
+            } catch (FriendException e) {
+                e.printStackTrace();
+            }
+        }
+    });
+        MenuItem moveRIGHT = new MenuItem("Droite");
+        moveRIGHT.setOnAction(new EventHandler<ActionEvent>() {
+        @Override
+        public void handle(ActionEvent event) {
+            try {
+                moveSelector("right");
+            } catch (MoveException e) {
+                e.printStackTrace();
+            } catch (FriendException e) {
+                e.printStackTrace();
+            }
+        }
+    });
+        menu.getItems().add(moveUP);
+        menu.getItems().add(moveLEFT);
+        menu.getItems().add(moveRIGHT);
+        menu.getItems().add(moveBACK);
+        return menu;
+    }
+
+    private void moveSelector(String entrer) throws MoveException, FriendException {
+        switch (entrer)
+        {
+            case "up":
+                moveStep(-1,0,aCase.getMap());
+                break;
+            case "back":
+                moveStep(1,0,aCase.getMap());
+                break;
+            case "left":
+                moveStep(0,-1,aCase.getMap());
+                break;
+            case "right":
+                moveStep(0,1,aCase.getMap());
+                break;
+        }
+    }
+
+    public int getCost() {
+        return 0;
     }
 }

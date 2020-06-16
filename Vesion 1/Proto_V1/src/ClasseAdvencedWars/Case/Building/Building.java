@@ -4,6 +4,7 @@ import ClasseAdvencedWars.Case.Case;
 import ClasseAdvencedWars.Game;
 import ClasseAdvencedWars.Team;
 import ClasseAdvencedWars.TeamID;
+import javafx.scene.control.Menu;
 import javafx.scene.image.Image;
 
 
@@ -13,11 +14,11 @@ import javafx.scene.image.Image;
 public abstract class Building {
     //affichage
     private Image redFac,blueFac, neutral;
-    private Case myCase;
+    protected Case myCase;
 
-    private boolean captured;
-    private Team OWNER;
-
+    protected boolean captured;
+    protected Team OWNER;
+    
     /**
      * Default constructor
      */
@@ -53,6 +54,18 @@ public abstract class Building {
         this.OWNER = OWNER;
     }
 
+    public Building(Image redFac, Image blueFac, Team OWNER) {
+        this.redFac = redFac;
+        this.blueFac = blueFac;
+        this.OWNER = OWNER;
+    }
+
+    public Building(Image redFac, Image blueFac, Image neutral) {
+        this.redFac = redFac;
+        this.blueFac = blueFac;
+        this.neutral = neutral;
+    }
+
     /**
      * @return
      */
@@ -64,14 +77,9 @@ public abstract class Building {
     /**
      * @return
      */
-    public void onEndTurn() {
-        if(!captured){
-            captured = true;
-            this.getOwner().ChangeIncome(this.getPayout());
-        }
-    }
-
+    public abstract void onEndTurn();
     //affichage
+
     public Image getImage()
     {
         if(getOwner() != null)
@@ -89,4 +97,21 @@ public abstract class Building {
         }
     }
 
+    public Case getMyCase() {
+        return myCase;
+    }
+    
+    public abstract void setOnCapture(boolean onCapture);
+
+    public abstract boolean isOnCapture();
+    public abstract boolean capture();
+
+    public void setMyCase(Case myCase) {
+        this.myCase = myCase;
+    }
+
+    public Menu getAction()
+    {
+        return new Menu("Batiment");
+    }
 }

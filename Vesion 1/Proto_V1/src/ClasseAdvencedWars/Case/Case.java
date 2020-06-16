@@ -1,6 +1,8 @@
 package ClasseAdvencedWars.Case;
 
 import ClasseAdvencedWars.Case.Building.Building;
+import ClasseAdvencedWars.Location;
+import ClasseAdvencedWars.Maps;
 import ClasseAdvencedWars.units.Infantry;
 import ClasseAdvencedWars.units.RocketLauncher;
 import ClasseAdvencedWars.units.Tank;
@@ -25,12 +27,14 @@ public abstract class Case extends Canvas {
     //Affichage
     private Image terrain;
     private GraphicsContext affichage;
-    private static final Image contours = new Image("file:E:\\Developpement\\git\\Projet-PTS2-advance-war-\\ressource\\GraphismeV1\\contourV1.png");
+    private static final Image contours = BibliotequeImage.contour;
     private static double largeur=32, hauteur=32;
     private int zoom;
     private ContextMenu menu;
 
     private Units unit = null;
+    private Maps map;
+    private Location location;
     
     private final Building building;
     
@@ -39,9 +43,22 @@ public abstract class Case extends Canvas {
      */
     public Case(Building building) {
         this.building = building;
+        init();
     }
     public Case(){
         this.building = null;
+        init();
+    }
+
+    public Case(Building building, Image terrain) {
+        this.building = building;
+        this.terrain = terrain;
+        init();
+    }
+    public Case(Image terrain){
+        this.building = null;
+        this.terrain = terrain;
+        init();
     }
 
     /**
@@ -56,11 +73,16 @@ public abstract class Case extends Canvas {
             this.unit = null;
         }else if(this.unit == null){
             this.unit = unit;
+            if(this.getBuilding()!=null && this.getBuilding().getOwner()!=unit.getOwner()){
+                this.getBuilding().setOnCapture(true);
+            }
         }else if(this.unit.getOwner()== unit.getOwner()){
             throw new FriendException("error : ally unit allredy in the case");
         }else{
             this.unit = this.fight(unit);
         }
+        refreshAff();
+        tooltypeRefresh();
     }
     
     /**
@@ -78,6 +100,9 @@ public abstract class Case extends Canvas {
         else if(attack instanceof Tank){
             if(this.unit instanceof Infantry){
                 sortie = attack;
+                if(this.getBuilding()!=null && this.getBuilding().getOwner()!=attack.getOwner()){
+                this.getBuilding().setOnCapture(true);
+            }
             }
             else{
                 sortie = this.unit;
@@ -86,6 +111,9 @@ public abstract class Case extends Canvas {
         else if(attack instanceof RocketLauncher){
             if(this.unit instanceof Tank){
                 sortie = attack;
+                if(this.getBuilding()!=null && this.getBuilding().getOwner()!=attack.getOwner()){
+                this.getBuilding().setOnCapture(true);
+            }
             }
             else{
                 sortie = this.unit;
@@ -94,6 +122,9 @@ public abstract class Case extends Canvas {
         else if(attack instanceof Infantry){
             if(this.unit instanceof RocketLauncher){
                 sortie = attack;
+                if(this.getBuilding()!=null && this.getBuilding().getOwner()!=attack.getOwner()){
+                this.getBuilding().setOnCapture(true);
+            }
             }
             else{
                 sortie = this.unit;
@@ -103,6 +134,22 @@ public abstract class Case extends Canvas {
     }
 
     public abstract boolean getWalkable(Units aThis);
+
+    public void setMap(Maps map) {
+        this.map = map;
+    }
+
+    public Maps getMap() {
+        return map;
+    }
+
+    public Location getLocation() {
+        return location;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
+    }
 
     //Gestion affichage :
 
@@ -128,26 +175,26 @@ public abstract class Case extends Canvas {
             @Override
             public void handle(ContextMenuEvent event) {
                 ContextMenu menu = new ContextMenu();
-                System.out.println("je marche");
                 if(building != null)
                 {
                     //Menu batimentMen = building.getMenu();
-                    MenuItem batiment = new MenuItem("batiment");
+                    MenuItem batiment = building.getAction();
                     menu.getItems().add(batiment);
                 }
                 if(unit != null)
                 {
                     //Menu Uniter = building.getMenu();
-                    MenuItem uniter = new MenuItem("uniter");
+                    MenuItem uniter = unit.getAction();
                     menu.getItems().add(uniter);
                 }
                 menu.setAutoHide(true);
+                menu.getItems().add(new MenuItem("quitter"));
                 menu.show(Case.super.getParent(), event.getScreenX(), event.getScreenY());
             }
         });
-        refreshAff();
         setScale();
         tooltypeAff();
+        refreshAff();
     }
 
     private void tooltypeAff()
@@ -232,6 +279,7 @@ public abstract class Case extends Canvas {
         {
             affichage.drawImage(unit.getImage(),0,0);
         }
+        tooltypeAff();
     }
 
 

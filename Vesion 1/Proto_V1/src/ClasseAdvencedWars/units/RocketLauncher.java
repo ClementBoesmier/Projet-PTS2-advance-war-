@@ -1,6 +1,8 @@
 package ClasseAdvencedWars.units;
 
+import ClasseAdvencedWars.Case.Case;
 import ClasseAdvencedWars.Team;
+import sample.BibliotequeImage;
 
 
 /**
@@ -20,13 +22,15 @@ public class RocketLauncher extends Units {
     /**
      * 
      */
-    private static final int COST = 5;
-    public RocketLauncher(Team owner) {
-        super(owner);
+    public static final int COST = 5;
+
+
+    public RocketLauncher(Team owner, Case aCase) {
+        super(owner, aCase, BibliotequeImage.redBazooka, BibliotequeImage.blueBazooka);
         super.movePoint = RocketLauncher.MAXTRAVEL;
     }
     
-    public static int getCost() {
+    public int getCost() {
         return COST;
     }
     

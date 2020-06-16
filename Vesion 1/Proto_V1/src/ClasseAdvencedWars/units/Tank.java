@@ -1,7 +1,8 @@
 package ClasseAdvencedWars.units;
 
+import ClasseAdvencedWars.Case.Case;
 import ClasseAdvencedWars.Team;
-
+import sample.BibliotequeImage;
 
 
 /**
@@ -21,16 +22,17 @@ public class Tank extends Units {
     /**
      * 
      */
-    private static final int COST = 5;
-    public Tank(Team owner) {
-        super(owner);
+    public static final int COST = 5;
+
+    public Tank(Team owner, Case aCase) {
+        super(owner, aCase, BibliotequeImage.redTank, BibliotequeImage.blueTank);
         super.movePoint = Tank.MAXTRAVEL;
     }
 
-    public static int getCost() {
+    public int getCost() {
         return COST;
     }
-    
+
     @Override
     public void onEndTurn(){
         super.movePoint = Tank.MAXTRAVEL;

@@ -6,6 +6,8 @@ import ClasseAdvencedWars.units.Infantry;
 import ClasseAdvencedWars.units.RocketLauncher;
 import ClasseAdvencedWars.units.Tank;
 import ClasseAdvencedWars.units.Units;
+import sample.BibliotequeImage;
+
 import java.util.ArrayList;
 
 
@@ -18,11 +20,11 @@ public class Plain extends Case {
      */
     
     public Plain() {
-        super();
+        super(BibliotequeImage.plaine);
     }
     
     public Plain(Building building) {
-        super(building);
+        super(building, BibliotequeImage.plaine);
     }
 
     @Override

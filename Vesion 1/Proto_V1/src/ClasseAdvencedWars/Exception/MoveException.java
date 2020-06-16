@@ -5,6 +5,8 @@
  */
 package ClasseAdvencedWars.Exception;
 
+import javafx.scene.control.Alert;
+
 /**
  *
  * @author clement
@@ -16,6 +18,10 @@ public class MoveException extends Exception{
 
     public MoveException(String string) {
         super(string);
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("Déplacement");
+        alert.setContentText("Cette unité ne peut pas marcher sur cette case");
+        alert.show();
     }
     
 }

@@ -1,7 +1,11 @@
 package ClasseAdvencedWars;
 
+import ClasseAdvencedWars.Case.Building.Base;
 import ClasseAdvencedWars.Case.Building.Building;
 import ClasseAdvencedWars.Case.Case;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -10,6 +14,7 @@ import java.util.Map;
  * 
  */
 public class Game {
+
     /**
      * 
      */
@@ -23,45 +28,46 @@ public class Game {
     /**
      * 
      */
-    private final Team tBlue;
+    public static Team tBlue = new Team("test",TeamID.BLUE);
     
     /**
      * 
      */
-    private final Team tRed;
+    public static Team tRed = new Team("test2",TeamID.RED);
     
     
-    private Team tTurn;
-    
-    //CONSTRUCTEUR TEMPORAIRE
-    public Game(Maps maps, Team teamB, Team teamR) {
-        this.MAPS = maps;
-        this.tBlue = teamB;
-        this.tRed = teamR;
-        this.tTurn = tBlue;
-        this.endTurn();
-        this.endTurn();
-    }
+    public static Team tTurn;
 
-    /*public Game(String team1, String team2){
-       //this.MAPS = new Maps();
-       this.tBlue = new Team(team1, TeamID.BLUE);
-       this.tRed = new Team(team2, TeamID.RED);
-    }*/
+    private IntegerProperty nbTurnPropeties;
+
+    private HashMap<Location, Case> hMBuilding,hMUnits;
+    
+
+    public Game(Maps maps /*, Team redTeam, Team blueTeam*/)
+    {
+        nbTurnPropeties = new SimpleIntegerProperty();
+        this.MAPS = maps;
+        tTurn = tRed;
+        hMBuilding = new HashMap<>();
+        hMBuilding = this.MAPS.getBuilding();
+
+        hMUnits = new HashMap<>();
+        hMUnits = this.MAPS.getUnits();
+        endTurn();
+    }
 
     /**
      * @return
      */
-    public void endTurn() {
-        HashMap<Location, Case> hMBuilding = this.MAPS.getBuilding();
-        HashMap<Location, Case> hMUnits = this.MAPS.getUnits();
+    public boolean endTurn() {
+        nbTurnPropeties.set(nbTurn);
+        hMUnits = this.MAPS.getUnits();
         for(Map.Entry<Location, Case> e : hMBuilding.entrySet()){
-            if(e.getValue().getBuilding().getOwner() == this.tTurn){
-                e.getValue().getBuilding().onEndTurn();
-            }
+            e.getValue().getBuilding().onEndTurn();
         }
         for(Map.Entry<Location, Case> e : hMUnits.entrySet()){
-            if(e.getValue().getUnit().getOwner() == this.tTurn){
+            if(e.getValue().getUnit().getOwner() == tTurn)
+            {
                 e.getValue().getUnit().onEndTurn();
             }
         }
@@ -72,6 +78,7 @@ public class Game {
         }else{
             this.tTurn = this.tRed;
         }
+        return false;
     }
     
     /**
@@ -96,5 +103,8 @@ public class Game {
     public Team gettRed() {
         return tRed;
     }
-    
+
+    public IntegerProperty getNbTurnPropeties() {
+        return nbTurnPropeties;
+    }
 }

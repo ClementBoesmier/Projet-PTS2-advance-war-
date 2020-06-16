@@ -5,6 +5,8 @@
  */
 package ClasseAdvencedWars.Exception;
 
+import javafx.scene.control.Alert;
+
 /**
  *
  * @author clement
@@ -16,6 +18,10 @@ public class SpawnException extends Exception{
 
     public SpawnException(String string) {
         super(string);
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("Uniter");
+        alert.setContentText(string);
+        alert.show();
     }
     
 }

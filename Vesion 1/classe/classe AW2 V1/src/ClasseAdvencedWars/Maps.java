@@ -79,13 +79,10 @@ public class Maps {
                         }
                         else if(pstmt.executeQuery().getString("Building").equals(new String("Base"))){
                             System.out.println("Base");
-                            if(firstBase==false){
-                                firstBase=true;
-                                this.map[j][i]= new Plain(new Base(gParty.gettBlue()));
-                            }else{
-                                this.map[j][i]= new Plain(new Base(gParty.gettRed()));
-                            }
-                        }else if(pstmt.executeQuery().getString("Building").equals(new String("Town"))){
+                            map[i][j]= new Plain(new Base(new Team(res2.getString("Name"), TeamID.BLUE)));
+                           }
+                        
+                        else if(pstmt.executeQuery().getString("Building").equals(new String("Town"))){
                             System.out.println("Town");
                             this.map[j][i]= new Plain(new Town());
                         }
