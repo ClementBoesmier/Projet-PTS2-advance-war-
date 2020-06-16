@@ -1,12 +1,9 @@
 package ClasseAdvencedWars.units;
 
+import ClasseAdvencedWars.*;
 import ClasseAdvencedWars.Case.Case;
-import ClasseAdvencedWars.Location;
-import ClasseAdvencedWars.Maps;
-import ClasseAdvencedWars.Team;
 import ClasseAdvencedWars.Exception.FriendException;
 import ClasseAdvencedWars.Exception.MoveException;
-import ClasseAdvencedWars.TeamID;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Menu;
@@ -66,7 +63,7 @@ public abstract class Units{
         if(map.getCase(localX+x, localY+y) == null){
             throw new MoveException("hors map");
         }else if(!map.getCase(localX+x, localY+y).getWalkable(this)){
-            throw new MoveException("aera not walkable");
+            throw new MoveException("area not walkable");
         }else{
             map.getCase(localX+x, localY+y).setUnit(this);
             map.getCase(localX, localY).setUnit(null);
@@ -101,7 +98,10 @@ public abstract class Units{
 
     public Menu getAction()
     {
-        if(movePoint == 0)
+        if(getOwner() != Game.tTurn)
+        {
+            return new Menu("Pas ton tour !!!!");
+        }else if(movePoint == 0)
         {
             return new Menu("Plus de Déplacement");
         }

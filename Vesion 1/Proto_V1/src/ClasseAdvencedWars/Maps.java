@@ -84,19 +84,23 @@ public class Maps {
                 for(int j = 0; j<this.WIDTH+1;j++){
                     pstmt.setInt(2,j);
                     if(pstmt.executeQuery().getString("Type").equals(new String("Plain"))){
-                        System.out.println(pstmt.executeQuery().getString("Type"));
-                        System.out.println(pstmt.executeQuery().getString("Building"));
+                        //System.out.println(pstmt.executeQuery().getString("Type"));
+                        //System.out.println(pstmt.executeQuery().getString("Building"));
                         if(pstmt.executeQuery().getString("Building")==null){
                             this.map[i][j]= new Plain();
                         }
                         else if(pstmt.executeQuery().getString("Building").equals(new String("Base"))){
-                            System.out.println("Base");
-                            map[i][j]= new Plain(new Base(Game.tBlue));
+                            //System.out.println("Base");
+                            Base base = new Base(Game.tBlue);
+                            map[i][j]= new Plain(base);
+                            base.setMyCase(map[i][j]);
                            }
                         
                         else if(pstmt.executeQuery().getString("Building").equals(new String("Town"))){
-                            System.out.println("Town");
-                            this.map[i][j]= new Plain(new Town());
+                            //System.out.println("Town");
+                            Town town = new Town();
+                            map[i][j]= new Plain(town);
+                            town.setMyCase(map[i][j]);
                         }
                         
                     }
@@ -106,10 +110,11 @@ public class Maps {
                     
                 }
             }
+
             //AFF
-            for(int x = 0; x < map.length-1; x++)
+            for(int x = 0; x < map.length; x++)
             {
-                for (int y = 0; y < map.length-1; y++) {
+                for (int y = 0; y < map.length; y++) {
                     tableauxAff.add(map[x][y],y,x);
                     map[x][y].setMap(this);
                     map[x][y].setLocation(new Location(x,y));
@@ -256,9 +261,9 @@ public class Maps {
             public void handle(ScrollEvent event) {
                 if(event.getDeltaY() > 0)
                 {
-                    for(int x = 0; x < map.length-1; x ++)
+                    for(int x = 0; x < map.length; x ++)
                     {
-                        for (int y = 0; y < map.length-1; y++) {
+                        for (int y = 0; y < map.length; y++) {
                             map[x][y].zoom();
                             //tableauxAff.setLayoutX(tableauxAff.getLayoutX()/2);
                             //tableauxAff.setLayoutX(tableauxAff.getLayoutY()/2);
@@ -266,9 +271,9 @@ public class Maps {
                     }
                 }else
                 {
-                    for(int x = 0; x < map.length-1; x ++)
+                    for(int x = 0; x < map.length; x ++)
                     {
-                        for (int y = 0; y < map.length-1; y++) {
+                        for (int y = 0; y < map.length; y++) {
                             map[x][y].dezoom();
                             //tableauxAff.setLayoutX(tableauxAff.getLayoutX()*2);
                             //tableauxAff.setLayoutX(tableauxAff.getLayoutY()*2);

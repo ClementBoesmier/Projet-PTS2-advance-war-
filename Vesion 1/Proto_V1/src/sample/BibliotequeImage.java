@@ -3,12 +3,31 @@ package sample;
 import javafx.scene.image.Image;
 
 public class BibliotequeImage {
-    public static Image contour = new Image("file:C:\\Users\\yugog\\Pictures\\waifu\\cadre.png");
-    public static Image plaine = new Image("file:E:\\Developpement\\git\\Projet-PTS2-advance-war-\\ressource\\GraphismeV1\\Plains.png");
-    public static Image ocean = new Image("file:E:\\Developpement\\git\\Projet-PTS2-advance-war-\\ressource\\GraphismeV1\\sea.png");
-    public static Image usine = new Image("file:E:\\Developpement\\git\\Projet-PTS2-advance-war-\\ressource\\GraphismeV1\\UsineNeutre.png");
-    public static Image ville = new Image("file:E:\\Developpement\\git\\Projet-PTS2-advance-war-\\ressource\\GraphismeV1\\VilleNeutreV1.png");
 
-    public static Image blueBazooka = new Image("file:E:\\Developpement\\git\\Projet-PTS2-advance-war-\\ressource\\GraphismeV1\\BlueBazookaV1.png");
-    public static Image redBazooka = new Image("file:E:\\Developpement\\git\\Projet-PTS2-advance-war-\\ressource\\GraphismeV1\\RedBazookaV1.png");
+    //Case
+    public static Image contour = new Image("/ressource/ContourV1.png");
+    public static Image plaine = new Image("/ressource/Plains.png");
+    public static Image ocean = new Image("/ressource/sea.png");
+
+    //Batiment Neutre
+    public static Image usine = new Image("/ressource/UsineNeutre.png");
+    public static Image ville = new Image("/ressource/VilleNeutreV1.png");
+
+    //Batiment Bleu
+    public static Image blueUsine = new Image("/ressource/UsineBleueV1.png");
+    public static Image blueVille = new Image("/ressource/VilleBleueV1.png");
+
+    //Batiment rouge
+    public static Image redUsine = new Image("/ressource/UsineRougeV1.png");
+    public static Image redVille = new Image("/ressource/VilleRougeV1.png");
+
+    //Uniter bleu
+    public static Image blueBazooka = new Image("/ressource/BlueBazookaV1.png");
+    public static Image blueInfantrie = new Image("/ressource/BlueInfantryV1.png");
+    public static Image blueTank = new Image("/ressource/BlueTankV1.png");
+
+    //Uniter rouge
+    public static Image redBazooka = new Image("/ressource/RedBazookaV1.png");
+    public static Image redInfantrie = new Image("/ressource/RedInfantryV1.png");
+    public static Image redTank = new Image("/ressource/RedTankV1.png");
 }

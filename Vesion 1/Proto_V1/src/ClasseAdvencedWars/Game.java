@@ -30,44 +30,32 @@ public class Game {
     /**
      * 
      */
-    public static Team tRed = new Team("test2",TeamID.RED);;
+    public static Team tRed = new Team("test2",TeamID.RED);
     
     
-    private Team tTurn;
+    public static Team tTurn;
     
-    //CONSTRUCTEUR TEMPORAIRE
-    public Game(Maps maps, Team teamB, Team teamR) {
-        this.MAPS = maps;
-        this.tBlue = teamB;
-        this.tRed = teamR;
-        this.tTurn = tBlue;
-        this.endTurn();
-        this.endTurn();
-    }
 
-    /*public Game(String team1, String team2){
-       //this.MAPS = new Maps();
-       this.tBlue = new Team(team1, TeamID.BLUE);
-       this.tRed = new Team(team2, TeamID.RED);
-    }*/
+    public Game(Maps maps /*, Team redTeam, Team blueTeam*/)
+    {
+        this.MAPS = maps;
+        tTurn = tRed;
+        endTurn();
+    }
 
     /**
      * @return
      */
     public boolean endTurn() {
+        System.out.println(tTurn.getTeamID());
         HashMap<Location, Case> hMBuilding = this.MAPS.getBuilding();
         HashMap<Location, Case> hMUnits = this.MAPS.getUnits();
         for(Map.Entry<Location, Case> e : hMBuilding.entrySet()){
-            if((e.getValue().getBuilding().getOwner() == this.tTurn)){
-                e.getValue().getBuilding().onEndTurn();
-            }
-            e.getValue().getBuilding().capture();
-            /*if((e.getValue().getBuilding() instanceof Base)&&(e.getValue().getBuilding().isCaptured()==true)){
-                return true;
-            }*/
+            e.getValue().getBuilding().onEndTurn();
         }
         for(Map.Entry<Location, Case> e : hMUnits.entrySet()){
-            if(e.getValue().getUnit().getOwner() == this.tTurn){
+            if(e.getValue().getUnit().getOwner() == tTurn)
+            {
                 e.getValue().getUnit().onEndTurn();
             }
         }

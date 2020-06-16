@@ -6,6 +6,7 @@ import ClasseAdvencedWars.Team;
 import ClasseAdvencedWars.units.Units;
 import ClasseAdvencedWars.Exception.FriendException;
 import ClasseAdvencedWars.Exception.SpawnException;
+import javafx.scene.control.Menu;
 import sample.BibliotequeImage;
 
 
@@ -28,12 +29,12 @@ public class Base extends Building {
      * Default constructor
      */
     public Base(Team owner, Case acase) {
-        super(BibliotequeImage.usine, BibliotequeImage.usine,acase, owner);
+        super(BibliotequeImage.redUsine, BibliotequeImage.blueUsine,acase, owner);
         this.OWNER = owner;
     }
 
     public Base(Team owner) {
-        super(BibliotequeImage.usine, BibliotequeImage.usine, owner);
+        super(BibliotequeImage.redUsine, BibliotequeImage.blueUsine, owner);
         this.OWNER = owner;
     }
 
@@ -93,5 +94,10 @@ public class Base extends Building {
     public void setNbTurnOnCapture(int nbTurnOnCapture) {
         this.nbTurnOnCapture = nbTurnOnCapture;
     }
-    
+
+    @Override
+    public Menu getAction() {
+        Menu menu = new Menu("Batiment");
+        return super.getAction();
+    }
 }

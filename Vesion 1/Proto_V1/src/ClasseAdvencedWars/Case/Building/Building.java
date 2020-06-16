@@ -4,6 +4,7 @@ import ClasseAdvencedWars.Case.Case;
 import ClasseAdvencedWars.Game;
 import ClasseAdvencedWars.Team;
 import ClasseAdvencedWars.TeamID;
+import javafx.scene.control.Menu;
 import javafx.scene.image.Image;
 
 
@@ -13,10 +14,10 @@ import javafx.scene.image.Image;
 public abstract class Building {
     //affichage
     private Image redFac,blueFac, neutral;
-    private Case myCase;
+    protected Case myCase;
 
     protected boolean captured;
-    private Team OWNER;
+    protected Team OWNER;
     
     /**
      * Default constructor
@@ -78,19 +79,24 @@ public abstract class Building {
      */
     public abstract void onEndTurn();
     //affichage
+
     public Image getImage()
     {
         if(getOwner() != null)
         {
+            System.out.println("appelle image batiment");
             if(getOwner().getTeamID() == TeamID.BLUE)
             {
+                System.out.println("Retour bleux");
                 return blueFac;
             }else
             {
+                System.out.println("Retour Rouge");
                 return redFac;
             }
         }else
         {
+            System.out.println("Retour neutral");
             return neutral;
         }
     }
@@ -106,5 +112,10 @@ public abstract class Building {
 
     public void setMyCase(Case myCase) {
         this.myCase = myCase;
+    }
+
+    public Menu getAction()
+    {
+        return null;
     }
 }

@@ -24,7 +24,7 @@ public class Tank extends Units {
      */
     private static final int COST = 5;
     public Tank(Team owner, Case aCase) {
-        super(owner, aCase, BibliotequeImage.redBazooka, BibliotequeImage.blueBazooka);
+        super(owner, aCase, BibliotequeImage.redTank, BibliotequeImage.blueTank);
         super.movePoint = Tank.MAXTRAVEL;
     }
 

@@ -27,7 +27,7 @@ public abstract class Case extends Canvas {
     //Affichage
     private Image terrain;
     private GraphicsContext affichage;
-    private static final Image contours = new Image("file:E:\\Developpement\\git\\Projet-PTS2-advance-war-\\ressource\\GraphismeV1\\contourV1.png");
+    private static final Image contours = BibliotequeImage.contour;
     private static double largeur=32, hauteur=32;
     private int zoom;
     private ContextMenu menu;
@@ -175,7 +175,6 @@ public abstract class Case extends Canvas {
             @Override
             public void handle(ContextMenuEvent event) {
                 ContextMenu menu = new ContextMenu();
-                System.out.println("je marche");
                 if(building != null)
                 {
                     //Menu batimentMen = building.getMenu();
@@ -189,6 +188,7 @@ public abstract class Case extends Canvas {
                     menu.getItems().add(uniter);
                 }
                 menu.setAutoHide(true);
+                menu.getItems().add(new MenuItem("quitter"));
                 menu.show(Case.super.getParent(), event.getScreenX(), event.getScreenY());
             }
         });

@@ -25,7 +25,7 @@ public class Infantry extends Units {
     private static final int COST = 5;
     
     public Infantry(Team owner, Case aCase) {
-        super(owner, aCase, BibliotequeImage.redBazooka, BibliotequeImage.blueBazooka);
+        super(owner, aCase, BibliotequeImage.redInfantrie, BibliotequeImage.blueInfantrie);
         super.movePoint = Infantry.MAXTRAVEL;
     }
 

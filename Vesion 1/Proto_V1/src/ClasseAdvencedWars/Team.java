@@ -1,6 +1,9 @@
 package ClasseAdvencedWars;
 
 
+import ClasseAdvencedWars.Case.Building.Town;
+
+import java.util.ArrayList;
 
 /**
  * 
@@ -22,6 +25,8 @@ public class Team {
      * 
      */
     private final String name;
+
+    private ArrayList<Town> captureTown;
     
     /**
      * Default constructor
@@ -31,6 +36,7 @@ public class Team {
         this.money = 0;
         this.income = 0;
         this.teamID = teamID;
+        captureTown = new ArrayList<>();
     }
 
     public int getMoney() {

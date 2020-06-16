@@ -28,12 +28,12 @@ public class Town extends Building {
      * Default constructor
      */
     public Town(Case aCase) {
-        super(aCase, BibliotequeImage.ville,BibliotequeImage.ville,BibliotequeImage.ville);
+        super(aCase, BibliotequeImage.redVille,BibliotequeImage.blueVille, BibliotequeImage.ville);
         this.owner = null;
     }
 
     public Town() {
-        super(BibliotequeImage.ville,BibliotequeImage.ville, BibliotequeImage.ville);
+        super(BibliotequeImage.redVille,BibliotequeImage.blueVille, BibliotequeImage.ville);
         this.owner = null;
     }
 
@@ -51,15 +51,36 @@ public class Town extends Building {
     public int getPayout() {
         return this.PAYOUT;
     }
+
+
     @Override
     public void onEndTurn(){
-                if(!captured){
-            captured = true;
-            this.getOwner().ChangeIncome(this.getPayout());
-            
+        System.out.println("OnEndTurn");
+        if(this.owner != null)
+        {
+            if(this.myCase.getUnit().getOwner() != this.getOwner())
+            {
+                if(this.owner != null)
+                {
+                    this.owner.ChangeIncome(-this.getPayout());
+                }else
+                {
+                    owner = myCase.getUnit().getOwner();
+                    this.owner.ChangeIncome(this.getPayout());
+                    myCase.refreshAff();
+                }
+            }
+        }else
+        {
+            if(this.myCase.getUnit() != null)
+            {
+                owner = myCase.getUnit().getOwner();
+                this.owner.ChangeIncome(this.getPayout());
+                myCase.refreshAff();
+            }
         }
-                
     }
+
     public void capture(){
         if(onCapture==true){
                     switch(this.nbTurnOnCapture){
@@ -86,6 +107,8 @@ public class Town extends Building {
     public void setNbTurnOnCapture(int nbTurnOnCapture) {
         this.nbTurnOnCapture = nbTurnOnCapture;
     }
+
+
     
     
 }
