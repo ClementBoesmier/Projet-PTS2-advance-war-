@@ -1,6 +1,7 @@
 package ClasseAdvencedWars.Case;
 
 
+import ClasseAdvencedWars.Case.Building.Building;
 import ClasseAdvencedWars.units.Units;
 import sample.BibliotequeImage;
 
@@ -16,6 +17,11 @@ public class Ocean extends Case {
      */
     public Ocean() {
         super(BibliotequeImage.ocean);
+    }
+
+    //Ne crée pas de canvas
+    public Ocean(Building building, Units units) {
+        super(null, (Units) null);
     }
 
     @Override

@@ -27,6 +27,11 @@ public class Plain extends Case {
         super(building, BibliotequeImage.plaine);
     }
 
+    //Ne crée pas de canvas
+    public Plain(Building building, Units units) {
+        super(building, units);
+    }
+
     @Override
     public boolean getWalkable(Units unit) {
         boolean sortie = false;

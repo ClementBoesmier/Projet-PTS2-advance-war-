@@ -67,6 +67,7 @@ public abstract class Case {
         init();
     }
 
+    //Ne crée pas de canvas
     public Case(Building building, Units units)
     {
         this.building = building;
