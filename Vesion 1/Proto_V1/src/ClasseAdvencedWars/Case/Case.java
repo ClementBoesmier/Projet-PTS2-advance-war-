@@ -29,7 +29,6 @@ public abstract class Case {
     //Affichage
     private Image terrain;
     private GraphicsContext affichage;
-    private static final Image contours = BibliotequeImage.contour;
     private static double largeur=32, hauteur=32;
     private int zoom;
     private ContextMenu menu;
@@ -175,7 +174,7 @@ public abstract class Case {
         lock = false;
 
         affCanvas.setOnMouseEntered((event)-> {
-            affichage.drawImage(contours,0,0);
+            affichage.drawImage(BibliotequeImage.contour,0,0);
         });
 
         affCanvas.setOnMouseClicked((event -> {
@@ -314,7 +313,7 @@ public abstract class Case {
         }
         if(this.lock)
         {
-            affichage.drawImage(contours,0,0);
+            affichage.drawImage(BibliotequeImage.contour,0,0);
         }
         tooltypeAff();
     }
