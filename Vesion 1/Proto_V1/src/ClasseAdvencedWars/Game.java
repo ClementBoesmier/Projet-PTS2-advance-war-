@@ -42,6 +42,9 @@ public class Game {
     private IntegerProperty nbTurnPropeties;
 
     private HashMap<Location, Case> hMBuilding,hMUnits;
+
+    //team qui a gagner
+    private Team vTeam;
     
 
     public Game(String maps , Team redTeam, Team blueTeam)
@@ -56,6 +59,8 @@ public class Game {
 
         hMUnits = new HashMap<>();
         hMUnits = this.MAPS.getUnits();
+        vTeam = null;
+        endTurn();
         endTurn();
     }
 
@@ -69,6 +74,13 @@ public class Game {
         //Boucle d'action des batiment
         for(Map.Entry<Location, Case> e : hMBuilding.entrySet()){
             e.getValue().getBuilding().onEndTurn();
+            if(e.getValue().getBuilding() instanceof Base)
+            {
+                if(e.getValue().getBuilding().getCaptured() == true)
+                {
+                    vTeam = e.getValue().getBuilding().getOwner();
+                }
+            }
         }
 
         //Boucle d'action des uniter
@@ -115,5 +127,11 @@ public class Game {
 
     public IntegerProperty getNbTurnPropeties() {
         return nbTurnPropeties;
+    }
+
+
+    public Team getVictoryTeam()
+    {
+        return vTeam;
     }
 }

@@ -46,7 +46,7 @@
       </VBox>
       <VBox alignment="TOP_CENTER" prefHeight="27.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
-            <Label fx:id="teamPlayNow" prefHeight="17.0" prefWidth="35.0" text="Rouge" textFill="#da4343" />
+            <Label fx:id="teamPlayNow" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="150.0" text="Rouge" textFill="#da4343" />
             <HBox alignment="TOP_CENTER" prefHeight="27.0" prefWidth="600.0">
                <children>
                   <Button fx:id="butRouge" mnemonicParsing="false" onAction="#endTurn" text="Fin de tour rouge" />

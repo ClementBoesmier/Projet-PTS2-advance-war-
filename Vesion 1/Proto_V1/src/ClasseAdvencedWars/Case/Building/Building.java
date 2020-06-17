@@ -114,4 +114,10 @@ public abstract class Building {
     {
         return new Menu("Batiment");
     }
+
+    public boolean getCaptured()
+    {
+        return captured;
+    }
+
 }

@@ -72,6 +72,7 @@ public class Town extends Building {
                     {
                         this.owner.ChangeIncome(-this.getPayout());
                         this.owner = myCase.getUnit().getOwner();
+                        this.owner.ChangeIncome(this.getPayout());
                         nbTurnOnCapture = 0;
                     }
                 }

@@ -8,11 +8,13 @@ import ClasseAdvencedWars.Case.Case;
 import ClasseAdvencedWars.Case.Ocean;
 import ClasseAdvencedWars.Case.Plain;
 import ClasseAdvencedWars.Exception.FriendException;
+import ClasseAdvencedWars.Exception.MoveException;
 import ClasseAdvencedWars.units.Infantry;
 import ClasseAdvencedWars.units.Units;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Cursor;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
@@ -52,6 +54,8 @@ public class Maps {
 
     private Team rTeam, bTeam;
 
+    private Case selectedCase ;
+
 
     
     /**
@@ -61,18 +65,13 @@ public class Maps {
         this.WIDTH = width;
         this.HEIGHT = height;
     }
-    //CONSTRUCTEUR DE TEST TEMPORAIRE
-    public Maps(int width, int height, Case temp[][]){
-        this.HEIGHT = height;
-        this.WIDTH = width;
-        this.map = temp;
-    }
-    
-    //Constructeur fini ( passage par mapID ) à faire
+
+    //Constructeur finit
     public Maps(String mapName, Team rTeam,Team bTeam){
         tableauxAff = new GridPane();
         this.rTeam = rTeam;
         this.bTeam = bTeam;
+        this.selectedCase = null;
         generate(mapName);
     }
 
@@ -97,36 +96,37 @@ public class Maps {
                 for(int j = 0; j<this.WIDTH+1;j++){
                     pstmt.setInt(2,j);
                     if(pstmt.executeQuery().getString("Type").equals(new String("Plain"))){
-                        System.out.println(pstmt.executeQuery().getString("Type"));
-                        System.out.println(pstmt.executeQuery().getString("Building"));
+                        //System.out.println(pstmt.executeQuery().getString("Type"));
+                        //System.out.println(pstmt.executeQuery().getString("Building"));
                         if(pstmt.executeQuery().getString("Building")==null){
-                            this.map[i][j]= new Plain();
+                            this.map[j][i]= new Plain();
                         }
                         else if(pstmt.executeQuery().getString("Building").equals(new String("Base"))){
-                            System.out.println("Base");
+                            //System.out.println("Base");
                             Base base = new Base(bTeam);
                             if(firstBaseGeneration == true)
                             {
-                                base = new Base(bTeam);
+                                base = new Base(rTeam);
                                 firstBaseGeneration = false;
                             }else
                             {
-                                base = new Base(rTeam);
+                                base = new Base(bTeam);
                             }
-                            map[i][j]= new Plain(base);
-                            base.setMyCase(map[i][j]);
+                            map[j][i]= new Plain(base);
+                            base.setMyCase(map[j][i]);
                         }
 
                         else if(pstmt.executeQuery().getString("Building").equals(new String("Town"))){
-                            System.out.println("Town");
+                           // System.out.println("Town");
                             Town town = new Town();
-                            map[i][j]= new Plain(town);
-                            town.setMyCase(map[i][j]);
+                            map[j][i]= new Plain(town);
+                            town.setMyCase(map[j][i]);
                         }
 
                     }
                     if(pstmt.executeQuery().getString("Type").equals(new String("Ocean"))){
-                        map[i][j] = new Ocean();
+                        //System.out.println("Ocean");
+                        map[j][i] = new Ocean();
                     }
 
                 }
@@ -136,12 +136,20 @@ public class Maps {
             for(int x = 0; x < map.length; x++)
             {
                 for (int y = 0; y < map.length; y++) {
-                    tableauxAff.add(map[x][y],y,x);
-                    map[x][y].setMap(this);
-                    map[x][y].setLocation(new Location(x,y));
+                    if(map[x][y] == null)
+                    {
+                        System.out.println("X: "+x+" Y: "+y);
+                    }else
+                    {
+                        tableauxAff.add(map[x][y],y,x);
+                        map[x][y].setMap(this);
+                        map[x][y].setLocation(new Location(x,y));
+                    }
+
                 }
             }
             setEvent();
+            System.out.println("Generation de la carte finit");
         }
         catch(SQLException e ){
             System.out.println(e.getMessage());
@@ -300,12 +308,103 @@ public class Maps {
 
             }
         });
+
+        //Event non fonctionnelle
+        tableauxAff.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event){
+                System.out.println("marche");
+                if(selectedCase != null || selectedCase.getUnit() != null)
+                {
+                    Units unit = selectedCase.getUnit();
+                    switch (event.getCode())
+                    {
+                        case UP:
+                            try {
+                                unit.moveSelector("up");
+                            } catch (MoveException e) {
+                                e.printStackTrace();
+                            } catch (FriendException e) {
+                                e.printStackTrace();
+                            }
+                            break;
+                        case LEFT:
+                            try {
+                                unit.moveSelector("left");
+                            } catch (MoveException e) {
+                                e.printStackTrace();
+                            } catch (FriendException e) {
+                                e.printStackTrace();
+                            }
+                            break;
+                        case RIGHT:
+                            try {
+                                unit.moveSelector("right");
+                            } catch (MoveException e) {
+                                e.printStackTrace();
+                            } catch (FriendException e) {
+                                e.printStackTrace();
+                            }
+                            break;
+
+                        case DOWN:
+                            try {
+                                unit.moveSelector("back");
+                            } catch (MoveException e) {
+                                e.printStackTrace();
+                            } catch (FriendException e) {
+                                e.printStackTrace();
+                            }
+                            break;
+                    }
+                }
+            }
+        });
     }
 
     public GridPane getTableauxAff() {
         return tableauxAff;
     }
-    
+
+    public Case getSelectedCase() {
+        return selectedCase;
+    }
+
+
+    public void setSelectedCase(Case selectedCase) {
+        if(this.selectedCase != null)
+        {
+            if(this.selectedCase.getUnit() != null)
+            {
+                if(this.selectedCase.getUnit().getOwner() == Game.tTurn)
+                {
+                    try {
+                        this.selectedCase.getUnit().moveStep(selectedCase.getLocation().getX() - this.selectedCase.getLocation().getX(), selectedCase.getLocation().getY()-this.selectedCase.getLocation().getY(),this);
+                    } catch (FriendException e) {
+                        e.printStackTrace();
+                    } catch (MoveException e) {
+                        e.printStackTrace();
+                    }
+                    this.selectedCase.setLock(false);
+                    selectedCase.setLock(false);
+                    this.selectedCase = null;
+                }else
+                {
+                    selectedCase.setLock(false);
+                    this.selectedCase.setLock(false);
+                    this.selectedCase = null;
+                }
+            }else
+            {
+                this.selectedCase.setLock(false);
+                this.selectedCase = selectedCase;
+            }
+        }else
+        {
+            this.selectedCase = selectedCase;
+            this.selectedCase.setLock(true);
+        }
+    }
 }
 
 class Delta { double x, y; }

@@ -21,7 +21,7 @@ public class Base extends Building {
     
     private final static int PAYOUT = 10;
     
-    private final Team OWNER;
+    private Team owner;
     
     private boolean onCapture=false, firstTurn;
     
@@ -71,18 +71,33 @@ public class Base extends Building {
             this.getOwner().ChangeIncome(this.getPayout());
             firstTurn = false;
         }
+        if(myCase.getUnit() != null)
+        {
+            if(owner != myCase.getUnit().getOwner())
+            {
+                if(capture())
+                {
+                    this.owner = myCase.getUnit().getOwner();
+                }
+            }
+        }
 
     }
     
     public boolean capture(){
-        if(onCapture==true){
-                    switch(this.nbTurnOnCapture){
-                        case 0 : this.nbTurnOnCapture++;break;
-                        case 1 : this.nbTurnOnCapture++;break;
-                        case 2 : this.nbTurnOnCapture++;break;
-                        case 3 : this.captured=true;break;
-                    }
+        if(myCase.getUnit() != null)
+        {
+            if(myCase.getUnit().getOwner() != owner)
+            {
+                switch(this.nbTurnOnCapture){
+                    case 0 : this.nbTurnOnCapture++;break;
+                    case 1 : this.nbTurnOnCapture++;break;
+                    case 2 : this.nbTurnOnCapture++;break;
+                    case 3 : this.captured=true;
+                    return true;
+                }
             }
+        }
         return false;
     }
 
@@ -125,11 +140,31 @@ public class Base extends Building {
             }
         });
 
+        spawnTank.setOnAction(event -> {
+            try {
+                spawn(new Tank(this.OWNER, this.myCase));
+            } catch (FriendException e) {
+                e.printStackTrace();
+            } catch (SpawnException e) {
+                e.printStackTrace();
+            }
+        });
+
+        spawnRocketLauncher.setOnAction(event -> {
+            try {
+                spawn(new RocketLauncher(this.OWNER, this.myCase));
+            } catch (FriendException e) {
+                e.printStackTrace();
+            } catch (SpawnException e) {
+                e.printStackTrace();
+            }
+        });
+
         spawn.getItems().add(spawnInfantry);
         spawn.getItems().add(spawnTank);
         spawn.getItems().add(spawnRocketLauncher);
         menu.getItems().add(spawn);
-        System.out.println("Base GetAction");
         return menu;
     }
+
 }

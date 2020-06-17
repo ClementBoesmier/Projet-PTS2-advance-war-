@@ -21,10 +21,10 @@
       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Joueur 1 :" GridPane.rowIndex="1" />
       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Joueur 2 :" GridPane.rowIndex="2" />
       <TextField fx:id="textBoxRed" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-      <TextField alignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+      <TextField fx:id="textBoxBlue" GridPane.columnIndex="1" GridPane.rowIndex="2" />
       <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="3">
          <children>
-            <Button mnemonicParsing="false" onAction="#lancerJeux" text="Start">
+            <Button fx:id="startButton" mnemonicParsing="false" onAction="#lancerJeux" text="Start">
                <opaqueInsets>
                   <Insets bottom="10.0" />
                </opaqueInsets>
@@ -39,13 +39,14 @@
          <children>
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Label />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-               </children></HBox>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nom de l'equipe rouge : " />
+                  <Label fx:id="redNameAff" />
+               </children>
+            </HBox>
             <HBox layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Label />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nom de l'equipe bleu : " />
+                  <Label fx:id="blueNameAff" />
                </children>
             </HBox>
          </children>

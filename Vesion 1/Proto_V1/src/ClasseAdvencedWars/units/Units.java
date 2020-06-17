@@ -24,6 +24,7 @@ public abstract class Units{
      */
     protected int movePoint;
 
+
     private final Team OWNER;
     
     
@@ -163,7 +164,7 @@ public abstract class Units{
         return menu;
     }
 
-    private void moveSelector(String entrer) throws MoveException, FriendException {
+    public void moveSelector(String entrer) throws MoveException, FriendException {
         switch (entrer)
         {
             case "up":
@@ -184,4 +185,5 @@ public abstract class Units{
     public int getCost() {
         return 0;
     }
+
 }

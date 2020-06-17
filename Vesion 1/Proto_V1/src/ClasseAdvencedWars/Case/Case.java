@@ -1,6 +1,7 @@
 package ClasseAdvencedWars.Case;
 
 import ClasseAdvencedWars.Case.Building.Building;
+import ClasseAdvencedWars.Exception.MoveException;
 import ClasseAdvencedWars.Location;
 import ClasseAdvencedWars.Maps;
 import ClasseAdvencedWars.units.Infantry;
@@ -16,6 +17,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.input.ContextMenuEvent;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import sample.BibliotequeImage;
 
@@ -37,6 +39,8 @@ public abstract class Case extends Canvas {
     private Location location;
     
     private final Building building;
+
+    private boolean lock;
     
     /**
      * Default constructor
@@ -158,19 +162,29 @@ public abstract class Case extends Canvas {
         zoom = 2;
         affichage = this.getGraphicsContext2D();
         menu = new ContextMenu();
+        lock = false;
 
-        this.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                affichage.drawImage(contours,0,0);
-            }
+        this.setOnMouseEntered((event)-> {
+            affichage.drawImage(contours,0,0);
         });
+
+        this.setOnMouseClicked((event -> {
+            lock = true;
+            map.setSelectedCase(this);
+        }));
+
+
         this.setOnMouseExited(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                refreshAff();
+                if(!lock)
+                {
+                    refreshAff();
+                }
             }
         });
+
+
         this.setOnContextMenuRequested(new EventHandler<ContextMenuEvent>() {
             @Override
             public void handle(ContextMenuEvent event) {
@@ -192,6 +206,15 @@ public abstract class Case extends Canvas {
                 menu.show(Case.super.getParent(), event.getScreenX(), event.getScreenY());
             }
         });
+
+        this.setOnKeyTyped(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                System.out.println("marche");
+            }
+        });
+
+
         setScale();
         tooltypeAff();
         refreshAff();
@@ -279,9 +302,19 @@ public abstract class Case extends Canvas {
         {
             affichage.drawImage(unit.getImage(),0,0);
         }
+        if(this.lock)
+        {
+            affichage.drawImage(contours,0,0);
+        }
         tooltypeAff();
     }
 
+    public boolean isLock() {
+        return lock;
+    }
 
-
+    public void setLock(boolean lock) {
+        this.lock = lock;
+        refreshAff();
+    }
 }
