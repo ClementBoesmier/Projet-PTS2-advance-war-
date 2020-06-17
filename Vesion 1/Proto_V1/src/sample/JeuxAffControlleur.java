@@ -32,7 +32,7 @@ public class JeuxAffControlleur implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         //Création de la carte
-        game = new Game("France", new Team("redTeam",TeamID.RED),new Team("blueTeam",TeamID.BLUE));
+        game = new Game("Carte1", new Team("redTeam",TeamID.RED),new Team("blueTeam",TeamID.BLUE));
         GridPane affMap = game.getMAPS().getTableauxAff();
         pane.getChildren().add(0,affMap);
         affMap.setLayoutX(0);

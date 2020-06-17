@@ -19,6 +19,7 @@ import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.GridPane;
 import sample.BibliotequeImage;
 
+import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -96,13 +97,13 @@ public class Maps {
                 for(int j = 0; j<this.WIDTH+1;j++){
                     pstmt.setInt(2,j);
                     if(pstmt.executeQuery().getString("Type").equals(new String("Plain"))){
-                        //System.out.println(pstmt.executeQuery().getString("Type"));
-                        //System.out.println(pstmt.executeQuery().getString("Building"));
+                        System.out.println(pstmt.executeQuery().getString("Type"));
+                        System.out.println(pstmt.executeQuery().getString("Building"));
                         if(pstmt.executeQuery().getString("Building")==null){
                             this.map[i][j]= new Plain();
                         }
                         else if(pstmt.executeQuery().getString("Building").equals(new String("Base"))){
-                            //System.out.println("Base");
+                            System.out.println("Base");
                             Base base = new Base(bTeam);
                             if(firstBaseGeneration == true)
                             {
@@ -117,7 +118,7 @@ public class Maps {
                         }
 
                         else if(pstmt.executeQuery().getString("Building").equals(new String("Town"))){
-                            //System.out.println("Town");
+                            System.out.println("Town");
                             Town town = new Town();
                             map[i][j]= new Plain(town);
                             town.setMyCase(map[i][j]);
@@ -218,7 +219,8 @@ public class Maps {
         Connection conn = null;
         try {
             // db parameters
-            String url = "jdbc:sqlite:E:/Developpement/git/Projet-PTS2-advance-war-/Vesion 1/sqlite/db/AdvanceWarsDB.db";
+            File dbfile=new File("");
+            String url = "jdbc:sqlite:"+ dbfile.getAbsolutePath()+"\\src\\ressource\\db\\Carte1DB.db";
             // create a connection to the database
             conn = DriverManager.getConnection(url);
             
