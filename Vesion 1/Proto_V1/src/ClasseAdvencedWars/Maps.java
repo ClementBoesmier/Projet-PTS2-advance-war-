@@ -49,6 +49,8 @@ public class Maps {
      */
     private int HEIGHT;
 
+    private Team rTeam, bTeam;
+
     
     /**
      * Default constructor
@@ -65,12 +67,19 @@ public class Maps {
     }
     
     //Constructeur fini ( passage par mapID ) à faire
-    public Maps(String mapName){
+    public Maps(String mapName, Team rTeam,Team bTeam){
         tableauxAff = new GridPane();
+        this.rTeam = rTeam;
+        this.bTeam = bTeam;
+        generate(mapName);
+    }
+
+    public void generate(String mapName)
+    {
         try (Connection con = this.connect();
-            Statement stmt = con.createStatement();    
-            Statement stmt1 = con.createStatement();
-            Statement stmt2 = con.createStatement();
+             Statement stmt = con.createStatement();
+             Statement stmt1 = con.createStatement();
+             Statement stmt2 = con.createStatement();
              ResultSet res = stmt.executeQuery("SELECT MAX(PositionX) FROM PlayGround WHERE mapID = '" + mapName + "'");
              ResultSet res1 = stmt1.executeQuery("SELECT MAX(PositionY) FROM PlayGround WHERE mapID = '" + mapName + "'");
              ResultSet res2 = stmt2.executeQuery("SELECT Name FROM Player");
@@ -79,7 +88,7 @@ public class Maps {
             this.HEIGHT = res.getInt("MAX(PositionX)");
             this.WIDTH = res1.getInt("MAX(PositionY)");
             map = new Case[this.HEIGHT+1][this.WIDTH+1];
-            
+
             for(int i=0; i<this.HEIGHT+1;i++){
                 pstmt.setInt(1, i);
                 for(int j = 0; j<this.WIDTH+1;j++){
@@ -92,23 +101,23 @@ public class Maps {
                         }
                         else if(pstmt.executeQuery().getString("Building").equals(new String("Base"))){
                             //System.out.println("Base");
-                            Base base = new Base(Game.tBlue);
+                            Base base = new Base(bTeam);
                             map[i][j]= new Plain(base);
                             base.setMyCase(map[i][j]);
-                           }
-                        
+                        }
+
                         else if(pstmt.executeQuery().getString("Building").equals(new String("Town"))){
                             //System.out.println("Town");
                             Town town = new Town();
                             map[i][j]= new Plain(town);
                             town.setMyCase(map[i][j]);
                         }
-                        
+
                     }
                     if(pstmt.executeQuery().getString("Type").equals(new String("Ocean"))){
                         map[i][j] = new Ocean();
                     }
-                    
+
                 }
             }
 
@@ -119,11 +128,6 @@ public class Maps {
                     tableauxAff.add(map[x][y],y,x);
                     map[x][y].setMap(this);
                     map[x][y].setLocation(new Location(x,y));
-
-                    if(x == 2 && y == 2)
-                    {
-                        map[x][y].setUnit(new Infantry(Game.tBlue, map[x][y]));
-                    }
                 }
             }
             setEvent();
@@ -131,8 +135,8 @@ public class Maps {
             {
                 System.out.println("test");
             }
-        }   
-        catch(SQLException | FriendException e ){
+        }
+        catch(SQLException e ){
             System.out.println(e.getMessage());
         }
     }
@@ -151,8 +155,8 @@ public class Maps {
      */
     public HashMap<Location, Case> getBuilding() {
         HashMap<Location, Case> sortie = new HashMap<>();
-        for(int i = 0; i < this.WIDTH; i++){
-            for(int j = 0; j < this.HEIGHT; j++){
+        for(int i = 0; i < this.WIDTH+1; i++){
+            for(int j = 0; j < this.HEIGHT+1; j++){
                 if(map[i][j].getBuilding() != null){
                     sortie.put(new Location(i,j), map[i][j]);
                 }
@@ -163,8 +167,8 @@ public class Maps {
     
     public HashMap<Location, Case> getUnits(){
                 HashMap<Location, Case> sortie = new HashMap<>();
-        for(int i = 0; i < this.WIDTH; i++){
-            for(int j = 0; j < this.HEIGHT; j++){
+        for(int i = 0; i < this.WIDTH+1; i++){
+            for(int j = 0; j < this.HEIGHT+1; j++){
                 if(map[i][j].getUnit() != null){
                     sortie.put(new Location(i,j), map[i][j]);
                 }
