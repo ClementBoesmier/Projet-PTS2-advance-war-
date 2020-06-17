@@ -118,7 +118,7 @@ public class PrototypePTS extends Application {
         
         
         
-        /*
+        
         //MENU IN-GAME
         BorderPane root = new BorderPane();
         Scene scene = new Scene(root, 450, 450);
@@ -150,7 +150,7 @@ public class PrototypePTS extends Application {
         root.setCenter(grid);
         primaryStage.setScene(scene);
         primaryStage.show();
-        */
+        
     }
 
     /**
