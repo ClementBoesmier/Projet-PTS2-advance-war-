@@ -67,6 +67,12 @@ public abstract class Case {
         init();
     }
 
+    public Case(Building building, Units units)
+    {
+        this.building = building;
+        this.unit = units;
+    }
+
     /**
      * @return
      */
