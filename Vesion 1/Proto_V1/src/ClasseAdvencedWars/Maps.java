@@ -51,6 +51,7 @@ public class Maps {
 
     private Team rTeam, bTeam;
 
+
     
     /**
      * Default constructor
@@ -76,6 +77,7 @@ public class Maps {
 
     public void generate(String mapName)
     {
+        boolean firstBaseGeneration = true;
         try (Connection con = this.connect();
              Statement stmt = con.createStatement();
              Statement stmt1 = con.createStatement();
@@ -102,6 +104,14 @@ public class Maps {
                         else if(pstmt.executeQuery().getString("Building").equals(new String("Base"))){
                             //System.out.println("Base");
                             Base base = new Base(bTeam);
+                            if(firstBaseGeneration == true)
+                            {
+                                base = new Base(bTeam);
+                                firstBaseGeneration = false;
+                            }else
+                            {
+                                base = new Base(rTeam);
+                            }
                             map[i][j]= new Plain(base);
                             base.setMyCase(map[i][j]);
                         }
@@ -131,10 +141,6 @@ public class Maps {
                 }
             }
             setEvent();
-            if(tableauxAff == null)
-            {
-                System.out.println("test");
-            }
         }
         catch(SQLException e ){
             System.out.println(e.getMessage());
