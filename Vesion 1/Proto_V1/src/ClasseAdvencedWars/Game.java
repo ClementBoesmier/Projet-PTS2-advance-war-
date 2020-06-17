@@ -29,12 +29,12 @@ public class Game {
     /**
      * 
      */
-    public static Team tBlue = new Team("test",TeamID.BLUE);
+    public Team tBlue;
     
     /**
      * 
      */
-    public static Team tRed = new Team("test2",TeamID.RED);
+    public Team tRed;
     
     
     public static Team tTurn;

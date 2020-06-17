@@ -1,6 +1,7 @@
 package ClasseAdvencedWars.Case.Building;
 
 import ClasseAdvencedWars.Case.Case;
+import ClasseAdvencedWars.Game;
 import ClasseAdvencedWars.Team;
 import ClasseAdvencedWars.units.Infantry;
 import ClasseAdvencedWars.units.RocketLauncher;
@@ -55,9 +56,9 @@ public class Base extends Building {
     
     public void spawn(Units unit) throws FriendException, SpawnException{
         if(myCase.getUnit() != null){
-            throw new SpawnException("case occuped");
+            throw new SpawnException("Casse occuper");
         }else if(this.OWNER.getMoney()< unit.getCost()){
-            throw new SpawnException("units is too expencive");
+            throw new SpawnException("Uniter trop chére");
         }else {
             this.OWNER.pay(unit.getCost());
             myCase.setUnit(unit);
@@ -105,6 +106,10 @@ public class Base extends Building {
 
     @Override
     public Menu getAction() {
+        if(getOwner() != Game.tTurn)
+        {
+            return new Menu("Pas ton tour !!!!");
+        }
         Menu menu = new Menu("Batiment");
         Menu spawn = new Menu("Acheter Unité");
         MenuItem spawnInfantry = new MenuItem("Acheter Infantry (" + Infantry.COST+"PO)");
