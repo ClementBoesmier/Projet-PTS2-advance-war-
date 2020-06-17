@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="apAnchor" prefHeight="500.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="b_demart_erwan.SpreadDiseaseController">
+   <children>
+      <Label text="Propagation d'un infection" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="200.0">
+         <children>
+            <Button mnemonicParsing="false" prefWidth="100.0" text="Démarrer" onAction="#start"/>
+            <Button mnemonicParsing="false" prefWidth="100.0" text="Arreter" onAction="#stop"/>
+            <Button mnemonicParsing="false" prefWidth="100.0" text="Pas à pas" onAction="#stepByStep"/>
+         </children>
+      </HBox>
+      <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="250.0">
+         <children>
+            <Label text="Taux de transmition : " />
+            <Slider fx:id="sTransmitionRate" />
+            <Label fx:id="lTransmitionRate" maxWidth="50.0" minWidth="50.0" text="Label" />
+         </children>
+      </HBox>
+      <HBox alignment="TOP_CENTER" layoutX="10.0" layoutY="260.0" prefHeight="100.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="275.0">
+         <children>
+            <Label text="Nombre de jours d'incubation :" />
+            <Slider fx:id="sDaysInIncubation" />
+            <Label fx:id="lDaysInIncubation" text="Label" />
+         </children>
+      </HBox>
+      <HBox alignment="TOP_CENTER" layoutX="10.0" layoutY="285.0" prefHeight="100.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="300.0">
+         <children>
+            <Label text="Nombre de jours malade: " />
+            <Slider fx:id="sDaysWithSymptoms" />
+            <Label fx:id="lDaysWithSymptoms" text="Label" />
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>
