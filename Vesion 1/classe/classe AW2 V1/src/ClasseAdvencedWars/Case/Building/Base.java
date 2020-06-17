@@ -20,9 +20,6 @@ public class Base extends Building {
     
     private boolean onCapture=false;
     
-    private int nbTurnOnCapture=0;
-    
-    private boolean destroyed=false;
     
     
     /**
@@ -56,14 +53,11 @@ public class Base extends Building {
     }
 
     @Override
-    public void capture(){
-        if(onCapture==true){
-                    switch(this.nbTurnOnCapture){
-                        case 0 : this.nbTurnOnCapture++;break;
-                        case 1 : this.nbTurnOnCapture++;break;
-                        case 2 : this.nbTurnOnCapture++;break;
-                        case 3 : this.destroyed=true;break;
-                    }
-            }
+    public void onEndTurn() {
+        if(!onCapture){
+            onCapture = true;
+            this.getOwner().ChangeIncome(this.PAYOUT);
+        }
     }
+    
 }

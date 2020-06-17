@@ -18,12 +18,16 @@ public class Town extends Building {
      */
     private Team owner;
     
+    
+    private boolean onCapture;
+    
     /**
      * Default constructor
      */
     public Town() {
         super();
         this.owner = null;
+        this.onCapture = false;
     }
 
 
@@ -39,6 +43,14 @@ public class Town extends Building {
     @Override
     public int getPayout() {
         return this.PAYOUT;
+    }
+
+    @Override
+    public void onEndTurn() {
+        if(!onCapture){
+            onCapture = true;
+            this.getOwner().ChangeIncome(this.PAYOUT);
+        }
     }
     
 }

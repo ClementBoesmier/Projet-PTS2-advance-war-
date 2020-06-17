@@ -44,12 +44,12 @@ public abstract class Units{
         Location localPos;
         if(this.movePoint <= 0){
             throw new MoveException("no more MP");
-        }else if((x != 0 && y != 0) || (x < -1 || x > 1) || (y < -1 || y > 1)){
+        }else if((x != 0 && y != 0) || (x < -1 || x > 1) || (y < -1 || y > 1) || ( y == 0 && x == 0)){
             throw new MoveException("Illegale Step move");
         }else{
-        localPos = map.GetLocal(this);
-        localX = localPos.getX();
-        localY = localPos.getY();
+            localPos = map.GetLocal(this);
+            localX = localPos.getX();
+            localY = localPos.getY();
         }
         if(map.getCase(localX+x, localY+y) == null){
             throw new MoveException("hors map");

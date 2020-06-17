@@ -131,4 +131,10 @@ public class MoveTestClement {
         inf1.moveStep(1, 0, map);
         mapViewer();
     }
+    @Test (expected=MoveException.class)
+    public void TestNotMove() throws MoveException, FriendException{
+        mapViewer();
+        inf1.moveStep(0, 0, map);
+        mapViewer();
+    }
 }
