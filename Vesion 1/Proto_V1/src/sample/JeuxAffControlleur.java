@@ -2,6 +2,7 @@ package sample;
 
 import ClasseAdvencedWars.Game;
 import ClasseAdvencedWars.Maps;
+import ClasseAdvencedWars.Team;
 import ClasseAdvencedWars.TeamID;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
@@ -31,9 +32,8 @@ public class JeuxAffControlleur implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         //Création de la carte
-        Maps map = new Maps("France");
-        GridPane affMap = map.getTableauxAff();
-        game = new Game(map);
+        game = new Game("France", new Team("redTeam",TeamID.RED),new Team("blueTeam",TeamID.BLUE));
+        GridPane affMap = game.getMAPS().getTableauxAff();
         pane.getChildren().add(0,affMap);
         affMap.setLayoutX(0);
         affMap.setLayoutY(0);

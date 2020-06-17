@@ -22,7 +22,7 @@ public class Base extends Building {
     
     private final Team OWNER;
     
-    private boolean onCapture=false, firstTurn = true;
+    private boolean onCapture=false, firstTurn;
     
     private int nbTurnOnCapture=0;
     
@@ -34,11 +34,13 @@ public class Base extends Building {
     public Base(Team owner, Case acase) {
         super(BibliotequeImage.redUsine, BibliotequeImage.blueUsine,acase, owner);
         this.OWNER = owner;
+        firstTurn = true;
     }
 
     public Base(Team owner) {
         super(BibliotequeImage.redUsine, BibliotequeImage.blueUsine, owner);
         this.OWNER = owner;
+        firstTurn = true;
     }
 
     @Override
