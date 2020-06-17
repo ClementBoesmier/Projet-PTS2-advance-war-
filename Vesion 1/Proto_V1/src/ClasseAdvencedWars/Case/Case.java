@@ -24,7 +24,7 @@ import sample.BibliotequeImage;
 /**
  * 
  */
-public abstract class Case extends Canvas {
+public abstract class Case {
 
     //Affichage
     private Image terrain;
@@ -41,6 +41,8 @@ public abstract class Case extends Canvas {
     private final Building building;
 
     private boolean lock;
+
+    private Canvas affCanvas;
     
     /**
      * Default constructor
@@ -159,22 +161,23 @@ public abstract class Case extends Canvas {
 
     public void init()
     {
+        affCanvas = new Canvas();
         zoom = 2;
-        affichage = this.getGraphicsContext2D();
+        affichage = affCanvas.getGraphicsContext2D();
         menu = new ContextMenu();
         lock = false;
 
-        this.setOnMouseEntered((event)-> {
+        affCanvas.setOnMouseEntered((event)-> {
             affichage.drawImage(contours,0,0);
         });
 
-        this.setOnMouseClicked((event -> {
+        affCanvas.setOnMouseClicked((event -> {
             lock = true;
             map.setSelectedCase(this);
         }));
 
 
-        this.setOnMouseExited(new EventHandler<MouseEvent>() {
+        affCanvas.setOnMouseExited(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
                 if(!lock)
@@ -185,7 +188,7 @@ public abstract class Case extends Canvas {
         });
 
 
-        this.setOnContextMenuRequested(new EventHandler<ContextMenuEvent>() {
+        affCanvas.setOnContextMenuRequested(new EventHandler<ContextMenuEvent>() {
             @Override
             public void handle(ContextMenuEvent event) {
                 ContextMenu menu = new ContextMenu();
@@ -203,11 +206,11 @@ public abstract class Case extends Canvas {
                 }
                 menu.setAutoHide(true);
                 menu.getItems().add(new MenuItem("quitter"));
-                menu.show(Case.super.getParent(), event.getScreenX(), event.getScreenY());
+                menu.show(affCanvas.getParent(), event.getScreenX(), event.getScreenY());
             }
         });
 
-        this.setOnKeyTyped(new EventHandler<KeyEvent>() {
+        affCanvas.setOnKeyTyped(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
                 System.out.println("marche");
@@ -244,7 +247,7 @@ public abstract class Case extends Canvas {
         {
             text+="batiment"+'\n';
         }
-        Tooltip.install(this, new Tooltip(text));
+        Tooltip.install(affCanvas, new Tooltip(text));
     }
 
     private void tooltypeRefresh(String text)
@@ -257,7 +260,7 @@ public abstract class Case extends Canvas {
         {
             text+="batiment"+'\n';
         }
-        Tooltip.install(this, new Tooltip(text));
+        Tooltip.install(affCanvas, new Tooltip(text));
     }
 
 
@@ -285,10 +288,10 @@ public abstract class Case extends Canvas {
         {
             zoom = 4;
         }
-        super.setScaleX(zoom);
-        super.setScaleY(zoom);
-        super.setHeight(hauteur*zoom);
-        super.setWidth(hauteur*zoom);
+        affCanvas.setScaleX(zoom);
+        affCanvas.setScaleY(zoom);
+        affCanvas.setHeight(hauteur*zoom);
+        affCanvas.setWidth(hauteur*zoom);
     }
 
     public void refreshAff()
@@ -316,5 +319,9 @@ public abstract class Case extends Canvas {
     public void setLock(boolean lock) {
         this.lock = lock;
         refreshAff();
+    }
+
+    public Canvas getAffCanvas() {
+        return affCanvas;
     }
 }

@@ -49,4 +49,9 @@ public class MaineMenuControlleur implements Initializable {
         gameStage.setScene(game);
         gameStage.show();
     }
+
+    public void exitGame(ActionEvent actionEvent)
+    {
+        System.exit(0);
+    }
 }

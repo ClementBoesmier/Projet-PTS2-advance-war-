@@ -32,7 +32,7 @@
                   <Insets bottom="10.0" />
                </VBox.margin>
             </Button>
-            <Button mnemonicParsing="false" text="Quitter" />
+            <Button mnemonicParsing="false" onAction="#exitGame" text="Quitter" />
          </children>
       </VBox>
       <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="3">

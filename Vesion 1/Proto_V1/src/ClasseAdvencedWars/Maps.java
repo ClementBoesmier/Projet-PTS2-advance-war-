@@ -141,7 +141,7 @@ public class Maps {
                         System.out.println("X: "+x+" Y: "+y);
                     }else
                     {
-                        tableauxAff.add(map[x][y],y,x);
+                        tableauxAff.add(map[x][y].getAffCanvas(),y,x);
                         map[x][y].setMap(this);
                         map[x][y].setLocation(new Location(x,y));
                     }
