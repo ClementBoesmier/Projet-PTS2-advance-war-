@@ -20,8 +20,8 @@ public class Ocean extends Case {
     }
 
     //Ne crée pas de canvas
-    public Ocean(Building building, Units units) {
-        super(null, (Units) null);
+    public Ocean(Building building, boolean test) {
+        super(null, false);
     }
 
     @Override

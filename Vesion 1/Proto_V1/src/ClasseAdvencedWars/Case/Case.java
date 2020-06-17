@@ -68,10 +68,10 @@ public abstract class Case {
     }
 
     //Ne crée pas de canvas
-    public Case(Building building, Units units)
+    public Case(Building building, boolean test)
     {
         this.building = building;
-        this.unit = units;
+        this.unit = null;
     }
 
     /**

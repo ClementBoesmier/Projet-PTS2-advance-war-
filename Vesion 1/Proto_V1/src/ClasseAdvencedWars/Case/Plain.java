@@ -28,8 +28,8 @@ public class Plain extends Case {
     }
 
     //Ne crée pas de canvas
-    public Plain(Building building, Units units) {
-        super(building, units);
+    public Plain(Building building, Boolean test) {
+        super(building,test);
     }
 
     @Override
