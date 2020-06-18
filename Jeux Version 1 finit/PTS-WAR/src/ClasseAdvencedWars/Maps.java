@@ -149,6 +149,10 @@ public class Maps {
             }
             setEvent();
             System.out.println("Generation de la carte finit");
+            stmt.close();
+            stmt1.close();
+            stmt2.close();
+            pstmt.close();
         }
         catch(SQLException e ){
             System.out.println(e.getMessage());
