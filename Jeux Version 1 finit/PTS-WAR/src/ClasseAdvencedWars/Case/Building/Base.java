@@ -77,6 +77,7 @@ public class Base extends Building {
             {
                 if(capture())
                 {
+                    System.out.println("Base capturer");
                     this.owner = myCase.getUnit().getOwner();
                 }
             }
@@ -94,6 +95,7 @@ public class Base extends Building {
                     case 1 : this.nbTurnOnCapture++;break;
                     case 2 : this.nbTurnOnCapture++;break;
                     case 3 : this.captured=true;
+                    this.nbTurnOnCapture =0;
                     return true;
                 }
             }

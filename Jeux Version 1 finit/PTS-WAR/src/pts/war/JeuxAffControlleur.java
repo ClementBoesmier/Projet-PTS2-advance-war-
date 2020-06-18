@@ -38,12 +38,14 @@ public class JeuxAffControlleur implements Initializable {
     private Game game;
     @FXML
     public AnchorPane pane;
+    
+    GridPane affMap;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         //Création de la carte
-        game = new Game("Carte1", new Team(MaineMenuControlleur.redTeamName.getValue(),TeamID.RED),new Team(MaineMenuControlleur.redTeamName.getValue(),TeamID.BLUE));
-        GridPane affMap = game.getMAPS().getTableauxAff();
+        game = new Game("Carte1", new Team(MaineMenuControlleur.redTeamName.getValue(),TeamID.RED),new Team(MaineMenuControlleur.blueTeamName.getValue(),TeamID.BLUE));
+        affMap = game.getMAPS().getTableauxAff();
         pane.getChildren().add(0,affMap);
         affMap.setLayoutX(0);
         affMap.setLayoutY(0);
@@ -117,5 +119,12 @@ public class JeuxAffControlleur implements Initializable {
             teamPlayNow.setText("Victoire des Rouge");
             teamPlayNow.setTextFill(Color.RED);
         }
+    }
+    
+    @FXML
+    public void resetMapPosition(ActionEvent e)
+    {
+        affMap.setLayoutX(0);
+        affMap.setLayoutY(0);
     }
 }

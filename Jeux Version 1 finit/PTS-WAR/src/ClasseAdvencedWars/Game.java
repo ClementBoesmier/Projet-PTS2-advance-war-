@@ -78,7 +78,7 @@ public class Game {
             {
                 if(e.getValue().getBuilding().getCaptured() == true)
                 {
-                    vTeam = e.getValue().getBuilding().getOwner();
+                    vTeam = e.getValue().getBuilding().getMyCase().getUnit().getOwner();
                 }
             }
         }

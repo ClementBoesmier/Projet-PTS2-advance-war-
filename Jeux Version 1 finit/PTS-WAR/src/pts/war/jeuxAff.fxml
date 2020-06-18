@@ -50,7 +50,7 @@
             <HBox alignment="TOP_CENTER" prefHeight="27.0" prefWidth="600.0">
                <children>
                   <Button fx:id="butRouge" mnemonicParsing="false" onAction="#endTurn" text="Fin de tour rouge" />
-                    <Button mnemonicParsing="false" text="Reset la position de la carte" />
+                    <Button onAction="#resetMapPosition" mnemonicParsing="false" text="Reset la position de la carte" />
                   <Button fx:id="butBleux" mnemonicParsing="false" onAction="#endTurn" text="Fin de tour bleux" />
                </children>
             </HBox>
