@@ -29,7 +29,7 @@ public class Infantry extends Units {
     }
 
 
-    public static int getCost() {
+    public int getCost() {
         return COST;
     }
     @Override

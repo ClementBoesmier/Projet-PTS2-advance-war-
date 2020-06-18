@@ -26,7 +26,7 @@ public class RocketLauncher extends Units {
         super.movePoint = RocketLauncher.MAXTRAVEL;
     }
     
-    public static int getCost() {
+    public int getCost() {
         return COST;
     }
     

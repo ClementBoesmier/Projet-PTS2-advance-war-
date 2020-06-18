@@ -44,25 +44,21 @@ public class Game {
         this.endTurn();
     }
 
-    /*public Game(String team1, String team2){
-       //this.MAPS = new Maps();
-       this.tBlue = new Team(team1, TeamID.BLUE);
-       this.tRed = new Team(team2, TeamID.RED);
-    }*/
+    public Game(String team1, String team2){
+        this.tBlue = new Team(team1);
+        this.tRed = new Team(team2);
+        this.MAPS = new Maps("test",this);
+    }
 
     /**
      * @return
      */
-    public boolean endTurn() {
+    public void endTurn() {
         HashMap<Location, Case> hMBuilding = this.MAPS.getBuilding();
         HashMap<Location, Case> hMUnits = this.MAPS.getUnits();
         for(Map.Entry<Location, Case> e : hMBuilding.entrySet()){
-            if((e.getValue().getBuilding().getOwner() == this.tTurn)){
+            if(e.getValue().getBuilding().getOwner() == this.tTurn){
                 e.getValue().getBuilding().onEndTurn();
-            }
-            e.getValue().getBuilding().capture();
-            if((e.getValue().getBuilding() instanceof Base)&&(e.getValue().getBuilding().isCaptured()==true)){
-                return true;
             }
         }
         for(Map.Entry<Location, Case> e : hMUnits.entrySet()){
@@ -77,7 +73,6 @@ public class Game {
         }else{
             this.tTurn = this.tRed;
         }
-        return false;
     }
     
     /**

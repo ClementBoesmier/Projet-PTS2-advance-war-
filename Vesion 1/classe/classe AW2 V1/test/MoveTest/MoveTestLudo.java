@@ -21,9 +21,10 @@ import org.junit.Test;
 
 /**
  *
- * @author clement
+ * @author nosni
  */
-public class MoveTestClement {
+public class MoveTestLudo {
+    
     private Team team1;
     private Infantry inf1;
     
@@ -32,15 +33,15 @@ public class MoveTestClement {
     
     private Maps map;
     
-    private final int height = 2;
+    private final int height = 7;
     private final int width = 2;
 
     
-    public MoveTestClement(){}
+    public MoveTestLudo(){}
     
     @Before
     public void startup() throws FriendException{
-        team1 = new Team("michel");
+        team1 = new Team("Blue");
         inf1 = new Infantry(team1);
         
         carte = new Case[width][height];
@@ -48,11 +49,15 @@ public class MoveTestClement {
         carte[0][0] = new Plain();
         carte[1][0] = new Plain();
         carte[0][1] = new Ocean();
-        //carte[1][1] = new Plain();
-        
+        carte[1][1] = new Plain();
+        carte[1][2] = new Plain();
+        carte[1][3] = new Plain();
+        carte[1][4] = new Plain();
+        carte[1][5] = new Plain();
+        carte[1][6] = new Plain();
         carte[0][0].setUnit(inf1);
         
-        map = new Maps(2, 2, carte);
+        map = new Maps(2, 7, carte);
     }
     
     @After
@@ -90,39 +95,50 @@ public class MoveTestClement {
     
     @Test
     public void TestMove() throws MoveException, FriendException{
+        System.out.println("Test 1 : ");
         mapViewer();
         inf1.moveStep(1, 0, map);
         mapViewer();
+        System.out.println(" \n");
     }
     
     @Test (expected=MoveException.class)
     public void TestMoveOcean() throws MoveException, FriendException{
+        System.out.println("Test 2 : ");
         mapViewer();
         inf1.moveStep(0, 1, map);
         mapViewer();
+        System.out.println(" \n");
     }
     
     @Test (expected=MoveException.class)
     public void TestMoveHorsMap() throws FriendException, MoveException{
+        System.out.println("Test 3 : ");
         mapViewer();
         inf1.moveStep(1, 0, map);
-        inf1.moveStep(0, 1, map);
+        inf1.moveStep(1, 0, map);
         mapViewer();
+        System.out.println(" \n");
     }
     @Test (expected=MoveException.class)
     public void TestMoveDiagonal() throws MoveException, FriendException{
+        System.out.println("Test 4 : ");
         mapViewer();
         inf1.moveStep(1, 1, map);
         mapViewer();
+        System.out.println(" \n");
     }
     @Test (expected=MoveException.class)
     public void TestMoveJump() throws MoveException, FriendException{
+        System.out.println("Test 5 : ");
         mapViewer();
         inf1.moveStep(2, 0, map);
         mapViewer();
+        System.out.println(" \n");
     }
     @Test (expected=MoveException.class)
     public void TestMoveMax() throws MoveException, FriendException{
+        System.out.println("Test 6 : ");
         mapViewer();
         inf1.moveStep(1, 0, map);
         inf1.moveStep(-1, 0, map);
@@ -130,11 +146,6 @@ public class MoveTestClement {
         inf1.moveStep(-1, 0, map);
         inf1.moveStep(1, 0, map);
         mapViewer();
-    }
-    @Test (expected=MoveException.class)
-    public void TestNotMove() throws MoveException, FriendException{
-        mapViewer();
-        inf1.moveStep(0, 0, map);
-        mapViewer();
+        System.out.println(" \n");
     }
 }

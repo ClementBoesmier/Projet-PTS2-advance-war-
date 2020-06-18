@@ -1,3 +1,4 @@
+  
 package ClasseAdvencedWars;
 
 
@@ -43,6 +44,7 @@ public class Maps {
         this.WIDTH = width;
         this.HEIGHT = height;
     }
+    
     //CONSTRUCTEUR DE TEST TEMPORAIRE
     public Maps(int width, int height, Case temp[][]){
         this.HEIGHT = height;
@@ -51,15 +53,16 @@ public class Maps {
     }
     
     //Constructeur fini ( passage par mapID ) à faire
-    public Maps(String mapName){  
+    public Maps(String mapName, Game gParty){
+        boolean firstBase=false;
         try (Connection con = this.connect();
             Statement stmt = con.createStatement();    
             Statement stmt1 = con.createStatement();
             Statement stmt2 = con.createStatement();
-            ResultSet res = stmt.executeQuery("SELECT MAX(PositionX) FROM PlayGround WHERE " + mapName);
-            ResultSet res1 = stmt1.executeQuery("SELECT MAX(PositionY) FROM PlayGround WHERE " + mapName);
+            ResultSet res = stmt.executeQuery("SELECT MAX(PositionX) FROM PlayGround WHERE mapID = '" + mapName + "'");
+            ResultSet res1 = stmt1.executeQuery("SELECT MAX(PositionY) FROM PlayGround WHERE mapID = '" + mapName + "'");
             ResultSet res2 = stmt2.executeQuery("SELECT Name FROM Player");
-            PreparedStatement pstmt = con.prepareStatement("SELECT Type, Building FROM PlayGround WHERE PositionX=? And PositionY=? AND " + mapName)){
+            PreparedStatement pstmt = con.prepareStatement("SELECT Type, Building FROM PlayGround WHERE PositionX=? And PositionY=? AND mapID = '" + mapName + "'")){
             
             this.HEIGHT = res.getInt("MAX(PositionX)");
             this.WIDTH = res1.getInt("MAX(PositionY)");
@@ -73,21 +76,24 @@ public class Maps {
                         System.out.println(pstmt.executeQuery().getString("Type"));
                         System.out.println(pstmt.executeQuery().getString("Building"));
                         if(pstmt.executeQuery().getString("Building")==null){
-                            this.map[i][j]= new Plain();
+                            this.map[j][i]= new Plain();
                         }
                         else if(pstmt.executeQuery().getString("Building").equals(new String("Base"))){
                             System.out.println("Base");
-                            map[i][j]= new Plain(new Base(new Team(res2.getString("Name"), TeamID.BLUE)));
-                           }
-                        
-                        else if(pstmt.executeQuery().getString("Building").equals(new String("Town"))){
+                            if(firstBase==false){
+                                firstBase=true;
+                                this.map[j][i]= new Plain(new Base(gParty.gettBlue()));
+                            }else{
+                                this.map[j][i]= new Plain(new Base(gParty.gettRed()));
+                            }
+                        }else if(pstmt.executeQuery().getString("Building").equals(new String("Town"))){
                             System.out.println("Town");
-                            this.map[i][j]= new Plain(new Town());
+                            this.map[j][i]= new Plain(new Town());
                         }
                         
                     }
                     if(pstmt.executeQuery().getString("Type").equals(new String("Ocean"))){
-                        map[i][j] = new Ocean();
+                        map[j][i] = new Ocean();
                     }
                     
                 }
@@ -170,7 +176,7 @@ public class Maps {
         Connection conn = null;
         try {
             // db parameters
-            String url = "jdbc:sqlite:C:/sqlite/db/AdvanceWarsDB.db";
+            String url = "jdbc:sqlite:/media/clement/USBa-cClement/cour 2019-2020/PTS2/Vesion 1/sqlite/db/AdvanceWarsDB.db";
             // create a connection to the database
             conn = DriverManager.getConnection(url);
             
