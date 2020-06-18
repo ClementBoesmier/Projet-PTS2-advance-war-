@@ -60,12 +60,12 @@ public class MaineMenuControlleur implements Initializable {
         //Lanczer le jeux
         try
         {
-            startButton.setVisible(false);
             Parent root = FXMLLoader.load(getClass().getResource("jeuxAff.fxml"));
             Scene game = new Scene(root);
             Stage gameStage = new Stage();
             gameStage.setScene(game);
             gameStage.show();
+            startButton.setVisible(false);
         }catch(Exception e)
         {
             Alert alert = new Alert(Alert.AlertType.WARNING);
