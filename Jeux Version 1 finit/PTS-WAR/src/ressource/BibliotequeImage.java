@@ -2,6 +2,8 @@ package ressource;
 
 import javafx.scene.image.Image;
 
+//Cette classe permet de precharger les image utiliser en jeux
+
 public class BibliotequeImage {
 
     //Case

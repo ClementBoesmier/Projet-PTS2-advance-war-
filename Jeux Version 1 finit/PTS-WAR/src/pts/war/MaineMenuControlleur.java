@@ -51,6 +51,7 @@ public class MaineMenuControlleur implements Initializable {
 
     @FXML
     public void lancerJeux(ActionEvent actionEvent) throws IOException {
+        //Lanczer le jeux
         startButton.setVisible(false);
         Parent root = FXMLLoader.load(getClass().getResource("jeuxAff.fxml"));
         Scene game = new Scene(root);

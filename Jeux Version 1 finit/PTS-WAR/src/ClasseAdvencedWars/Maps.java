@@ -290,8 +290,6 @@ public class Maps {
                     {
                         for (int y = 0; y < map.length; y++) {
                             map[x][y].zoom();
-                            //tableauxAff.setLayoutX(tableauxAff.getLayoutX()/2);
-                            //tableauxAff.setLayoutX(tableauxAff.getLayoutY()/2);
                         }
                     }
                 }else
@@ -300,8 +298,6 @@ public class Maps {
                     {
                         for (int y = 0; y < map.length; y++) {
                             map[x][y].dezoom();
-                            //tableauxAff.setLayoutX(tableauxAff.getLayoutX()*2);
-                            //tableauxAff.setLayoutX(tableauxAff.getLayoutY()*2);
                         }
                     }
                 }
@@ -313,7 +309,6 @@ public class Maps {
         tableauxAff.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event){
-                System.out.println("marche");
                 if(selectedCase != null || selectedCase.getUnit() != null)
                 {
                     Units unit = selectedCase.getUnit();
