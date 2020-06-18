@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="B_DEMART_Erwan.jnlp">
+  <information>
+    <title>B_DEMART_Erwan</title>
+    <vendor>yugog</vendor>
+    <description>null</description>
+    <offline-allowed/>
+  </information>
+  <resources>
+    <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+    <jar href="B_DEMART_Erwan.jar" size="5237112" download="eager" />
+    <jar href="lib/sqlite-jdbc-3.27.2.1.jar" size="6012107" download="eager" />
+  </resources>
+  <jfx:javafx-desc  width="800" height="600" main-class="b_demart_erwan.B_DEMART_Erwan"  name="B_DEMART_Erwan" />
+  <update check="always"/>
+</jnlp>

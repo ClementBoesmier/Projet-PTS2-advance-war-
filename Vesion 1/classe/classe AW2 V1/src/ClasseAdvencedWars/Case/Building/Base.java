@@ -4,8 +4,9 @@ import ClasseAdvencedWars.Case.Case;
 import ClasseAdvencedWars.Maps;
 import ClasseAdvencedWars.Team;
 import ClasseAdvencedWars.units.Units;
-import Exception.FriendException;
-import Exception.SpawnException;
+import ClasseAdvencedWars.Exception.FriendException;
+import ClasseAdvencedWars.Exception.SpawnException;
+import sample.BibliotequeImage;
 
 
 /**
@@ -25,8 +26,8 @@ public class Base extends Building {
     /**
      * Default constructor
      */
-    public Base(Team owner) {
-        super();
+    public Base(Team owner, Case acase) {
+        super(BibliotequeImage.usine, BibliotequeImage.usine,acase, owner);
         this.OWNER = owner;
     }
 
