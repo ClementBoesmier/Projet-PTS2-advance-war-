@@ -16,7 +16,7 @@ public class Ocean extends Case {
      * Default constructor
      */
     public Ocean() {
-        super(BibliotequeImage.ocean);
+        super(BibliotequeImage.randomeImageOcean());
     }
 
     //Ne crée pas de canvas

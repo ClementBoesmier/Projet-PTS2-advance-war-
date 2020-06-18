@@ -58,7 +58,7 @@ public class JeuxAffControlleur implements Initializable {
         redIncome.textProperty().bind(game.gettRed().getIncomAffProperty().asString());
 
         //Gestion Background
-        BackgroundImage backgroundImage = new BackgroundImage(new Image("/ressource/image/background.png"), BackgroundRepeat.REPEAT,BackgroundRepeat.REPEAT,BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
+        BackgroundImage backgroundImage = new BackgroundImage(new Image("/ressource/image/cleanSea.png"), BackgroundRepeat.REPEAT,BackgroundRepeat.REPEAT,BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
         pane.setBackground(new Background(backgroundImage));
 
         //Gestion noms des button

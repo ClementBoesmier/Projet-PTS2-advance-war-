@@ -20,7 +20,7 @@ public class Plain extends Case {
      */
     
     public Plain() {
-        super(BibliotequeImage.plaine);
+        super(BibliotequeImage.randomeImagePlain());
     }
     
     public Plain(Building building) {

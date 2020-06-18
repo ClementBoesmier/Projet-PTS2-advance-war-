@@ -10,6 +10,8 @@ public class BibliotequeImage {
     public static Image contour = new Image("/ressource/image/ContourV1.png");
     public static Image plaine = new Image("/ressource/image/Plains.png");
     public static Image ocean = new Image("/ressource/image/sea.png");
+    public static Image plaineClean = new Image("/ressource/image/cleanPlains.png");
+    public static Image oceanClean = new Image("/ressource/image/cleanSea.png");
 
     //Batiment Neutre
     public static Image usine = new Image("/ressource/image/UsineNeutre.png");
@@ -32,4 +34,28 @@ public class BibliotequeImage {
     public static Image redBazooka = new Image("/ressource/image/RedBazookaV1.png");
     public static Image redInfantrie = new Image("/ressource/image/RedInfantryV1.png");
     public static Image redTank = new Image("/ressource/image/RedTankV1.png");
+    
+    public static Image randomeImageOcean()
+    {
+        double nombreAleatoir = 0+Math.random()*101;
+        if(nombreAleatoir < 40)
+        {
+            return ocean;
+        }else
+        {
+            return oceanClean;
+        }
+    }
+    
+        public static Image randomeImagePlain()
+    {
+        double nombreAleatoir = 0+Math.random()*101;
+        if(nombreAleatoir < 60)
+        {
+            return plaine;
+        }else
+        {
+            return plaineClean;
+        }
+    }
 }
