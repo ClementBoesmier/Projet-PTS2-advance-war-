@@ -1,24 +1,17 @@
 package ClasseAdvencedWars.units;
 
-import ClasseAdvencedWars.Case.Case;
 import ClasseAdvencedWars.Location;
 import ClasseAdvencedWars.Maps;
 import ClasseAdvencedWars.Team;
-import ClasseAdvencedWars.Exception.FriendException;
-import ClasseAdvencedWars.Exception.MoveException;
-import ClasseAdvencedWars.TeamID;
-import javafx.scene.control.Menu;
-import javafx.scene.image.Image;
+import Exception.FriendException;
+import Exception.MoveException;
 
 
 /**
  * 
  */
 public abstract class Units{
-    //affichage
-    private Image redFac,blueFac;
-    private Case aCase;
-    private Menu menu;
+
     
     /**
      * 
@@ -33,11 +26,9 @@ public abstract class Units{
      * Default constructor
      * @param owner
      */
-    public Units(Team owner, Case aCase, Image redFac, Image blueFac) {
+    public Units(Team owner) {
         this.OWNER = owner;
-        this.aCase = aCase;
-        this.redFac = redFac;
-        this.blueFac = blueFac;
+        
     }
     /**
      * 

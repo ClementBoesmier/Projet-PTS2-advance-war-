@@ -6,7 +6,6 @@ package ClasseAdvencedWars;
  * 
  */
 public class Team {
-    private TeamID teamID;
     
     /**
      * 
@@ -26,11 +25,10 @@ public class Team {
     /**
      * Default constructor
      */
-    public Team(String name, TeamID teamID){
+    public Team(String name){
         this.name = name;
         this.money = 0;
         this.income = 0;
-        this.teamID = teamID;
     }
 
     public int getMoney() {
@@ -52,11 +50,8 @@ public class Team {
     public void onEndTurn(){
         this.money+=this.income;
     }
-
-    public TeamID getTeamID() {
-        return teamID;
-    }
-
+    
+    
     //TEST PROVISIOIRE
     public int getIncome(){
         return this.income;
