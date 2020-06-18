@@ -33,6 +33,7 @@
                </VBox.margin>
             </Button>
             <Button mnemonicParsing="false" onAction="#exitGame" text="Quitter" />
+            <Button  mnemonicParsing="false" onAction="#loadDatabase" text="Selectionner la base de donnée" />
          </children>
       </VBox>
       <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="3">

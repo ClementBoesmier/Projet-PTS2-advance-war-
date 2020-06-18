@@ -27,6 +27,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.*;
+import pts.war.MaineMenuControlleur;
 
 /**
  * 
@@ -229,6 +230,12 @@ public class Maps {
             //Merci de mettre votre propre chemin
             //String url = "jdbc:sqlite:"+ dbfile.getAbsolutePath()+"\\src\\ressource\\db\\Carte1DB.db";
              String url = "jdbc:sqlite:E:\\Developpement\\git\\Projet-PTS2-advance-war-\\Jeux Version 1 finit\\PTS-WAR\\src\\ressource\\DB\\Carte1DB.db";
+             
+             //Se code étant important on cherchera a l'améliorer plus tard
+             if(MaineMenuControlleur.dbLocation != null)
+             {
+                 url = "jdbc:sqlite:"+MaineMenuControlleur.dbLocation;
+             }
             // create a connection to the database
             conn = DriverManager.getConnection(url);
             
