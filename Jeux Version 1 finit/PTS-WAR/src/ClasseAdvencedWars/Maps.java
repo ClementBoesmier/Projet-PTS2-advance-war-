@@ -233,7 +233,7 @@ public class Maps {
             File dbfile=new File("");
             //Merci de mettre votre propre chemin
             //String url = "jdbc:sqlite:"+ dbfile.getAbsolutePath()+"\\src\\ressource\\db\\Carte1DB.db";
-             String url = "jdbc:sqlite:E:\\Developpement\\git\\Projet-PTS2-advance-war-\\Jeux Version 1 finit\\PTS-WAR\\src\\ressource\\DB\\Carte1DB.db";
+             String url = "jdbc:sqlite:C:\\Users\\mathi\\OneDrive\\Documents\\GitHub\\Projet-PTS2-advance-war-\\Vesion 1\\sqlite\\dbCarte1DB.db";
              
              //Se code étant important on cherchera a l'améliorer plus tard
              if(MaineMenuControlleur.dbLocation != null)
